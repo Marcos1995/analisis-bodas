@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boda 12.000 € · ≤1 h de Barcelona</title>
+  <style>
+    :root {
+      --bg: #f4efe8;
+      --ink: #1c1814;
+      --muted: #5c534a;
+      --line: #d9cfc3;
+      --accent: #8b3d2a;
+      --ok: #2d5a3d;
+      --no: #8b3d2a;
+      --card: #fffcf8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font: 18px/1.5 "Libre Baskerville", Georgia, serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    a { color: var(--accent); }
+    a:hover { text-decoration-thickness: 2px; }
+    header {
+      padding: 3.5rem 1.5rem 2rem;
+      max-width: 42rem;
+      margin: 0 auto;
+    }
+    header p.kicker {
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin: 0 0 0.8rem;
+    }
+    h1 { font-size: 2.15rem; font-weight: 400; line-height: 1.2; margin: 0 0 1rem; }
+    h2 { font-size: 1.45rem; font-weight: 400; margin: 0 0 0.8rem; }
+    h3 { font-size: 1.05rem; font-weight: 400; margin: 0 0 0.4rem; }
+    .lead { color: var(--muted); margin: 0; }
+    nav {
+      position: sticky;
+      top: 0;
+      background: color-mix(in srgb, var(--bg) 92%, white);
+      border-bottom: 1px solid var(--line);
+      z-index: 2;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.1rem;
+      margin: 0 auto;
+      padding: 0.7rem 1.5rem;
+      max-width: 42rem;
+      overflow-x: auto;
+      font-size: 0.85rem;
+    }
+    nav a { color: var(--ink); text-decoration: none; white-space: nowrap; }
+    nav a:hover { color: var(--accent); }
+    main { max-width: 42rem; margin: 0 auto; padding: 1.5rem 1.5rem 5rem; }
+    section { margin: 2.8rem 0; }
+    .verdict {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 1.4rem 1.5rem;
+    }
+    .verdict strong.ok { color: var(--ok); }
+    .verdict strong.no { color: var(--no); }
+    .calc {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 1.4rem 1.5rem;
+    }
+    label { display: block; font-size: 0.85rem; color: var(--muted); margin: 0.9rem 0 0.25rem; }
+    input[type="number"], select {
+      width: 100%;
+      font: inherit;
+      padding: 0.55rem 0.7rem;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--ink);
+    }
+    input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .total {
+      margin-top: 1.1rem;
+      font-size: 1.35rem;
+    }
+    .total.over { color: var(--no); }
+    .total.under { color: var(--ok); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 1.15rem 1.25rem;
+      margin: 0.85rem 0;
+    }
+    .card .meta { font-size: 0.88rem; color: var(--muted); margin: 0.2rem 0 0.5rem; }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      padding: 0.12rem 0.4rem;
+      margin-right: 0.3rem;
+    }
+    .tag.out { border-color: var(--no); color: var(--no); }
+    .tag.in { border-color: var(--ok); color: var(--ok); }
+    ul.plain { padding-left: 1.15rem; }
+    footer {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th, td { text-align: left; padding: 0.45rem 0.3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-weight: 400; color: var(--muted); }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <p class="kicker">Lista de boda · agosto 2026</p>
+    <h1>Todo el día, 12.000 €, a una hora de Barcelona.</h1>
+    <p class="lead">Precios y opiniones públicas de masías, banquetes, foto, DJ, flores y el resto. No es un presupuesto cerrado: es el mapa para pedir cifras reales.</p>
+  </header>
+  <nav aria-label="Secciones">
+    <ul>
+      <li><a href="#veredicto">Veredicto</a></li>
+      <li><a href="#calculadora">Calculadora</a></li>
+      <li><a href="#espacios">Espacios</a></li>
+      <li><a href="#foto">Foto</a></li>
+      <li><a href="#musica">Música</a></li>
+      <li><a href="#flores">Flores</a></li>
+      <li><a href="#resto">Resto</a></li>
+      <li><a href="#preguntas">Preguntar</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="veredicto">
+      <h2>Qué cabe en 12.000 €</h2>
+      <div class="verdict">
+        <p>Una boda media en España 2026 está en <strong>22–32.000 €</strong> (80–120 invitados). A 12.000 €, o recortas invitados, o compras un pack cerrado.</p>
+        <p><strong class="ok">Sí, si:</strong> 40–70 personas, viernes o domingo, noviembre–marzo o pack hotel todo incluido. Banquete + local se come más de la mitad.</p>
+        <p><strong class="no">No, si:</strong> 100 invitados en masía de Sant Cugat a 139 €/cubierto (media de la zona) + foto + DJ + flores + vestidos. Solo comida ya se va a 13.900 €.</p>
+        <p>Can Magí (150–185 €, mínimo 100) queda fuera. Can Tomàs (~28–47 €, máximo 50) es íntima: hay que confirmar que el menú de boda no es el de restaurante.</p>
+      </div>
+    </section>
+
+    <section id="calculadora">
+      <h2>Calculadora</h2>
+      <div class="calc">
+        <label for="guests">Invitados</label>
+        <input id="guests" type="number" min="20" max="200" value="50" aria-describedby="total">
+        <label for="pack">Escenario</label>
+        <select id="pack">
+          <option value="broquetas">Pack Broquetas 108 €/pax IVA incl. (DJ, tarta, deco, 2 h barra)</option>
+          <option value="qgat" selected>QGAT / masía cocina propia 90 €/pax + proveedores sueltos</option>
+          <option value="fuster">Casa Fuster 110 €/pax + proveedores sueltos</option>
+          <option value="magi">Can Magí 165 €/pax (mín. 100) — control</option>
+        </select>
+        <p id="total" class="total" aria-live="polite"></p>
+        <p class="lead" id="breakdown"></p>
+      </div>
+    </section>
+
+    <section id="espacios">
+      <h2>Espacios ≤ 1 h</h2>
+      <p class="lead">Sant Cugat ~25 min. Caldes de Montbui ~35 min. Media banquete Sant Cugat: 139 €/pax (88–198 €), Bodas.net.</p>
+
+      <article class="card">
+        <span class="tag in">Cabe en 12k</span>
+        <h3>Hotel Broquetas Spa Termal · BodasRV</h3>
+        <p class="meta">Caldes de Montbui · Plaça Font del Lleó, 1 · ~30 km · 4.8/5 (20 opiniones Bodas.net)</p>
+        <p>Promo 2026: <strong>todo incluido desde 108 €/pax IVA incl.</strong> (otras fichas dicen 130 €). Incluye aperitivos, banquete, tarta, DJ desde ceremonia hasta 2.ª hora de barra libre, deco, coordinación, seating, habitación novios, spa 2 pax. Menús ficha Bodas.net: 110–132 €.</p>
+        <p>70 pax × 108 € = 7.560 €. Quedan ~4.400 € para foto, ropa, belleza, alianzas, celebrante si no es en el hotel.</p>
+        <p><a href="https://bodasrv.com/espacios/broquetas-spa-termal/">bodasrv.com</a> · <a href="https://www.bodas.net/hoteles/hotel-broquetas-spa-termal-bodasrv--e194211">Bodas.net</a></p>
+      </article>
+
+      <article class="card">
+        <span class="tag in">Cabe ~50 pax</span>
+        <h3>QGAT Restaurant &amp; Events</h3>
+        <p class="meta">Sant Cugat · Via Augusta 51, 08174 · 4.9/5 (142) · 98 % recomiendan · 20–250 pax</p>
+        <p>Menú boda desde <strong>85 €</strong>. Civil en el espacio. Tarta propia. Salón privado a partir de 20 pax. Eventos no-boda: menús 36–62 € (no confundir). Opinión Nuria: «comida un 10… lo volveríamos a escoger».</p>
+        <p>Contacto público: 93 544 19 22 · events@qgat.net · <a href="https://www.qgatrestaurant.com">qgatrestaurant.com</a></p>
+        <p>50 × 90 € ≈ 4.500 € comida. Resto del 12k para foto, DJ, flores, ropa.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag in">Cabe si 60 pax menú bajo</span>
+        <h3>Casa Fuster Masía</h3>
+        <p class="meta">Sant Cugat · Collserola · 4.8/5 (105) · 60–200 pax · 96 % recomiendan</p>
+        <p>Menú boda <strong>80–135 €</strong>. Casa pairal 1800, jardín, civil. Mínimo 60: 60 × 80 = 4.800 €; 60 × 135 = 8.100 €. Sara: «Mireia de principio a fin ejemplar». Google restaurante: comida buena, precio alto, servicio mixto según turno.</p>
+        <p><a href="https://casafuster.net/masia/">casafuster.net</a> · <a href="https://www.bodas.net/masias/casa-fuster-masia-sant-cugat--e132855">Bodas.net</a></p>
+      </article>
+
+      <article class="card">
+        <span class="tag in">Íntima ≤50</span>
+        <h3>Masia Can Tomàs</h3>
+        <p class="meta">Les Planes, Sant Cugat · Can Barata 2-4 · 5.0 · 20–50 pax</p>
+        <p>Menú publicado <strong>27,80–46,50 €</strong> (picoteo, principal, postre, bebida). Cocina propia, terraza, baile, parking. Barra: incluida / consumición / tickets. Urumea oct 2025: comida increíble, Juan predispuesto. Confirmar si ese precio es pack boda o menú de mesa; si es real, 50 × 45 = 2.250 € y el 12k sobra para el resto.</p>
+        <p><a href="https://www.bodas.net/masias/masia-can-tomas--e165195">Bodas.net</a></p>
+      </article>
+
+      <article class="card">
+        <span class="tag">Pedir precio</span>
+        <h3>El Mirador de Can Cases</h3>
+        <p class="meta">Collserola, Sant Cugat · 4.8 · masía s. XVI</p>
+        <p>Zoe: cóctel de pie, sin fundas; Isabel pendiente; se adaptan. Nivia: «Mariona… todo salió como lo habíamos imaginado». Encaja si aceptan formato cóctel (más barato que banquete sentado).</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">Pedir precio</span>
+        <h3>Hotel Sant Cugat</h3>
+        <p class="meta">Sant Cugat · 4.6 (pocas opiniones boda)</p>
+        <p>Mireia: libertad de montaje, noche de bodas + late checkout, reagente interior cuando llovió. Menos “masía”, más logístico (alojamiento invitados).</p>
+      </article>
+
+      <article class="card">
+        <span class="tag out">Fuera de 12k</span>
+        <h3>Can Magí</h3>
+        <p class="meta">Sant Cugat · Av. Can Magí 5 · 5.0/5 (164) · mín. 100 · máx. 500</p>
+        <p>150–185 €/pax: gastronomía, 3 h barra, exclusivo, parking, guardarropa. 100 × 150 = 15.000 € solo esto. Marta: Eli coordinadora, recena éxito. Excelente y caro.</p>
+        <p><a href="https://www.bodas.net/masias/can-magi--e9106">Bodas.net</a></p>
+      </article>
+    </section>
+
+    <section id="foto">
+      <h2>Fotografía</h2>
+      <p class="lead">Media Barcelona Bodas.net: <strong>1.546 €</strong> (típico 885–2.000 €). Por debajo de ~800 € suele ser cobertura corta. Sin vídeo si el tope es 12k.</p>
+      <table>
+        <thead><tr><th>Nombre</th><th>Desde</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr><td>Toni Angel Fotògrafs</td><td>950 €</td><td>Bodas.net</td></tr>
+          <tr><td>Muse Weddings Photo Studio</td><td>1.100 €</td><td>BCN / Girona / Costa Brava, documental</td></tr>
+          <tr><td>Varios listados BCN</td><td>1.100–1.500 €</td><td>Suelo profesional medio</td></tr>
+          <tr><td>Capataz Studio</td><td>1.800 €</td><td></td></tr>
+          <tr><td>Efedos</td><td>1.900 €</td><td></td></tr>
+          <tr><td>Consolidado (guía 2027)</td><td>3.000–5.500 €</td><td>Fuera de este presupuesto</td></tr>
+        </tbody>
+      </table>
+      <p>Directorio: <a href="https://www.bodas.net/bodas/proveedores/fotografos/barcelona">fotógrafos Barcelona · Bodas.net</a>. Guía rangos: <a href="https://www.daniellopezart.com/cuanto-cuesta-fotografo-bodas-barcelona-2027/">daniellopezart.com</a>.</p>
+    </section>
+
+    <section id="musica">
+      <h2>DJ / sonido</h2>
+      <article class="card">
+        <h3>DJs Profesionales</h3>
+        <p class="meta">Desde 450 € (básico) · 700 € esencial 5 h · 1.100 € premium</p>
+        <p>Sonido, LED, transporte. <a href="https://djsprofesionales.com/djs-bodas/discomovil-premium-para-boda-en-barcelona/">djsprofesionales.com</a></p>
+      </article>
+      <article class="card">
+        <h3>Acovento</h3>
+        <p class="meta">Básico 520 € + IVA · Premium 750 € + IVA (ceremonia + cóctel + banquete + 4 h fiesta)</p>
+        <p><a href="https://acovento.es/en/dj-for-weddings-in-barcelona/">acovento.es</a></p>
+      </article>
+      <article class="card">
+        <h3>Coco Music Events (Carlos)</h3>
+        <p class="meta">Desde 850 € pack deluxe · 1 boda/día · sin extra desplazamiento BCN</p>
+        <p><a href="https://www.cocomusicevents.com/dj-bodas-en-barcelona/">cocomusicevents.com</a></p>
+      </article>
+      <article class="card">
+        <h3>FunKeyDJ (Miquel)</h3>
+        <p class="meta">Desde 1.250 € · hasta 10 h · masías y exterior</p>
+        <p>Por encima de lo que sobra si el banquete ya es 8k. <a href="https://funkeydj.com/en/wedding-service/">funkeydj.com</a></p>
+      </article>
+      <p>En Broquetas el DJ va en el pack (2 h fiesta). Si montas QGAT, cuenta 550–850 € extra.</p>
+    </section>
+
+    <section id="flores">
+      <h2>Flores</h2>
+      <p>Ramo España 2026: 80–600 € (típico 120–180 € temporada). Deco completa BCN: 1.200–5.000 €. Eso rompe 12k. Recorte: ramo + 2 centros, o ramo Flowering 50 € boda civil, o deco del pack hotel.</p>
+      <ul class="plain">
+        <li>Flowering — ramo civil precio fijo 50 €. <a href="https://www.flowering.es/ramos-de-novia-boda-civil">flowering.es</a></li>
+        <li>L’Er Atelier Floral — Sant Cugat / BCN; guía deco 1.200–5.000 €. <a href="https://leratelierfloral.com/blog/cuanto-cuesta-decoracion-floral-boda/">leratelierfloral.com</a></li>
+      </ul>
+    </section>
+
+    <section id="resto">
+      <h2>El resto del día</h2>
+      <table>
+        <thead><tr><th>Partida</th><th>Rango público</th><th>En 12k</th></tr></thead>
+        <tbody>
+          <tr><td>Celebrante civil</td><td>~400–800 €</td><td>Sí, o registro municipal + brindis</td></tr>
+          <tr><td>Peluquería + maquillaje novia (con prueba)</td><td>350–700 €</td><td>Sí, un pack</td></tr>
+          <tr><td>Tarta</td><td>200–450 €</td><td>Incluida en Broquetas / QGAT puede hornearla</td></tr>
+          <tr><td>Vestido / alquiler + traje</td><td>400–2.000 €</td><td>Alquiler o second-hand</td></tr>
+          <tr><td>Alianzas</td><td>200–800 €</td><td>Sí, sencillas</td></tr>
+          <tr><td>Vídeo</td><td>1.200–4.000 €</td><td>No</td></tr>
+          <tr><td>Wedding planner día</td><td>450–3.000 € (Cardellach 450–3.000; Waybarcelona desde 1.000)</td><td>No, si el local coordina</td></tr>
+          <tr><td>Invitaciones</td><td>0 (digital) – 300 €</td><td>Digital</td></tr>
+          <tr><td>Autobús invitados</td><td>400–900 €</td><td>Solo si no hay FGC/coche; Sant Cugat no lo necesita</td></tr>
+          <tr><td>Papeles registro civil</td><td>tasas bajas</td><td>Sí</td></tr>
+        </tbody>
+      </table>
+      <p>Cardellach Interior &amp; Events: planner 450–3.000 €, 5.0, 100 % recomiendan. Waybarcelona: desde 1.000 €. Con 12k, la coordinación del propio espacio (Eli en Can Magí, Mireia en Fuster, pack BodasRV) sustituye al planner.</p>
+    </section>
+
+    <section>
+      <h2>Dos escenarios que cierran</h2>
+      <article class="card">
+        <h3>A · Pack hotel · 70 personas</h3>
+        <p>Broquetas 70 × 108 = 7.560. Foto 1.200. Belleza 450. Ropa 1.200. Alianzas 400. Celebrante 0 (civil en jardín del hotel). Extra barra/DJ 0. Colchón 1.190. Total ~12.000.</p>
+      </article>
+      <article class="card">
+        <h3>B · Masía cocina propia · 50 personas</h3>
+        <p>QGAT 50 × 90 = 4.500. DJ 700. Foto 1.200. Ramo 150. Belleza 450. Ropa 1.400. Alianzas 400. Celebrante 500. Tarta 0 (local). Invitaciones 0. Colchón 2.700. Total ~11.000. Sube a 60 pax y el colchón desaparece.</p>
+      </article>
+    </section>
+
+    <section id="preguntas">
+      <h2>Qué preguntar (todas las partidas)</h2>
+      <ul class="plain">
+        <li>¿IVA incluido? ¿10 % o 21 %?</li>
+        <li>¿Mínimo de pax? ¿Recargo si no llego?</li>
+        <li>¿Sábado vs viernes/domingo vs temporada baja?</li>
+        <li>¿Barra libre: horas, marcas, recena?</li>
+        <li>¿Mobiliario, mantel, copas, sonido, parking?</li>
+        <li>¿Hora de fin y extra por hora?</li>
+        <li>¿Exclusividad fotógrafo / DJ / catering?</li>
+        <li>¿Se puede civil en el jardín? ¿Tasa ayuntamiento?</li>
+        <li>Señal, calendario de pagos, cancelación.</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>Fuentes consultadas ago 2026: Bodas.net (fichas y medias), mecasoliteral.com, uauu.cat, canmarlet.com, jonnycatering.com, qgatrestaurant.com / events@qgat.net, casafuster.net, bodasrv.com, cocomusicevents.com, djsprofesionales.com, acovento.es, funkeydj.com, daniellopezart.com, flowering.es, leratelierfloral.com, wedded.app. Precios de web; pedir presupuesto firmado. No sustituye visita.</p>
+  </footer>
+  <script>
+    const FIXED = { photo: 1200, beauty: 450, clothes: 1300, rings: 400, celebrant: 400, flowers: 150 };
+    const packs = {
+      broquetas: { pax: 108, extras: 0, note: "DJ, tarta y deco van en el cubierto. Celebrante a veces no hace falta." },
+      qgat: { pax: 90, extras: 700, note: "Extras = DJ ~700 €. Tarta a menudo del local." },
+      fuster: { pax: 110, extras: 700, note: "Mínimo real ~60 pax. DJ aparte." },
+      magi: { pax: 165, extras: 0, note: "Mínimo 100 pax: el cubierto solo ya revienta 12k." }
+    };
+    const guests = document.getElementById("guests");
+    const pack = document.getElementById("pack");
+    const totalEl = document.getElementById("total");
+    const br = document.getElementById("breakdown");
+    function euro(n) { return n.toLocaleString("es-ES") + " €"; }
+    function calc() {
+      const g = Math.max(1, Number(guests.value) || 0);
+      const p = packs[pack.value];
+      const food = g * p.pax;
+      const rest = p.extras + FIXED.photo + FIXED.beauty + FIXED.clothes + FIXED.rings + (pack.value === "broquetas" ? 0 : FIXED.celebrant) + (pack.value === "broquetas" ? 0 : FIXED.flowers);
+      const t = food + rest;
+      const ok = t <= 12000;
+      totalEl.className = "total " + (ok ? "under" : "over");
+      totalEl.textContent = (ok ? "Dentro: " : "Se pasa: ") + euro(t) + " / 12.000 €";
+      br.textContent = "Banquete " + euro(food) + " + fijos " + euro(rest) + ". " + p.note;
+    }
+    guests.addEventListener("input", calc);
+    pack.addEventListener("change", calc);
+    calc();
+  </script>
+</body>
+</html>
