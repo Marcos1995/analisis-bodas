@@ -237,7 +237,7 @@
       <li><a href="#mapa">Mapa</a></li>
       <li><a href="#espacios">Fincas</a></li>
       <li><a href="#bufet">Bufé</a></li>
-      <li><a href="#foto">Foto</a></li>
+      <li><a href="#servicios">Servicios</a></li>
       <li><a href="#preguntas">Preguntar</a></li>
     </ul>
   </nav>
@@ -248,10 +248,10 @@
       <p class="lead">Fuera: hoteles de pueblo, restaurantes urbanos y fincas de menos de 85 (Can Tomàs) o sin salón de lluvia. Dentro: jardín + interior para 85.</p>
       <div class="split">
         <div class="panel">
-          <p><strong class="ok">Cabe con 85</strong><br>Can Cases 35–60 € (confirmar boda). Mas Nadal 75–135 €. Cal Dimoni 68–78 €. Reixac 65–105 €. Serrat 95 €. Ca N’Illa 94 €. Sidro / Cabús ~105–109 € si el pack aguanta los fijos.</p>
+          <p><strong class="ok">Cabe con 85 (cifra de ficha)</strong><br>Cases 35–60 € · 4.8. Reixac 65–105 € · 4.9. Dimoni 68–78 € · 4.9. Nadal 75–135 € · 4.8. Font del Tort desde 90 €. Can Biel 90–150 € (web desde 95). Illa 94 € · 4.8. Serrat 95–152 € · 4.7.</p>
         </div>
         <div class="panel">
-          <p><strong class="no">No</strong><br>Can Magí mín. 100 y 150 €. QGAT y Broquetas: no son bosque. Can Pau: exterior sí, interior de 85 no publicado. Vídeo y deco floral completa rompen 12k.</p>
+          <p><strong class="no">Aprieta o no</strong><br>Sidro 95–105 € pack · 4.9. Cabús 100–143 € · 5.0. Llombart 100–180 € (DJ 2 h dentro). Fuster 80–135 €. Magí mín. 100. Vídeo y deco floral completa rompen 12k.</p>
         </div>
       </div>
     </section>
@@ -260,7 +260,7 @@
       <div class="calc-wrap">
         <div>
           <h2>Calcular</h2>
-          <p class="lead">Parte de 85. Cambia espacio, foto, DJ y flores.</p>
+          <p class="lead">Parte de 85. Precios de ficha, no de presupuesto firmado.</p>
           <div class="fields">
             <div>
               <label for="guests">Invitados</label>
@@ -281,6 +281,10 @@
             <div>
               <label for="flowers">Flores</label>
               <select id="flowers"></select>
+            </div>
+            <div>
+              <label for="extra">Extra</label>
+              <select id="extra"></select>
             </div>
           </div>
           <div class="sum">
@@ -323,17 +327,23 @@
       </div>
     </section>
 
-    <section id="foto">
-      <h2>Foto, música, flores</h2>
+    <section id="servicios">
+      <h2>Servicios con precio publicado</h2>
       <hr class="rule">
-      <p class="lead">Media foto BCN 1.546 €. Sin vídeo.</p>
+      <p class="lead">Media foto BCN 1.546 €. Celebrante, tarta, fotomatón y bus caben si el banquete deja colchón. Sin vídeo.</p>
       <table>
-        <thead><tr><th>Oficio</th><th>Quién</th><th>Desde</th></tr></thead>
+        <thead><tr><th>Oficio</th><th>Quién</th><th>Ficha</th></tr></thead>
         <tbody>
-          <tr><td>Foto</td><td>Luciérnagas / Toni Àngel (670 278 714)</td><td>950 €</td></tr>
+          <tr><td>Foto</td><td>Luciérnagas · Toni Àngel (670 278 714)</td><td>desde 950 €</td></tr>
           <tr><td>Foto</td><td>Marina Kronfeld · Muse · Max-record</td><td>1.000–1.100 €</td></tr>
           <tr><td>Foto</td><td>Capataz · Efedos</td><td>1.800–1.900 €</td></tr>
           <tr><td>DJ</td><td>DJs Profesionales · Acovento · Coco</td><td>450–850 €</td></tr>
+          <tr><td>Celebrante</td><td>Sandra López (Badalona) · 5.0 / 10</td><td>295–1.000 €</td></tr>
+          <tr><td>Celebrante</td><td>Cristian, maestro de ceremonias (L’Hospitalet)</td><td>250–500 €</td></tr>
+          <tr><td>Tarta</td><td>Handcake (Viladecans)</td><td>desde 30 €; boda típica 200–450 €</td></tr>
+          <tr><td>Fotomatón</td><td>Fotomatón Lowcost (Cerdanyola) · 2 h</td><td>248–1.000 €</td></tr>
+          <tr><td>Fotomatón</td><td>The Booth vintage BCN · 2 h</td><td>325 € + IVA</td></tr>
+          <tr><td>Autobús</td><td>Media alquiler BCN (guías 2026)</td><td>320–968 € · media 571 €</td></tr>
           <tr><td>Flores</td><td>Flowering ramo civil · L’Er deco</td><td>50 € / 1.200 €</td></tr>
           <tr><td>Belleza</td><td>Janna 120–270 · OH Sant Cugat pack 400 €</td><td>120–400 €</td></tr>
         </tbody>
@@ -354,7 +364,7 @@
     <p id="check-fail" hidden></p>
   </main>
   <footer>
-    <p>Fuentes ago 2026: Bodas.net, casafuster.net / masiasantcugat.com, cancortes.com, cancabus.es, laporxadadecansidro.com, canametller.com, elserratametlla.wordpress.com, masia-caldimoni.com, jonnycatering.com, Wikimedia. Precios de web; pedir cifra firmada. Teléfonos solo si salen en la web del profesional.</p>
+    <p>Fuentes ago 2026: Bodas.net (fichas mayo–julio 2026), canbiel.com, masiafontdeltort.com, casafuster.net, cancortes.com, the-booth.es, jonnycatering.com, Wikimedia. Precios de web; pedir cifra firmada. Teléfonos solo si salen en la web del profesional.</p>
   </footer>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
@@ -364,42 +374,54 @@
       return "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(name) + "?width=800";
     }
     const venues = [
-      { id: "cases", name: "El Mirador de Can Cases", place: "Collserola, Sant Cugat", addr: "Camí de Can Cases, 15", mins: 25, lat: 41.448, lon: 2.078, min: 20, max: 250, pax: 50, from: 35, to: 60, rating: "4.8", reviews: 0, incDj: false, incFlowers: false, incCivil: false, fit: "in",
+      { id: "cases", name: "El Mirador de Can Cases", place: "Collserola, Sant Cugat", addr: "Camí de Can Cases, 15", mins: 25, lat: 41.448, lon: 2.078, min: 20, max: 250, pax: 50, from: 35, to: 60, rating: "4.8", reviews: 0, rec: "95 %", incDj: false, incFlowers: false, incCivil: false, fit: "in",
         out: "Terraza y jardín", inn: "Salones con chimenea",
-        note: "s. XVI entre bosque. Banquete dentro o en terraza. Ficha 35–60 €: confirmar que es menú de boda sábado, no de restaurante.",
+        note: "s. XVI entre bosque. Ficha julio 2026: 35–60 € (bienvenida, plato, postre, tarta, consumiciones). 95 % recomiendan. Confirmar sábado boda vs menú de mesa.",
         url: "https://www.bodas.net/restaurantes/el-mirador-de-can-cases--e119911", photo: wiki("Entrada al parc de Collserola (Sant Cugat).jpg"), cap: "Collserola · Wikimedia" },
-      { id: "cortes", name: "Masía Can Cortès", place: "Collserola, Sant Cugat", addr: "Av. Can Cortès 36", mins: 20, lat: 41.418, lon: 2.108, min: 20, max: 200, pax: 70, from: 44, to: 120, rating: "", reviews: 0, incDj: false, incFlowers: false, incCivil: false, fit: "in",
+      { id: "cortes", name: "Masía Can Cortès", place: "Collserola, Sant Cugat", addr: "Av. Can Cortès 36", mins: 20, lat: 41.418, lon: 2.108, min: 20, max: 200, pax: 70, from: 44, to: 120, rating: "5.0", reviews: 0, rec: "100 %", incDj: false, incFlowers: false, incCivil: false, fit: "in",
         out: "600 m² de hierba y jardín", inn: "Salas climatizadas hasta 120",
-        note: "s. XVI, Arrabassada. Menú boda 44–120 €. Celebraciones 49–64 €. Bufé terraza 2 h (pedir). Veg/vegano. 93 674 17 04.",
+        note: "5.0 / 100 % recomiendan. Menú boda 44–120 €. Web celebraciones 49–64 €. Bufé terraza 2 h (pedir). 93 674 17 04.",
         url: "https://cancortes.com/es/menus/menus-celebraciones/", phone: "93 674 17 04", photo: wiki("Serra de Collserola.jpg"), cap: "Collserola · Wikimedia" },
       { id: "dimoni", name: "El Molí de Cal Dimoni", place: "Badalona · Serralada Marina", addr: "Ctra. Badalona–Montcada km 3,3", mins: 20, lat: 41.46, lon: 2.22, min: 20, max: 300, pax: 78, from: 68, to: 150, rating: "4.9", reviews: 110, incDj: true, incFlowers: true, incCivil: false, fit: "in",
         out: "Jardín y terraza", inn: "Salones y carpa",
-        note: "Campo junto a la B-20. Promo 67,90 € con músico (mín. 40). 93 465 76 78.",
+        note: "4.9 (110). Promo 67,90 € con músico (mín. 40). PDF menú boda en su web. 93 465 76 78.",
         url: "https://www.bodas.net/masias/masia-el-moli-de-cal-dimoni--e7472", phone: "93 465 76 78", photo: wiki("Serralada de la Marina, Badalona (51843376084).jpg"), cap: "Serralada de Marina · Wikimedia" },
-      { id: "reixac", name: "Masia Reixac", place: "Montcada i Reixac", addr: "Ctra. de la Roca", mins: 20, lat: 41.486, lon: 2.188, min: 20, max: 400, pax: 85, from: 65, to: 105, rating: "4.9", reviews: 166, incDj: true, incFlowers: true, incCivil: false, fit: "in",
-        out: "Jardines y terrazas", inn: "8 salones (30–350)",
-        note: "Menú con DJ y floral. 85 × 85 € = 7.225 € comida. Señal 500 €.",
-        url: "https://www.bodas.net/masias/masia-reixac--e5554", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
+      { id: "reixac", name: "Masia Reixac", place: "Montcada i Reixac", addr: "Ctra. de la Roca 9", mins: 20, lat: 41.486, lon: 2.188, min: 20, max: 400, pax: 85, from: 65, to: 105, rating: "4.9", reviews: 166, rec: "98 %", incDj: true, incFlowers: true, incCivil: false, fit: "in",
+        out: "Jardines y terrazas · Serra de Marina", inn: "8 salones (30–350)",
+        note: "4.9 / 98 %. Menú con DJ y floral. 85 × 85 € = 7.225 €. Señal 500 €. 93 564 14 45.",
+        url: "https://www.bodas.net/masias/masia-reixac--e5554", phone: "93 564 14 45", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
+      { id: "font", name: "Masia Font del Tort", place: "Montcada · Serra de Marina", addr: "Serralada de Marina", mins: 20, lat: 41.495, lon: 2.195, min: 40, max: 170, pax: 90, from: 90, to: 90, rating: "4.9", reviews: 222, incDj: true, incFlowers: false, incCivil: false, fit: "in",
+        out: "Parque y exteriores", inn: "Salones + discoteca con terraza",
+        note: "Web: desde 90 €/pax todo incluido. Veg/vegano/alérgicos. Animación infantil. 15 min BCN.",
+        url: "https://www.masiafontdeltort.com/bodas", photo: wiki("Serralada de la Marina, Badalona (51843376084).jpg"), cap: "Serra de Marina · Wikimedia" },
+      { id: "biel", name: "Can Biel", place: "Llinars del Vallès", addr: "Llinars, vistas Montseny", mins: 35, lat: 41.64, lon: 2.405, min: 50, max: 220, pax: 95, from: 90, to: 150, rating: "", reviews: 0, incDj: true, incFlowers: true, incCivil: false, fit: "in",
+        out: "Jardín nupcial 200 m² + bosques", inn: "Mirador 120 pax · Nou Estil 220 pax",
+        note: "Web desde 95 €. Bodas.net 90–150 €. Pack: flores, fundas, 2 h baile y 2 h barra. Wedding Award 2026.",
+        url: "https://www.canbiel.com/", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès Oriental · Wikimedia" },
       { id: "nadal", name: "Mas Nadal", place: "Sant Andreu de Llavaneres", addr: "Riera Avall, 8", mins: 35, lat: 41.573, lon: 2.443, min: 8, max: 170, pax: 75, from: 75, to: 135, rating: "4.8", reviews: 83, incDj: false, incFlowers: false, incCivil: false, fit: "in",
         out: "Jardines llenos de vegetación", inn: "Salón acristalado + carpa",
         note: "Media hora de BCN. 75–135 €. Promo ficha 110 € IVA incl. Veg/vegano.",
         url: "https://www.bodas.net/masias/mas-nadal--e88256", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme · Wikimedia" },
-      { id: "serrat", name: "El Serrat de l'Ametlla", place: "L'Ametlla del Vallès", addr: "Carrer Gralla 46", mins: 40, lat: 41.669, lon: 2.261, min: 50, max: 700, pax: 95, from: 95, to: 95, rating: "4.7", reviews: 199, incDj: false, incFlowers: false, incCivil: false, fit: "in",
+      { id: "serrat", name: "El Serrat de l'Ametlla", place: "L'Ametlla del Vallès", addr: "Carrer Gralla 44-46", mins: 40, lat: 41.669, lon: 2.261, min: 50, max: 700, pax: 110, from: 95, to: 152, rating: "4.7", reviews: 199, rec: "94 %", incDj: false, incFlowers: false, incCivil: false, fit: "in",
         out: "11.000 m², lagos, árboles", inn: "Salón cerrado hasta 800 + sala de baile",
-        note: "Plan B lluvia publicado. 93 843 03 01 · 629 450 614 · info@serratametlla.com.",
-        url: "https://elserratametlla.wordpress.com/espacios/", phone: "93 843 03 01", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
+        note: "Ficha junio 2026: 95–152 € (antes solo vimos el suelo). 4.7 / 94 %. Calculadora usa 110 €. 93 843 03 01.",
+        url: "https://www.bodas.net/masias/el-serrat-de-lametlla--e164521", phone: "93 843 03 01", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
       { id: "illa", name: "Masía Ca N'Illa", place: "La Garriga", addr: "C. Mil·lenari de Catalunya", mins: 40, lat: 41.685, lon: 2.283, min: 50, max: 450, pax: 94, from: 94, to: 94, rating: "4.8", reviews: 238, incDj: false, incFlowers: false, incCivil: false, fit: "in",
         out: "Entorno s. XV y naturaleza", inn: "Salones de banquete",
         note: "Desde 94 €. 35 km BCN. 93 589 50 69.",
         url: "https://www.bodas.net/bodas/banquetes/masias/barcelona", phone: "93 589 50 69", photo: wiki("Can Fournier - la Garriga - P1070153.jpg"), cap: "La Garriga · Wikimedia" },
-      { id: "sidro", name: "La Porxada de Can Sidro", place: "Palau-solità i Plegamans", addr: "Palau-solità", mins: 25, lat: 41.587, lon: 2.178, min: 50, max: 190, pax: 105, from: 95, to: 124, rating: "4.9", reviews: 624, incDj: true, incFlowers: true, incCivil: false, fit: "mid",
-        out: "Jardín y parque", inn: "Porxada y Jardinet acristalados",
-        note: "Naturaleza a 20 min. Pack 105–124 €. 85 × 105 = 8.925 €; los fijos aprietan.",
-        url: "https://www.laporxadadecansidro.com/", photo: wiki("Masia de Can Padró, a Palau-solità i Plegamans.jpeg"), cap: "Masia del pueblo (no es Sidro) · Wikimedia" },
-      { id: "cabus", name: "Can Cabús", place: "Alella", addr: "Av. Sant Josep de Calassanç 10", mins: 25, lat: 41.4955, lon: 2.294, min: 20, max: 180, pax: 109, from: 100, to: 143, rating: "", reviews: 0, incDj: false, incFlowers: true, incCivil: false, fit: "mid",
+      { id: "sidro", name: "La Porxada de Can Sidro", place: "Palau-solità i Plegamans", addr: "Palau-solità", mins: 25, lat: 41.587, lon: 2.178, min: 50, max: 200, pax: 105, from: 95, to: 124, rating: "4.9", reviews: 624, rec: "98 %", incDj: true, incFlowers: true, incCivil: false, fit: "mid",
+        out: "Jardín y parque", inn: "Porxada y Jardinet acristalados (50–200)",
+        note: "Julio 2026: menú 95–105 €. Promos todo incluido 105 € o 124 € (barra aperitivo, deco, IVA, seating). 4.9 / 98 %. 85 × 105 = 8.925 €.",
+        url: "https://www.bodas.net/masias/la-porxada-de-can-sidro--e5403", photo: wiki("Masia de Can Padró, a Palau-solità i Plegamans.jpeg"), cap: "Masia del pueblo (no es Sidro) · Wikimedia" },
+      { id: "cabus", name: "Can Cabús", place: "Alella", addr: "Av. Sant Josep de Calassanç 10", mins: 25, lat: 41.4955, lon: 2.294, min: 40, max: 180, pax: 109, from: 100, to: 143, rating: "5.0", reviews: 0, rec: "100 %", incDj: false, incFlowers: true, incCivil: false, fit: "mid",
         out: "Jardín de finca", inn: "Salón y carpa",
-        note: "Promo 109 € todo incluido 2026. 85 × 109 = 9.265 €. Hotel a 500 m.",
-        url: "https://cancabus.es/", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Alella · Wikimedia" },
+        note: "Junio 2026: 100–143 €. Promo 109 € (aperitivo bufé, banquete, tarta, 2 h barra, deco). 5.0 / 100 %. 85 × 109 = 9.265 €.",
+        url: "https://www.bodas.net/fincas/can-cabus--e49545", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Alella · Wikimedia" },
+      { id: "llombart", name: "Mas Llombart", place: "Sant Fost de Campsentelles", addr: "Urb. Mas Llombart", mins: 20, lat: 41.506, lon: 2.155, min: 40, max: 210, pax: 100, from: 100, to: 180, rating: "", reviews: 0, incDj: true, incFlowers: true, incCivil: false, fit: "mid",
+        out: "5.500 m² de jardín", inn: "Dos salones, máx. 210",
+        note: "Pack: cóctel, floral, 2 h DJ, 2 h barra, tarta, IVA. 85 × 100 = 8.500 €. Wedding Award. Una boda al día.",
+        url: "https://www.bodas.net/masias/mas-llombart--e5239", photo: wiki("Serra de Collserola.jpg"), cap: "Prelitoral · Wikimedia" },
       { id: "fuster", name: "Casa Fuster / Masía Sant Cugat", place: "Collserola, Sant Cugat", addr: "Av. Corts Catalanes s/n", mins: 25, lat: 41.466, lon: 2.075, min: 60, max: 200, pax: 110, from: 80, to: 135, rating: "4.8", reviews: 105, incDj: false, incFlowers: false, incCivil: false, fit: "mid",
         out: "Jardines con vistas a Collserola", inn: "Salón diáfano exclusivo",
         note: "Una boda al día. 80–135 €. 85 × 110 = 9.350 €. 93 589 34 45 · celebraciones.masia@casafuster.net.",
@@ -441,15 +463,21 @@
       { id: "simple", name: "Ramo + 2 centros", price: 150 },
       { id: "ler", name: "Deco L’Er (suelo)", price: 1200 }
     ];
+    const extras = [
+      { id: "none", name: "Sin extra", price: 0 },
+      { id: "low", name: "Fotomatón Lowcost 2 h", price: 248 },
+      { id: "booth", name: "The Booth 2 h + IVA", price: 393 },
+      { id: "bus", name: "Autobús media BCN", price: 571 }
+    ];
 
     function euro(n) { return Math.round(n).toLocaleString("es-ES") + " €"; }
-    function cost(v, g, photo, dj, fl) {
+    function cost(v, g, photo, dj, fl, extra) {
       if (!v.pax) return null;
       const food = (v.rent || 0) + g * v.pax;
       const d = v.incDj ? 0 : dj;
       const f = v.incFlowers ? 0 : fl;
       const c = v.incCivil ? 0 : FIXED.celebrant;
-      return food + d + f + c + photo + FIXED.beauty + FIXED.clothes + FIXED.rings;
+      return food + d + f + c + photo + (extra || 0) + FIXED.beauty + FIXED.clothes + FIXED.rings;
     }
     function fillSelect(el, items, label) {
       el.innerHTML = items.map(function (x) {
@@ -461,6 +489,7 @@
     const photoEl = document.getElementById("photo");
     const djEl = document.getElementById("dj");
     const flEl = document.getElementById("flowers");
+    const extraEl = document.getElementById("extra");
     const priced = venues.filter(function (v) { return v.pax; });
     fillSelect(venueEl, priced, false);
     priced.forEach(function (v, i) {
@@ -469,6 +498,8 @@
     fillSelect(photoEl, photos, true);
     fillSelect(djEl, djs, true);
     fillSelect(flEl, flowerOpts, true);
+    fillSelect(extraEl, extras, true);
+    extraEl.value = "none";
     venueEl.value = "nadal";
     photoEl.value = "muse";
     djEl.value = "djsp";
@@ -481,7 +512,8 @@
       const ph = pick(photos, photoEl.value);
       const d = pick(djs, djEl.value);
       const f = pick(flowerOpts, flEl.value);
-      const t = cost(v, g, ph.price, d.price, f.price);
+      const x = pick(extras, extraEl.value);
+      const t = cost(v, g, ph.price, d.price, f.price, x.price);
       const totalEl = document.getElementById("total");
       const br = document.getElementById("breakdown");
       if (t == null) {
@@ -504,6 +536,7 @@
         (v.incCivil ? "" : " + celebrante 400 €") +
         (v.incDj ? "" : " + DJ " + euro(d.price)) +
         (v.incFlowers ? "" : " + flores " + euro(f.price)) +
+        (x.price ? " + extra " + euro(x.price) : "") +
         ". " + v.note;
       renderCombos(g);
     }
@@ -516,7 +549,7 @@
           djs.forEach(function (d) {
             if (v.incDj && d.price !== 0) return;
             if (!v.incDj && d.price === 0) return;
-            const t = cost(v, g, ph.price, d.price, v.incFlowers ? 0 : 150);
+            const t = cost(v, g, ph.price, d.price, v.incFlowers ? 0 : 150, 0);
             if (t != null && t <= CAP) rows.push({ v: v, ph: ph, d: d, t: t });
           });
         });
@@ -537,7 +570,7 @@
         const tag = v.fit === "in" ? "in" : v.fit === "out" ? "out" : "";
         const tagTxt = v.fit === "in" ? "Cabe a 85" : v.fit === "out" ? "No" : "Aprieta";
         const img = v.photo ? "<div><img src=\"" + v.photo + "\" alt=\"\" width=\"800\" height=\"400\" loading=\"lazy\" onerror=\"this.remove()\"><p class=\"cap\" style=\"padding:0.4rem 1.2rem 0\">" + v.cap + "</p></div>" : "";
-        const rate = v.rating ? v.rating + "/5" + (v.reviews ? " (" + v.reviews + ")" : "") + " · " : "";
+        const rate = v.rating ? v.rating + "/5" + (v.reviews ? " (" + v.reviews + ")" : "") + (v.rec ? " · " + v.rec : "") + " · " : "";
         const tel = v.phone ? "<p class=\"meta\">" + v.phone + "</p>" : "";
         const link = v.url ? "<p><a href=\"" + v.url + "\">Fuente</a></p>" : "";
         return "<article class=\"place\" id=\"v-" + v.id + "\">" + img + "<div class=\"body\"><p class=\"tag " + tag + "\">" + tagTxt +
@@ -565,9 +598,9 @@
     }
 
     function selfCheck() {
-      const t1 = cost(pick(venues, "cases"), 85, 1200, 700, 150);
-      const t2 = cost(pick(venues, "nadal"), 85, 1200, 700, 150);
-      const t3 = cost(pick(venues, "dimoni"), 85, 1200, 700, 150);
+      const t1 = cost(pick(venues, "cases"), 85, 1200, 700, 150, 0);
+      const t2 = cost(pick(venues, "nadal"), 85, 1200, 700, 150, 0);
+      const t3 = cost(pick(venues, "dimoni"), 85, 1200, 700, 150, 0);
       if (t1 !== 8700 || t2 !== 10825 || t3 !== 10230) {
         const el = document.getElementById("check-fail");
         el.hidden = false;
@@ -583,6 +616,7 @@
     photoEl.addEventListener("change", calc);
     djEl.addEventListener("change", calc);
     flEl.addEventListener("change", calc);
+    extraEl.addEventListener("change", calc);
     calc();
   </script>
 </body>
