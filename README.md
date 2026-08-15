@@ -8,6 +8,7 @@ Abrir: `index.html`
 
 - Veredicto: qué cabe y qué no en 12k
 - Mapa OSM de masías y hoteles
+- Filtro: jardín + salón cubierto para 85
 - Calculadora (espacio × foto × DJ × flores)
 - Combinaciones que cierran el tope
 - Bufé / estaciones vs menú cerrado (qué cabe y qué no en packs)

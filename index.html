@@ -3,390 +3,358 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boda 12.000 € · ≤1 h de Barcelona</title>
+  <title>Boda 85 personas · 12.000 € · jardín y salón</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <style>
     :root {
-      --bg: #f3eee6;
-      --ink: #1a1612;
-      --muted: #5a5249;
-      --line: #d8cfc2;
-      --accent: #8b3d2a;
-      --ok: #245536;
-      --no: #8b3d2a;
-      --card: #fffdf9;
+      --night: #16110d;
+      --paper: #f4efe4;
+      --card: #fbf6ee;
+      --ink: #1a140f;
+      --muted: #6a5e52;
+      --line: #cfc3b2;
+      --bronze: #8a6a3c;
+      --ok: #2a5340;
+      --no: #8a3a2a;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font: 18px/1.55 "Libre Baskerville", Georgia, serif;
+      font: 18px/1.6 "Libre Baskerville", Georgia, serif;
       color: var(--ink);
-      background: var(--bg);
+      background: var(--paper);
     }
-    a { color: var(--accent); }
+    a { color: var(--bronze); }
     a:hover { text-decoration-thickness: 2px; }
     .skip {
-      position: absolute;
-      left: 0.8rem;
-      top: -3rem;
-      background: var(--ink);
+      position: absolute; left: 1rem; top: -3rem;
+      background: var(--card); color: var(--night);
+      padding: 0.5rem 0.8rem; z-index: 8;
+    }
+    .skip:focus { top: 1rem; }
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: flex-end;
       color: var(--card);
-      padding: 0.5rem 0.8rem;
-      z-index: 6;
+      background: var(--night) center/cover no-repeat;
     }
-    .skip:focus { top: 0.8rem; }
-    header {
-      padding: 4.5rem 1.5rem 2.4rem;
-      max-width: 44rem;
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(22,17,13,0.25) 0%, rgba(22,17,13,0.78) 70%, #16110d 100%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 40rem;
+      padding: 0 1.6rem 4.5rem;
       margin: 0 auto;
+      width: 100%;
     }
-    header p.kicker {
-      letter-spacing: 0.16em;
+    .kicker {
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin: 0 0 1.1rem;
+      font-size: 0.68rem;
+      margin: 0 0 1.2rem;
+      color: #e8dcc8;
     }
-    h1 { font-size: clamp(2rem, 5vw, 2.7rem); font-weight: 400; line-height: 1.15; margin: 0 0 1.2rem; }
-    h2 { font-size: 1.35rem; font-weight: 400; margin: 0 0 1rem; letter-spacing: -0.01em; }
-    h3 { font-size: 1.08rem; font-weight: 400; margin: 0 0 0.35rem; }
-    .lead { color: var(--muted); margin: 0 0 1.2rem; max-width: 38rem; }
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.12;
+      margin: 0 0 1.2rem;
+    }
+    .hero .lead { color: #ddd2c2; margin: 0 0 2rem; max-width: 32rem; }
     .cta {
       display: inline-block;
-      margin-top: 1.6rem;
-      padding: 0.85rem 1.35rem;
-      background: var(--ink);
-      color: var(--card);
+      padding: 0.95rem 1.5rem;
+      min-height: 2.85rem;
+      background: var(--card);
+      color: var(--night);
       text-decoration: none;
-      min-height: 2.75rem;
+      letter-spacing: 0.04em;
     }
-    .cta:hover { background: var(--accent); color: var(--card); }
-    .cta:focus { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .cta:hover { background: #fff; }
+    .cta:focus { outline: 2px solid var(--card); outline-offset: 3px; }
     nav {
-      position: sticky;
-      top: 0;
-      background: color-mix(in srgb, var(--bg) 94%, white);
-      border-bottom: 1px solid var(--line);
-      z-index: 4;
+      position: sticky; top: 0; z-index: 5;
+      background: var(--night);
+      border-bottom: 1px solid #2c241c;
     }
     nav ul {
       list-style: none;
       display: flex;
-      gap: 1.4rem;
+      gap: 1.5rem;
       margin: 0 auto;
-      padding: 0.85rem 1.5rem;
+      padding: 0.9rem 1.6rem;
       max-width: 44rem;
       overflow-x: auto;
-      font-size: 0.82rem;
     }
-    nav a { color: var(--muted); text-decoration: none; white-space: nowrap; }
-    nav a:hover, nav a[aria-current] { color: var(--ink); }
-    nav a.act { color: var(--accent); }
-    main { max-width: 44rem; margin: 0 auto; padding: 2rem 1.5rem 6rem; }
-    section { margin: 3.6rem 0; }
-    .verdict, .calc, .card, #map {
+    nav a {
+      color: #c4b6a4;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    nav a:hover, nav a.act { color: var(--card); }
+    main { max-width: 44rem; margin: 0 auto; padding: 3.5rem 1.6rem 6rem; }
+    section { margin: 4.2rem 0; }
+    h2 {
+      font-size: 1.55rem;
+      font-weight: 400;
+      margin: 0 0 0.4rem;
+    }
+    h2 + .lead, h2 + p.lead { margin-bottom: 1.6rem; }
+    h3 { font-size: 1.2rem; font-weight: 400; margin: 0 0 0.3rem; }
+    .lead { color: var(--muted); margin: 0; }
+    .rule {
+      width: 3.2rem; height: 1px;
+      background: var(--bronze);
+      border: 0; margin: 0 0 1.4rem;
+    }
+    .split { display: grid; }
+    @media (min-width: 680px) { .split { grid-template-columns: 1fr 1fr; } }
+    .panel {
       background: var(--card);
-      border: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      padding: 1.5rem 1.5rem 1.6rem;
     }
-    .verdict { padding: 0; }
-    .verdict > p { padding: 1.4rem 1.6rem; margin: 0; }
-    .verdict > p + p { border-top: 1px solid var(--line); }
-    .split { display: grid; gap: 0; }
-    @media (min-width: 640px) {
-      .split { grid-template-columns: 1fr 1fr; }
-      .split > p + p { border-top: 0; border-left: 1px solid var(--line); }
+    .split .panel + .panel { border-left: 0; }
+    @media (min-width: 680px) {
+      .split .panel + .panel { border-left: 1px solid var(--line); }
     }
-    .verdict strong.ok { color: var(--ok); }
-    .verdict strong.no { color: var(--no); }
-    .calc { padding: 1.6rem 1.6rem 1.8rem; }
-    .fields {
-      display: grid;
-      gap: 0 1.2rem;
+    .ok { color: var(--ok); }
+    .no { color: var(--no); }
+    .calc-wrap {
+      background: var(--night);
+      color: var(--card);
+      padding: 2rem 1.5rem 2.2rem;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
     }
+    .calc-wrap > div { max-width: 44rem; margin: 0 auto; }
+    .calc-wrap h2, .calc-wrap .lead { color: #e8dcc8; }
+    .calc-wrap .lead { color: #b9ad9d; }
+    .fields { display: grid; gap: 0 1.2rem; }
     @media (min-width: 640px) { .fields { grid-template-columns: 1fr 1fr; } }
-    label { display: block; font-size: 0.78rem; color: var(--muted); margin: 0.95rem 0 0.3rem; }
+    label { display: block; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #b9ad9d; margin: 1rem 0 0.35rem; }
     input[type="number"], select {
       width: 100%;
       font: inherit;
-      padding: 0.7rem 0.75rem;
+      color: var(--card);
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid #5a4e42;
+      border-radius: 0;
+      padding: 0.65rem 0;
       min-height: 2.75rem;
-      border: 1px solid var(--line);
-      background: var(--bg);
-      color: var(--ink);
     }
-    input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .sum {
-      margin-top: 1.6rem;
-      padding-top: 1.4rem;
-      border-top: 1px solid var(--line);
+    input:focus, select:focus { outline: none; border-bottom-color: var(--card); }
+    select option { color: var(--ink); background: var(--card); }
+    .sum { margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid #3a322a; }
+    .total { margin: 0 0 0.6rem; font-size: 2rem; line-height: 1.15; }
+    .total.under { color: #c8e0d0; }
+    .total.over { color: #e8b4a8; }
+    .place {
+      display: grid;
+      margin: 0 0 2.2rem;
+      background: var(--card);
     }
-    .total { margin: 0; font-size: 1.7rem; line-height: 1.2; }
-    .total.over { color: var(--no); }
-    .total.under { color: var(--ok); }
-    .card { padding: 0; margin: 1.15rem 0; overflow: hidden; }
-    .card .body { padding: 1.35rem 1.4rem 1.5rem; }
-    .card .meta { font-size: 0.86rem; color: var(--muted); margin: 0.15rem 0 0.7rem; }
-    .card img {
-      display: block;
-      width: 100%;
-      height: 13rem;
-      object-fit: cover;
+    @media (min-width: 680px) {
+      .place { grid-template-columns: 15.5rem 1fr; min-height: 16rem; }
+    }
+    .place img {
+      width: 100%; height: 14rem;
+      object-fit: cover; display: block;
       background: var(--line);
     }
-    .card .cap {
-      font-size: 0.7rem;
-      color: var(--muted);
-      padding: 0.45rem 1.4rem 0;
-    }
-    .price { font-size: 1.25rem; margin: 0 0 0.7rem; }
+    @media (min-width: 680px) { .place img { height: 100%; min-height: 16rem; } }
+    .place .body { padding: 1.4rem 1.45rem 1.55rem; }
+    .place .cap { font-size: 0.68rem; color: var(--muted); margin: 0.35rem 0 0; }
+    .price { font-size: 1.35rem; margin: 0.15rem 0 0.55rem; }
+    .meta { font-size: 0.86rem; color: var(--muted); margin: 0 0 0.7rem; }
     .tag {
       display: inline-block;
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      border: 1px solid var(--line);
-      padding: 0.2rem 0.45rem;
-      margin: 0 0.3rem 0.55rem 0;
+      color: var(--bronze);
+      margin: 0 0 0.5rem;
     }
-    .tag.out { border-color: var(--no); color: var(--no); }
-    .tag.in { border-color: var(--ok); color: var(--ok); }
-    ul.plain { padding-left: 1.15rem; }
-    ul.plain li { margin: 0.45rem 0; }
-    footer {
-      max-width: 44rem;
-      margin: 0 auto;
-      padding: 0 1.5rem 3.5rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    th, td { text-align: left; padding: 0.7rem 0.5rem 0.7rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-    th { font-weight: 400; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; }
-    #map { height: 24rem; }
+    .tag.out { color: var(--no); }
+    .tag.in { color: var(--ok); }
+    #map { height: 24rem; border: 1px solid var(--line); }
     .legend { font-size: 0.8rem; color: var(--muted); margin: 0.7rem 0 0; }
     .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-      background: var(--card);
-      color: var(--ink);
-      border-radius: 0;
-      box-shadow: none;
-      border: 1px solid var(--line);
+      background: var(--card); color: var(--ink);
+      border-radius: 0; box-shadow: none; border: 1px solid var(--line);
     }
     .leaflet-popup-content { margin: 0.75rem 0.9rem; font: 15px/1.4 "Libre Baskerville", Georgia, serif; }
-    .leaflet-container a { color: var(--accent); }
-    .combo .body {
-      display: flex;
-      justify-content: space-between;
-      gap: 1.2rem;
+    .leaflet-container a { color: var(--bronze); }
+    .combo {
+      display: flex; justify-content: space-between; gap: 1rem;
       align-items: baseline;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--line);
     }
     .combo h3 { font-size: 1rem; }
-    .combo .amt { margin: 0; white-space: nowrap; color: var(--ok); font-size: 1.05rem; }
+    .combo .amt { margin: 0; color: var(--ok); white-space: nowrap; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th, td { text-align: left; padding: 0.85rem 0.6rem 0.85rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-weight: 400; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    ul.plain { padding-left: 1.1rem; }
+    ul.plain li { margin: 0.5rem 0; }
+    footer {
+      background: var(--night);
+      color: #9a8d7e;
+      padding: 2.5rem 1.6rem 3.5rem;
+      font-size: 0.78rem;
+    }
+    footer p { max-width: 44rem; margin: 0 auto; }
     #check-fail { color: var(--no); }
   </style>
 </head>
 <body>
   <a class="skip" href="#calculadora">Ir a calcular</a>
-  <header>
-    <p class="kicker">Lista de boda · agosto 2026</p>
-    <h1>Todo el día, 12.000 €, a una hora de Barcelona.</h1>
-    <p class="lead">Precios publicados de masías, packs, foto, DJ y flores. Calcula si cierra. Luego pide cifra firmada.</p>
-    <a class="cta" href="#calculadora">Calcular presupuesto</a>
+  <header class="hero" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Serra%20de%20Collserola.jpg?width=1600')">
+    <div class="hero-inner">
+      <p class="kicker">85 invitados · jardín y salón · agosto 2026</p>
+      <h1>Una finca entre árboles, y un techo si llueve.</h1>
+      <p class="lead">Solo masías con vegetación, exterior para 85 y salón cubierto para el convite. Tope 12.000 €, a una hora de Barcelona.</p>
+      <a class="cta" href="#calculadora">Calcular con 85 personas</a>
+    </div>
   </header>
   <nav aria-label="Secciones">
     <ul>
       <li><a class="act" href="#calculadora">Calcular</a></li>
       <li><a href="#mapa">Mapa</a></li>
-      <li><a href="#espacios">Espacios</a></li>
+      <li><a href="#espacios">Fincas</a></li>
       <li><a href="#bufet">Bufé</a></li>
       <li><a href="#foto">Foto</a></li>
-      <li><a href="#musica">Música</a></li>
       <li><a href="#preguntas">Preguntar</a></li>
     </ul>
   </nav>
   <main>
     <section id="veredicto">
-      <h2>Qué cabe en 12.000 €</h2>
-      <p class="lead">Media España 22–32.000 €. Media masía BCN 133 €/pax. A 12k: 40–70 personas, pack, o viernes/temporada baja.</p>
-      <div class="verdict split">
-        <p><strong class="ok">Cabe</strong><br>Broquetas 108 €, Cabús 109 €, Sidro 105 €, Reixac 65–105 €, Cal Dimoni 68–78 €, QGAT ~90 €, Can Tomàs si el menú es boda. O Can Pau + bufé 60–85 €.</p>
-        <p><strong class="no">No cabe</strong><br>Can Magí 150–185 € (mín. 100 → 15k). Marial 154 €, Torrens 150 €, Sabaté 180 €. Vídeo y deco floral completa rompen el tope.</p>
+      <h2>El filtro</h2>
+      <hr class="rule">
+      <p class="lead">Fuera: hoteles de pueblo, restaurantes urbanos y fincas de menos de 85 (Can Tomàs) o sin salón de lluvia. Dentro: jardín + interior para 85.</p>
+      <div class="split">
+        <div class="panel">
+          <p><strong class="ok">Cabe con 85</strong><br>Can Cases 35–60 € (confirmar boda). Mas Nadal 75–135 €. Cal Dimoni 68–78 €. Reixac 65–105 €. Serrat 95 €. Ca N’Illa 94 €. Sidro / Cabús ~105–109 € si el pack aguanta los fijos.</p>
+        </div>
+        <div class="panel">
+          <p><strong class="no">No</strong><br>Can Magí mín. 100 y 150 €. QGAT y Broquetas: no son bosque. Can Pau: exterior sí, interior de 85 no publicado. Vídeo y deco floral completa rompen 12k.</p>
+        </div>
       </div>
-    </section>
-
-    <section id="mapa">
-      <h2>Mapa de lugares</h2>
-      <p class="lead">A ≤1 h de Plaça Catalunya. Clic en un punto abre la ficha.</p>
-      <div id="map" role="region" aria-label="Mapa de masías y hoteles"></div>
-      <p class="legend">Verde: cabe en 12k · Rojo: no · Gris: aprieta o pedir precio</p>
     </section>
 
     <section id="calculadora">
-      <h2>Calculadora</h2>
-      <div class="calc">
-        <div class="fields">
-          <div>
-            <label for="guests">Invitados</label>
-            <input id="guests" type="number" min="20" max="200" value="50" aria-describedby="total">
+      <div class="calc-wrap">
+        <div>
+          <h2>Calcular</h2>
+          <p class="lead">Parte de 85. Cambia espacio, foto, DJ y flores.</p>
+          <div class="fields">
+            <div>
+              <label for="guests">Invitados</label>
+              <input id="guests" type="number" min="20" max="200" value="85" aria-describedby="total">
+            </div>
+            <div>
+              <label for="venue">Finca</label>
+              <select id="venue"></select>
+            </div>
+            <div>
+              <label for="photo">Fotografía</label>
+              <select id="photo"></select>
+            </div>
+            <div>
+              <label for="dj">DJ</label>
+              <select id="dj"></select>
+            </div>
+            <div>
+              <label for="flowers">Flores</label>
+              <select id="flowers"></select>
+            </div>
           </div>
-          <div>
-            <label for="venue">Espacio</label>
-            <select id="venue"></select>
-          </div>
-          <div>
-            <label for="photo">Fotografía</label>
-            <select id="photo"></select>
-          </div>
-          <div>
-            <label for="dj">DJ</label>
-            <select id="dj"></select>
-          </div>
-          <div>
-            <label for="flowers">Flores</label>
-            <select id="flowers"></select>
+          <div class="sum">
+            <p id="total" class="total" aria-live="polite"></p>
+            <p class="lead" id="breakdown"></p>
           </div>
         </div>
-        <div class="sum">
-          <p id="total" class="total" aria-live="polite"></p>
-          <p class="lead" id="breakdown"></p>
-        </div>
       </div>
-    </section>
-
-    <section id="bufet">
-      <h2>Bufé libre, no menú cerrado</h2>
-      <div class="verdict">
-        <p><strong>¿Va en las masías o en los packs?</strong> Casi nunca. Broquetas, Cabús, Sidro, Ametller, Magí, QGAT y Can Tomàs trabajan <em>su</em> cocina (menú emplatado o pack). Exclusividad de catering: no puedes meter un bufé de fuera. El pack «todo incluido» es un menú cerrado, no un self-service cárnico + vegetariano + vegano a discreción.</p>
-        <p><strong>¿Es más cómodo?</strong> Sí, para invitados mixtos: cada uno se sirve carne, verdura o plato vegano sin avisar un mes antes. Can Cortès ya anuncia menús veg/veganos/celíacos y un <strong>Menú E bufé en terraza (2 h)</strong>; el precio de ese bufé no está en la web — pedir.</p>
-        <p><strong>¿Es más barato?</strong> No por magia. Un bufé de boda con personal, bebida y reposición suele ir a <strong>60–120 €/pax</strong> (Figa 60–200, Catering Ya 81,50–120, Jonny cóctel/estaciones 85–140, menú tradicional 95–120). El ahorro aparece solo si alquilas un espacio que <em>sí</em> deja catering externo: Can Pau (Argentona) 1.600–2.600 € en Bodas.net — Venuu cotiza 3.000–3.500 € vie/dom. 50 pax × 60 € + 2.100 € local ≈ 5.100 € de comida y sitio, frente a 5.400–7.500 € de un pack. Si el alquiler sube a 3.500 €, el colchón se come.</p>
-        <p><strong>¿Mejor que un pack cerrado?</strong> Más a gusto en la mesa; más trabajo el día (dos proveedores, luz, cocina, merma). El pack gana en calma. El bufé gana en elección. No son el mismo producto.</p>
-      </div>
-      <article class="card"><div class="body">
-        <h3>Quién hace bufé / estaciones (carne + veg + vegano)</h3>
-        <table>
-          <thead><tr><th>Quién</th><th>Desde</th><th>Dietas</th><th>Nota</th></tr></thead>
-          <tbody>
-            <tr><td>Figa Catering</td><td>60–200 €</td><td>Veg, vegano, celiaco, alérgico</td><td>Mín. 30 · BCN · <a href="https://www.bodas.net/catering/figa-catering--e267371">Bodas.net</a></td></tr>
-            <tr><td>Catering Ya</td><td>81,50–120 €</td><td>Vegano y sin cerdo sin extra</td><td>Cóctel en finca; finca la pones tú · <a href="https://www.bodas.net/catering/catering-ya--e210">Bodas.net</a></td></tr>
-            <tr><td>Jonny Catering</td><td>85–140 € cóctel · 95–120 menú</td><td>Plant-based a petición</td><td>Estaciones en finca · <a href="https://www.jonnycatering.com/post/catering-para-boda-en-finca-barcelona-precio-para-100-invitados-y-tendencia-sostenible-2026">jonnycatering.com</a></td></tr>
-            <tr><td>Estació Vegana (Núria y Marina)</td><td>80–175 €</td><td>Solo vegetal</td><td>No cubre cárnico; 5.0 · Figaró · mín. 30</td></tr>
-            <tr><td>Amil és Cuina</td><td>98–250 €</td><td>Veg, vegano, celiaco</td><td>Sant Vicenç de Montalt · mín. 40</td></tr>
-            <tr><td>Can Cortès · Menú E</td><td>Pedir</td><td>Veg, vegano, celiaco</td><td>Bufé 2 h terraza · 93 674 17 04 · <a href="https://cancortes.com/es/menus/menus-celebraciones/">cancortes.com</a></td></tr>
-          </tbody>
-        </table>
-        <p class="meta">La Emilita (~45 € bufé con camareros) es guía general / Madrid: no usarla como cifra de boda sábado en BCN.</p>
-      </div></article>
     </section>
 
     <section id="combos">
-      <h2>Combinaciones que cierran</h2>
+      <h2>Qué cierra a 85</h2>
+      <hr class="rule">
       <p class="lead" id="combo-lead"></p>
       <div id="combo-list"></div>
     </section>
 
+    <section id="mapa">
+      <h2>Mapa</h2>
+      <hr class="rule">
+      <p class="lead">Fincas con jardín y plan B cubierto. Clic abre la ficha.</p>
+      <div id="map" role="region" aria-label="Mapa de fincas"></div>
+      <p class="legend">Verde cabe · rojo no · bronce aprieta</p>
+    </section>
+
     <section id="espacios">
-      <h2>Espacios ≤ 1 h</h2>
-      <p class="lead">Fotos del edificio cuando hay Wikimedia; si no, el entorno del pueblo. No son catálogos de Bodas.net.</p>
+      <h2>Fincas · jardín y salón</h2>
+      <hr class="rule">
+      <p class="lead">Exterior para ~85 y interior si llueve. Fotos del entorno (Wikimedia), no del catálogo del local.</p>
       <div id="venue-list"></div>
     </section>
 
+    <section id="bufet">
+      <h2>Bufé, no menú cerrado</h2>
+      <hr class="rule">
+      <p class="lead">Los packs de masía son su cocina. Bufé mixto (carne, vegetariano, vegano) solo si el local deja catering o tiene bufé propio.</p>
+      <div class="panel">
+        <p>Figa 60–200 € · Catering Ya 81,50–120 € (vegano sin extra) · Jonny estaciones 85–140 € · Can Cortès Menú E bufé 2 h (pedir precio) · Estació Vegana 80–175 € solo vegetal.</p>
+        <p class="meta">Con 85, un bufé a 70 € son 5.950 € de comida. Suma DJ, foto y fijos. Más cómodo; más barato solo si el alquiler no se va a 3.500 €.</p>
+      </div>
+    </section>
+
     <section id="foto">
-      <h2>Fotografía</h2>
-      <p class="lead">Media BCN Bodas.net: <strong>1.546 €</strong> (típico 885–2.000). Sin vídeo si el tope es 12k.</p>
+      <h2>Foto, música, flores</h2>
+      <hr class="rule">
+      <p class="lead">Media foto BCN 1.546 €. Sin vídeo.</p>
       <table>
-        <thead><tr><th>Nombre</th><th>Desde</th><th>Notas</th></tr></thead>
+        <thead><tr><th>Oficio</th><th>Quién</th><th>Desde</th></tr></thead>
         <tbody>
-          <tr><td>Luciérnagas</td><td>950 €</td><td>Bodas.net, ciudad</td></tr>
-          <tr><td>Toni Àngel Fotògrafs</td><td>950 €</td><td>Plaça de Sants 12 · 670 278 714 (web)</td></tr>
-          <tr><td>Marina Kronfeld Photo &amp; Film</td><td>1.000 €</td><td>5.0 (66)</td></tr>
-          <tr><td>Josep Roura</td><td>1.090 €</td><td>Bodas.net</td></tr>
-          <tr><td>Muse Weddings Photo Studio</td><td>1.100 €</td><td>BCN / Girona / Costa Brava</td></tr>
-          <tr><td>Max-record</td><td>1.100 €</td><td>5.0 (128) · foto + vídeo 4K</td></tr>
-          <tr><td>Fotobox / Audiovisuart</td><td>1.100 €</td><td>Audiovisuart hasta 4.500 €</td></tr>
-          <tr><td>Mònica Vidal — Mon Amour</td><td>1.300 €</td><td>5.0 (143)</td></tr>
-          <tr><td>Capataz Studio</td><td>1.800 €</td><td>Documental; extra ~99 €/h</td></tr>
-          <tr><td>Efedos — Boda de foto</td><td>1.900–4.000 €</td><td>4.9 (188) · Mataró</td></tr>
-        </tbody>
-      </table>
-      <p><a href="https://www.bodas.net/bodas/proveedores/fotografos/barcelona">Bodas.net fotógrafos</a> · <a href="https://www.toniangelfotografs.com/lang/es/contacto">toniangelfotografs.com</a></p>
-    </section>
-
-    <section id="musica">
-      <h2>DJ / sonido</h2>
-      <article class="card"><div class="body">
-        <h3>DJs Profesionales</h3>
-        <p class="meta">450 € básico · 700 € esencial 5 h · 1.100 € premium</p>
-        <p>Sonido, LED, transporte. <a href="https://djsprofesionales.com/djs-bodas/discomovil-premium-para-boda-en-barcelona/">djsprofesionales.com</a></p>
-      </div></article>
-      <article class="card"><div class="body">
-        <h3>Acovento</h3>
-        <p class="meta">Básico 520 € + IVA · Premium 750 € + IVA (ceremonia + cóctel + banquete + 4 h fiesta)</p>
-        <p><a href="https://acovento.es/en/dj-for-weddings-in-barcelona/">acovento.es</a></p>
-      </div></article>
-      <article class="card"><div class="body">
-        <h3>Coco Music Events (Carlos)</h3>
-        <p class="meta">Desde 850 € pack deluxe · 1 boda/día · sin extra desplazamiento BCN</p>
-        <p><a href="https://www.cocomusicevents.com/dj-bodas-en-barcelona/">cocomusicevents.com</a></p>
-      </div></article>
-      <article class="card"><div class="body">
-        <h3>FunKeyDJ (Miquel)</h3>
-        <p class="meta">Desde 1.250 € · hasta 10 h · masías y exterior</p>
-        <p>Alto si el banquete ya come 8k. <a href="https://funkeydj.com/en/wedding-service/">funkeydj.com</a></p>
-      </div></article>
-      <p>En Broquetas, Reixac (menú) y packs «todo incluido» el DJ o músico suele ir dentro. Confirmar horas de fiesta.</p>
-    </section>
-
-    <section id="flores">
-      <h2>Flores</h2>
-      <p>Ramo España 2026: 80–600 € (típico 120–180). Deco completa BCN: 1.200–5.000 € — rompe 12k. Recorte: ramo + 2 centros, o ramo civil Flowering 50 €, o deco del pack.</p>
-      <ul class="plain">
-        <li>Flowering — ramo civil 50 €. <a href="https://www.flowering.es/ramos-de-novia-boda-civil">flowering.es</a></li>
-        <li>L’Er Atelier Floral — Sant Cugat / BCN; guía deco 1.200–5.000 €. <a href="https://leratelierfloral.com/blog/cuanto-cuesta-decoracion-floral-boda/">leratelierfloral.com</a></li>
-        <li>Can Ametller — civil con flores y maestro de ceremonias: 570 / 700 / 935 € según pax (PDF 2026, IVA 10 %).</li>
-      </ul>
-    </section>
-
-    <section id="resto">
-      <h2>El resto del día</h2>
-      <table>
-        <thead><tr><th>Partida</th><th>Quién / rango</th><th>En 12k</th></tr></thead>
-        <tbody>
-          <tr><td>Celebrante civil</td><td>~400–800 €; Ametller 570–935 €</td><td>Sí, o registro + brindis</td></tr>
-          <tr><td>Maquillaje novia</td><td>Janna (St. Cugat) 120–270 € · 5.0</td><td>Sí</td></tr>
-          <tr><td>Pelu + make-up pack</td><td>OH Sant Cugat 400 € salón (pruebas + día) · 649 31 37 56</td><td>Sí</td></tr>
-          <tr><td>Alba Díaz (St. Cugat)</td><td>Pack prueba + peinado + make-up; ficha desde ~400 €</td><td>Sí</td></tr>
-          <tr><td>Tarta</td><td>200–450 €</td><td>En Broquetas / QGAT / packs</td></tr>
-          <tr><td>Vestido / alquiler + traje</td><td>400–2.000 €</td><td>Alquiler o second-hand</td></tr>
-          <tr><td>Alianzas</td><td>200–800 €</td><td>Sí, sencillas</td></tr>
-          <tr><td>Vídeo</td><td>1.200–4.000 €</td><td>No</td></tr>
-          <tr><td>Planner día</td><td>Cardellach 450–3.000 · Waybarcelona desde 1.000</td><td>No si el local coordina</td></tr>
-          <tr><td>Invitaciones</td><td>0 digital – 300 €</td><td>Digital</td></tr>
-          <tr><td>Autobús</td><td>400–900 €</td><td>Solo si no hay FGC/coche</td></tr>
+          <tr><td>Foto</td><td>Luciérnagas / Toni Àngel (670 278 714)</td><td>950 €</td></tr>
+          <tr><td>Foto</td><td>Marina Kronfeld · Muse · Max-record</td><td>1.000–1.100 €</td></tr>
+          <tr><td>Foto</td><td>Capataz · Efedos</td><td>1.800–1.900 €</td></tr>
+          <tr><td>DJ</td><td>DJs Profesionales · Acovento · Coco</td><td>450–850 €</td></tr>
+          <tr><td>Flores</td><td>Flowering ramo civil · L’Er deco</td><td>50 € / 1.200 €</td></tr>
+          <tr><td>Belleza</td><td>Janna 120–270 · OH Sant Cugat pack 400 €</td><td>120–400 €</td></tr>
         </tbody>
       </table>
     </section>
 
     <section id="preguntas">
       <h2>Qué preguntar</h2>
+      <hr class="rule">
       <ul class="plain">
-        <li>¿IVA incluido? ¿10 % o 21 %?</li>
-        <li>¿Mínimo de pax? ¿Recargo si no llego?</li>
-        <li>¿Sábado vs viernes/domingo vs temporada baja?</li>
-        <li>¿Barra libre: horas, marcas, recena?</li>
-        <li>¿Mobiliario, mantel, copas, sonido, parking?</li>
-        <li>¿Hora de fin y extra por hora?</li>
-        <li>¿Exclusividad fotógrafo / DJ / catering? ¿Se puede traer bufé externo?</li>
-        <li>¿Bufé o estaciones: horas de servicio, reposición, veg/vegano/cárnico en la misma mesa?</li>
-        <li>¿Civil en el jardín? ¿Tasa ayuntamiento?</li>
-        <li>Señal, calendario de pagos, cancelación.</li>
+        <li>¿El jardín cabe 85 de pie / sentados? ¿El salón cubierto también, si llueve?</li>
+        <li>¿IVA, mínimo de pax, sábado vs viernes?</li>
+        <li>¿Exclusividad de catering? ¿Bufé o estaciones veg/vegano/cárnico?</li>
+        <li>¿Barra, hora de fin, parking, civil en jardín?</li>
+        <li>Señal, pagos, cancelación.</li>
       </ul>
     </section>
     <p id="check-fail" hidden></p>
   </main>
   <footer>
-    <p>Fuentes ago 2026: Bodas.net (fichas julio 2026), bodasrv.com, balnearibroquetas.com, qgatrestaurant.com, casafuster.net, canametller.com (PDF casaments), cancortes.com, cancabus.es, laporxadadecansidro.com, masia-caldimoni.com, lamasiacanpau.com, venuu.com, jonnycatering.com, cateringya.com, toniangelfotografs.com, djsprofesionales.com, acovento.es, cocomusicevents.com, funkeydj.com, flowering.es, leratelierfloral.com, ohsantcugat.es, Wikimedia Commons (fotos). Precios de web; pedir presupuesto firmado. No sustituye visita. Teléfonos solo si salen en la web del profesional.</p>
+    <p>Fuentes ago 2026: Bodas.net, casafuster.net / masiasantcugat.com, cancortes.com, cancabus.es, laporxadadecansidro.com, canametller.com, elserratametlla.wordpress.com, masia-caldimoni.com, jonnycatering.com, Wikimedia. Precios de web; pedir cifra firmada. Teléfonos solo si salen en la web del profesional.</p>
   </footer>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
@@ -396,63 +364,62 @@
       return "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(name) + "?width=800";
     }
     const venues = [
-      { id: "tomas", name: "Masia Can Tomàs", place: "Les Planes, Sant Cugat", addr: "C. Can Barata 2-4", mins: 25, lat: 41.4265, lon: 2.09, min: 20, max: 50, pax: 45, from: 28, to: 47, rating: "5.0", reviews: 1, incDj: false, incFlowers: false, incCivil: false, fit: "in",
-        note: "Ficha Bodas.net 27,80–46,50 € (picoteo, principal, postre, bebida). Máx. 50. Urumea oct 2025: comida increíble, Juan predispuesto. Confirmar que ese precio es pack boda y no menú de mesa.",
-        url: "https://www.bodas.net/masias/masia-can-tomas--e165195", photo: wiki("Entrada al parc de Collserola (Sant Cugat).jpg"), cap: "Entorno Les Planes / Collserola · Wikimedia" },
-      { id: "dimoni", name: "El Molí de Cal Dimoni", place: "Badalona", addr: "Ctra. Badalona–Montcada km 3,3", mins: 20, lat: 41.46, lon: 2.22, min: 20, max: 300, pax: 78, from: 68, to: 150, rating: "4.9", reviews: 110, incDj: true, incFlowers: true, incCivil: false, fit: "in",
-        note: "Menú boda 77,90–150 €. Promo todo incluido 67,90 € (aperitivo, menú, flores, mantel, minutas, 2 h barra, músico; músico mín. 40 adultos). 93 465 76 78.",
-        url: "https://www.bodas.net/masias/masia-el-moli-de-cal-dimoni--e7472", phone: "93 465 76 78", photo: wiki("Serralada de la Marina, Badalona (51843376084).jpg"), cap: "Serralada de Marina, Badalona · Wikimedia" },
-      { id: "reixac", name: "Masia Reixac", place: "Montcada i Reixac", addr: "Ctra. de la Roca", mins: 20, lat: 41.486, lon: 2.188, min: 20, max: 400, pax: 85, from: 65, to: 105, rating: "4.9", reviews: 166, incDj: true, incFlowers: true, incCivil: false, fit: "in",
-        note: "Menú «todo incluido»: deco floral, minutas, prueba y DJ. 8 salones (30–350). Ángel: «sabores caseros»; Jesús: Paco toda la noche. 98 % recomiendan. Señal 500 €.",
-        url: "https://www.bodas.net/masias/masia-reixac--e5554", photo: wiki("Serra de Collserola.jpg"), cap: "Entorno Vallès / Collserola · Wikimedia" },
-      { id: "qgat", name: "QGAT Restaurant & Events", place: "Sant Cugat", addr: "Via Augusta 51, 08174", mins: 25, lat: 41.4248, lon: 2.0895, min: 20, max: 250, pax: 90, from: 85, to: 90, rating: "4.9", reviews: 142, incDj: false, incFlowers: false, incCivil: false, fit: "in",
-        note: "Menú boda desde 85 €. Civil en el espacio. Tarta propia. Nuria: «comida un 10». 93 544 19 22 · events@qgat.net.",
-        url: "https://www.qgatrestaurant.com", phone: "93 544 19 22", photo: wiki("Sant Cugat. Reial Monestir. Claustre 2.jpg"), cap: "Entorno Sant Cugat (claustre) · Wikimedia" },
-      { id: "sidro", name: "La Porxada de Can Sidro", place: "Palau-solità i Plegamans", addr: "centro Palau-solità", mins: 25, lat: 41.587, lon: 2.178, min: 50, max: 190, pax: 105, from: 95, to: 124, rating: "4.9", reviews: 624, incDj: true, incFlowers: true, incCivil: false, fit: "in",
-        note: "Menú 95–105 €. Promos 2026: todo incluido 105 € o 124 €. 1 boda/día. Lydia / Jess planner en opiniones. 20 min BCN.",
-        url: "https://www.laporxadadecansidro.com/", photo: wiki("Masia de Can Padró, a Palau-solità i Plegamans.jpeg"), cap: "Masia del pueblo (no es Can Sidro) · Wikimedia" },
-      { id: "cabus", name: "Can Cabús", place: "Alella", addr: "Av. Sant Josep de Calassanç 10", mins: 25, lat: 41.4955, lon: 2.294, min: 20, max: 180, pax: 109, from: 100, to: 143, rating: "", reviews: 0, incDj: false, incFlowers: true, incCivil: false, fit: "in",
-        note: "Promo 2026 todo incluido 109 €/pax (vence 31/12/2026): aperitivo, banquete, tarta, 2 h barra, deco, prueba. Menú ficha 100–143 €. Exclusividad finca. Hotel a 500 m.",
-        url: "https://cancabus.es/", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Celler de Alella (entorno) · Wikimedia" },
-      { id: "broquetas", name: "Hotel Broquetas Spa Termal", place: "Caldes de Montbui", addr: "Plaça Font del Lleó, 1", mins: 35, lat: 41.634688, lon: 2.161475, min: 40, max: 150, pax: 108, from: 108, to: 132, rating: "4.8", reviews: 20, incDj: true, incFlowers: true, incCivil: true, fit: "in",
-        note: "Pack BodasRV 2026 desde 108 €/pax IVA incl.: aperitivos, banquete, tarta, DJ hasta 2.ª h barra, deco, coordinación, habitación novios, spa 2 pax. 93 865 01 00.",
-        url: "https://bodasrv.com/espacios/broquetas-spa-termal/", phone: "93 865 01 00", photo: wiki("Hotel Balnerari Broquetas Catalonia.JPG"), cap: "El hotel · Wikimedia Commons" },
-      { id: "fuster", name: "Casa Fuster Masía", place: "Sant Cugat · Collserola", addr: "Av. Corts Catalanes s/n", mins: 25, lat: 41.466, lon: 2.075, min: 60, max: 200, pax: 110, from: 80, to: 135, rating: "4.8", reviews: 105, incDj: false, incFlowers: false, incCivil: false, fit: "in",
-        note: "Casa pairal 1800. Menú 80–135 €. Mín. 60. Promo viernes 2026 (ficha: 29 € — confirmar qué incluye). Sara: «Mireia ejemplar». 96 % recomiendan.",
-        url: "https://casafuster.net/masia/", photo: wiki("Serra de Collserola.jpg"), cap: "Collserola · Wikimedia" },
+      { id: "cases", name: "El Mirador de Can Cases", place: "Collserola, Sant Cugat", addr: "Camí de Can Cases, 15", mins: 25, lat: 41.448, lon: 2.078, min: 20, max: 250, pax: 50, from: 35, to: 60, rating: "4.8", reviews: 0, incDj: false, incFlowers: false, incCivil: false, fit: "in",
+        out: "Terraza y jardín", inn: "Salones con chimenea",
+        note: "s. XVI entre bosque. Banquete dentro o en terraza. Ficha 35–60 €: confirmar que es menú de boda sábado, no de restaurante.",
+        url: "https://www.bodas.net/restaurantes/el-mirador-de-can-cases--e119911", photo: wiki("Entrada al parc de Collserola (Sant Cugat).jpg"), cap: "Collserola · Wikimedia" },
       { id: "cortes", name: "Masía Can Cortès", place: "Collserola, Sant Cugat", addr: "Av. Can Cortès 36", mins: 20, lat: 41.418, lon: 2.108, min: 20, max: 200, pax: 70, from: 44, to: 120, rating: "", reviews: 0, incDj: false, incFlowers: false, incCivil: false, fit: "in",
-        note: "Bodas.net menú boda 44–120 €. Web: celebraciones emplatadas 49–64 € IVA incl. Menú E: bufé 2 h en terraza (precio no publicado). Veg/vegano/celiaco. 93 674 17 04. Cocina propia: no traes catering.",
-        url: "https://cancortes.com/es/menus/menus-celebraciones/", phone: "93 674 17 04", photo: wiki("Entrada al parc de Collserola (Sant Cugat).jpg"), cap: "Entrada Collserola · Wikimedia" },
-      { id: "paufiga", name: "Can Pau + bufé Figa", place: "Argentona", addr: "Veïnat de la Pujada, 5", mins: 35, lat: 41.572, lon: 2.41, min: 30, max: 180, pax: 60, rent: 2100, from: 60, to: 80, rating: "", reviews: 0, incDj: false, incFlowers: false, incCivil: false, fit: "in",
-        note: "Alquiler Bodas.net 1.600–2.600 € (calculadora usa 2.100). Venuu: 3.000–3.500 € vie–dom. Cocina para catering externo. Figa 60–200 €, veg/vegano/cárnico. 676 063 253 · events@lamasiacanpau.com.",
-        url: "https://lamasiacanpau.com/", phone: "676 063 253", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme (entorno) · Wikimedia" },
-      { id: "pauya", name: "Can Pau + Catering Ya", place: "Argentona", addr: "Veïnat de la Pujada, 5", mins: 35, lat: 41.572, lon: 2.41, min: 30, max: 180, pax: 82, rent: 2100, from: 82, to: 120, rating: "", reviews: 0, incDj: false, incFlowers: false, incCivil: false, fit: "in", skipMap: true,
-        note: "Mismo alquiler + Catering Ya 81,50–120 € (vegano sin extra). Cóctel/estaciones en finca; el local no incluye DJ ni flores. Confirmar km y luz de cocina.",
-        url: "https://www.bodas.net/catering/catering-ya--e210", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme (entorno) · Wikimedia" },
-      { id: "paujonny", name: "Can Pau + estaciones Jonny", place: "Argentona", addr: "Veïnat de la Pujada, 5", mins: 35, lat: 41.572, lon: 2.41, min: 30, max: 180, pax: 85, rent: 2100, from: 85, to: 140, rating: "", reviews: 0, incDj: false, incFlowers: false, incCivil: false, fit: "in", skipMap: true,
-        note: "Cóctel/estaciones Jonny 85–140 € (2026). Plant-based a petición. 100 pax en finca: 11–14k solo comida si subes de gama — aquí 50 pax cabe.",
-        url: "https://www.jonnycatering.com/post/catering-para-boda-en-finca-barcelona-precio-para-100-invitados-y-tendencia-sostenible-2026", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme (entorno) · Wikimedia" },
-      { id: "ametller", name: "Masia Can Ametller", place: "Sant Cugat", addr: "Camí Ca n’Ametller s/n", mins: 25, lat: 41.47786, lon: 2.04731, min: 50, max: 200, pax: 110, from: 110, to: 110, rating: "", reviews: 0, incDj: false, incFlowers: false, incCivil: false, fit: "in",
-        note: "PDF casaments: banquete 110 €/pax IVA 10 % incl., mín. 50 adultos. Civil 570/700/935 €. DJ 750 € + 220 €/h extra. 93 674 91 51 · info@canametller.com.",
-        url: "https://canametller.com/es/bodas/", phone: "93 674 91 51", photo: wiki("Sant Cugat. Reial Monestir. Claustre 2.jpg"), cap: "Entorno Sant Cugat · Wikimedia" },
-      { id: "serrat", name: "El Serrat de l'Ametlla", place: "L'Ametlla del Vallès", addr: "L'Ametlla", mins: 40, lat: 41.669, lon: 2.261, min: 50, max: 700, pax: 95, from: 95, to: 95, rating: "4.7", reviews: 199, incDj: false, incFlowers: false, incCivil: false, fit: "in",
-        note: "Desde 95 €. 11.000 m² jardines y lagos. Finca privada.",
-        url: "https://www.bodas.net/bodas/banquetes/masias/barcelona", photo: wiki("Serra de Collserola.jpg"), cap: "Entorno Vallès · Wikimedia" },
+        out: "600 m² de hierba y jardín", inn: "Salas climatizadas hasta 120",
+        note: "s. XVI, Arrabassada. Menú boda 44–120 €. Celebraciones 49–64 €. Bufé terraza 2 h (pedir). Veg/vegano. 93 674 17 04.",
+        url: "https://cancortes.com/es/menus/menus-celebraciones/", phone: "93 674 17 04", photo: wiki("Serra de Collserola.jpg"), cap: "Collserola · Wikimedia" },
+      { id: "dimoni", name: "El Molí de Cal Dimoni", place: "Badalona · Serralada Marina", addr: "Ctra. Badalona–Montcada km 3,3", mins: 20, lat: 41.46, lon: 2.22, min: 20, max: 300, pax: 78, from: 68, to: 150, rating: "4.9", reviews: 110, incDj: true, incFlowers: true, incCivil: false, fit: "in",
+        out: "Jardín y terraza", inn: "Salones y carpa",
+        note: "Campo junto a la B-20. Promo 67,90 € con músico (mín. 40). 93 465 76 78.",
+        url: "https://www.bodas.net/masias/masia-el-moli-de-cal-dimoni--e7472", phone: "93 465 76 78", photo: wiki("Serralada de la Marina, Badalona (51843376084).jpg"), cap: "Serralada de Marina · Wikimedia" },
+      { id: "reixac", name: "Masia Reixac", place: "Montcada i Reixac", addr: "Ctra. de la Roca", mins: 20, lat: 41.486, lon: 2.188, min: 20, max: 400, pax: 85, from: 65, to: 105, rating: "4.9", reviews: 166, incDj: true, incFlowers: true, incCivil: false, fit: "in",
+        out: "Jardines y terrazas", inn: "8 salones (30–350)",
+        note: "Menú con DJ y floral. 85 × 85 € = 7.225 € comida. Señal 500 €.",
+        url: "https://www.bodas.net/masias/masia-reixac--e5554", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
+      { id: "nadal", name: "Mas Nadal", place: "Sant Andreu de Llavaneres", addr: "Riera Avall, 8", mins: 35, lat: 41.573, lon: 2.443, min: 8, max: 170, pax: 75, from: 75, to: 135, rating: "4.8", reviews: 83, incDj: false, incFlowers: false, incCivil: false, fit: "in",
+        out: "Jardines llenos de vegetación", inn: "Salón acristalado + carpa",
+        note: "Media hora de BCN. 75–135 €. Promo ficha 110 € IVA incl. Veg/vegano.",
+        url: "https://www.bodas.net/masias/mas-nadal--e88256", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme · Wikimedia" },
+      { id: "serrat", name: "El Serrat de l'Ametlla", place: "L'Ametlla del Vallès", addr: "Carrer Gralla 46", mins: 40, lat: 41.669, lon: 2.261, min: 50, max: 700, pax: 95, from: 95, to: 95, rating: "4.7", reviews: 199, incDj: false, incFlowers: false, incCivil: false, fit: "in",
+        out: "11.000 m², lagos, árboles", inn: "Salón cerrado hasta 800 + sala de baile",
+        note: "Plan B lluvia publicado. 93 843 03 01 · 629 450 614 · info@serratametlla.com.",
+        url: "https://elserratametlla.wordpress.com/espacios/", phone: "93 843 03 01", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
       { id: "illa", name: "Masía Ca N'Illa", place: "La Garriga", addr: "C. Mil·lenari de Catalunya", mins: 40, lat: 41.685, lon: 2.283, min: 50, max: 450, pax: 94, from: 94, to: 94, rating: "4.8", reviews: 238, incDj: false, incFlowers: false, incCivil: false, fit: "in",
-        note: "s. XV. Desde 94 €. 35 km BCN. 93 589 50 69 · info@masiacanilla.com.",
-        url: "https://www.bodas.net/bodas/banquetes/masias/barcelona", phone: "93 589 50 69", photo: wiki("Can Fournier - la Garriga - P1070153.jpg"), cap: "Entorno La Garriga · Wikimedia" },
+        out: "Entorno s. XV y naturaleza", inn: "Salones de banquete",
+        note: "Desde 94 €. 35 km BCN. 93 589 50 69.",
+        url: "https://www.bodas.net/bodas/banquetes/masias/barcelona", phone: "93 589 50 69", photo: wiki("Can Fournier - la Garriga - P1070153.jpg"), cap: "La Garriga · Wikimedia" },
+      { id: "sidro", name: "La Porxada de Can Sidro", place: "Palau-solità i Plegamans", addr: "Palau-solità", mins: 25, lat: 41.587, lon: 2.178, min: 50, max: 190, pax: 105, from: 95, to: 124, rating: "4.9", reviews: 624, incDj: true, incFlowers: true, incCivil: false, fit: "mid",
+        out: "Jardín y parque", inn: "Porxada y Jardinet acristalados",
+        note: "Naturaleza a 20 min. Pack 105–124 €. 85 × 105 = 8.925 €; los fijos aprietan.",
+        url: "https://www.laporxadadecansidro.com/", photo: wiki("Masia de Can Padró, a Palau-solità i Plegamans.jpeg"), cap: "Masia del pueblo (no es Sidro) · Wikimedia" },
+      { id: "cabus", name: "Can Cabús", place: "Alella", addr: "Av. Sant Josep de Calassanç 10", mins: 25, lat: 41.4955, lon: 2.294, min: 20, max: 180, pax: 109, from: 100, to: 143, rating: "", reviews: 0, incDj: false, incFlowers: true, incCivil: false, fit: "mid",
+        out: "Jardín de finca", inn: "Salón y carpa",
+        note: "Promo 109 € todo incluido 2026. 85 × 109 = 9.265 €. Hotel a 500 m.",
+        url: "https://cancabus.es/", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Alella · Wikimedia" },
+      { id: "fuster", name: "Casa Fuster / Masía Sant Cugat", place: "Collserola, Sant Cugat", addr: "Av. Corts Catalanes s/n", mins: 25, lat: 41.466, lon: 2.075, min: 60, max: 200, pax: 110, from: 80, to: 135, rating: "4.8", reviews: 105, incDj: false, incFlowers: false, incCivil: false, fit: "mid",
+        out: "Jardines con vistas a Collserola", inn: "Salón diáfano exclusivo",
+        note: "Una boda al día. 80–135 €. 85 × 110 = 9.350 €. 93 589 34 45 · celebraciones.masia@casafuster.net.",
+        url: "https://masiasantcugat.com/servicios/", phone: "93 589 34 45", photo: wiki("Serra de Collserola.jpg"), cap: "Collserola · Wikimedia" },
+      { id: "ametller", name: "Masia Can Ametller", place: "Sant Cugat", addr: "Camí Ca n’Ametller s/n", mins: 25, lat: 41.47786, lon: 2.04731, min: 50, max: 200, pax: 110, from: 110, to: 110, rating: "", reviews: 0, incDj: false, incFlowers: false, incCivil: false, fit: "mid",
+        out: "Entorno de masía", inn: "Salones de banquete",
+        note: "110 € IVA 10 % incl. 85 × 110 = 9.350 €. DJ 750 €. 93 674 91 51.",
+        url: "https://canametller.com/es/bodas/", phone: "93 674 91 51", photo: wiki("Sant Cugat. Reial Monestir. Claustre 2.jpg"), cap: "Sant Cugat · Wikimedia" },
       { id: "turo", name: "Turó del Sol", place: "Sant Vicenç de Montalt", addr: "Sant Vicenç de Montalt", mins: 40, lat: 41.579, lon: 2.508, min: 40, max: 500, pax: 105, from: 105, to: 190, rating: "4.9", reviews: 595, incDj: false, incFlowers: false, incCivil: false, fit: "mid",
-        note: "105–190 €. 4.9 / 595. Wedding Award. 50 × 105 = 5.250 € comida; 80 × 150 ya aprieta.",
-        url: "https://www.bodas.net/masias/turo-del-sol--e5370", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme (entorno) · Wikimedia" },
+        out: "3.000 m² de jardín", inn: "Salones de banquete",
+        note: "105–190 €. 4.9 / 595. 85 × 105 = 8.925 €.",
+        url: "https://www.bodas.net/masias/turo-del-sol--e5370", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme · Wikimedia" },
       { id: "marlet", name: "Can Marlet — Montseny", place: "Montseny", addr: "Parc Natural del Montseny", mins: 65, lat: 41.764, lon: 2.395, min: 50, max: 230, pax: 125, from: 125, to: 150, rating: "5.0", reviews: 442, incDj: false, incFlowers: true, incCivil: false, fit: "mid",
-        note: "125–150 €, mín. 50. Aperitivo, menú, 2 h barra, seating y floral. Alojamiento 32 pax. Límite de 1 h según tráfico.",
-        url: "https://www.bodas.net/masias/can-marlet-montseny--e1297", photo: wiki("Serra de Collserola.jpg"), cap: "Bosque de referencia · Wikimedia" },
-      { id: "cases", name: "El Mirador de Can Cases", place: "Collserola, Sant Cugat", addr: "Collserola", mins: 25, lat: 41.448, lon: 2.078, min: 30, max: 150, pax: 0, from: 0, to: 0, rating: "4.8", reviews: 0, incDj: false, incFlowers: false, incCivil: false, fit: "ask",
-        note: "Pedir precio. Zoe: cóctel de pie. Nivia: «Mariona… todo salió como lo habíamos imaginado». Encaja si aceptan cóctel.",
-        url: "", photo: wiki("Entrada al parc de Collserola (Sant Cugat).jpg"), cap: "Collserola · Wikimedia" },
+        out: "Bosque y jardines", inn: "Salones de masía",
+        note: "125–150 €. 85 × 125 = 10.625 €: los fijos se pasan. Límite 1 h.",
+        url: "https://www.bodas.net/masias/can-marlet-montseny--e1297", photo: wiki("Serra de Collserola.jpg"), cap: "Bosque · Wikimedia" },
       { id: "magi", name: "Can Magí", place: "Sant Cugat", addr: "Av. Can Magí 5", mins: 25, lat: 41.4728, lon: 2.0675, min: 100, max: 500, pax: 165, from: 150, to: 185, rating: "5.0", reviews: 164, incDj: false, incFlowers: false, incCivil: false, fit: "out",
-        note: "150–185 €, mín. 100 → 15.000 € solo cubierto. 3 h barra, exclusivo. Marta: Eli coordinadora. Excelente y fuera de 12k.",
-        url: "https://www.bodas.net/masias/can-magi--e9106", photo: wiki("Sant Cugat. Reial Monestir. Claustre 2.jpg"), cap: "Entorno Sant Cugat · Wikimedia" }
+        out: "4.000 m² de jardín", inn: "Salón de Cristal 677 m²",
+        note: "El sitio encaja (bosque + interior enorme) pero mín. 100 y 150 €. 85 no los cogen.",
+        url: "https://www.bodas.net/masias/can-magi--e9106", photo: wiki("Sant Cugat. Reial Monestir. Claustre 2.jpg"), cap: "Sant Cugat · Wikimedia" }
     ];
     const photos = [
       { id: "luci", name: "Luciérnagas", price: 950 },
@@ -494,14 +461,15 @@
     const photoEl = document.getElementById("photo");
     const djEl = document.getElementById("dj");
     const flEl = document.getElementById("flowers");
-    fillSelect(venueEl, venues.filter(function (v) { return v.pax; }), false);
-    venues.filter(function (v) { return v.pax; }).forEach(function (v, i) {
-      venueEl.options[i].textContent = v.name + " · " + (v.from ? v.from + "–" + v.to + " €" : euro(v.pax));
+    const priced = venues.filter(function (v) { return v.pax; });
+    fillSelect(venueEl, priced, false);
+    priced.forEach(function (v, i) {
+      venueEl.options[i].textContent = v.name + " · " + v.from + "–" + v.to + " €";
     });
     fillSelect(photoEl, photos, true);
     fillSelect(djEl, djs, true);
     fillSelect(flEl, flowerOpts, true);
-    venueEl.value = "qgat";
+    venueEl.value = "nadal";
     photoEl.value = "muse";
     djEl.value = "djsp";
     flEl.value = "simple";
@@ -517,7 +485,7 @@
       const totalEl = document.getElementById("total");
       const br = document.getElementById("breakdown");
       if (t == null) {
-        totalEl.textContent = "Este espacio no publica menú.";
+        totalEl.textContent = "Sin menú publicado.";
         totalEl.className = "total";
         br.textContent = v.note;
         renderCombos(g);
@@ -529,23 +497,18 @@
       } else {
         const ok = t <= CAP;
         totalEl.className = "total " + (ok ? "under" : "over");
-        totalEl.textContent = (ok ? "Dentro: " : "Se pasa: ") + euro(t) + " / 12.000 €";
+        totalEl.textContent = (ok ? "Dentro · " : "Se pasa · ") + euro(t) + " / 12.000 €";
       }
-      const food = (v.rent || 0) + g * v.pax;
-      const skip = [];
-      if (v.incDj) skip.push("DJ va en el local");
-      if (v.incFlowers) skip.push("flores en menú");
-      if (v.incCivil) skip.push("civil en jardín");
-      br.textContent = (v.rent ? "Alquiler " + euro(v.rent) + " + comida " + euro(g * v.pax) : "Banquete " + euro(food)) + " + foto " + euro(ph.price) + " + fijos 2.000 € (belleza, ropa, alianzas)" +
+      br.textContent = (v.rent ? "Alquiler " + euro(v.rent) + " + comida " + euro(g * v.pax) : "Banquete " + euro((v.rent || 0) + g * v.pax)) +
+        " + foto " + euro(ph.price) + " + fijos 2.000 €" +
         (v.incCivil ? "" : " + celebrante 400 €") +
         (v.incDj ? "" : " + DJ " + euro(d.price)) +
         (v.incFlowers ? "" : " + flores " + euro(f.price)) +
-        ". " + (skip.length ? skip.join("; ") + ". " : "") + v.note;
+        ". " + v.note;
       renderCombos(g);
     }
 
     function renderCombos(g) {
-      const midPhoto = 1100, midDj = 700, midFl = 150;
       const rows = [];
       venues.forEach(function (v) {
         if (!v.pax || g < v.min || g > v.max) return;
@@ -553,36 +516,34 @@
           djs.forEach(function (d) {
             if (v.incDj && d.price !== 0) return;
             if (!v.incDj && d.price === 0) return;
-            const t = cost(v, g, ph.price, d.price, v.incFlowers ? 0 : midFl);
+            const t = cost(v, g, ph.price, d.price, v.incFlowers ? 0 : 150);
             if (t != null && t <= CAP) rows.push({ v: v, ph: ph, d: d, t: t });
           });
         });
       });
       rows.sort(function (a, b) { return a.t - b.t; });
       document.getElementById("combo-lead").textContent =
-        "Con " + g + " invitados, foto publicada y DJ (o el del pack), flores 150 € si no van en menú, y 2.000 € de ropa/belleza/alianzas: " +
-        rows.length + " combinaciones ≤ 12.000 €. Las más baratas:";
+        g + " invitados, foto publicada, DJ o el del pack, flores 150 € si no van en menú: " +
+        rows.length + " combinaciones ≤ 12.000 €.";
       document.getElementById("combo-list").innerHTML = rows.slice(0, 8).map(function (r) {
-        return "<article class=\"card combo\"><div class=\"body\"><div><h3>" + r.v.name + " + " + r.ph.name +
+        return "<article class=\"combo\"><div><h3>" + r.v.name + " + " + r.ph.name +
           (r.d.price ? " + " + r.d.name : "") + "</h3><p class=\"meta\">" + euro(r.t) + " · " + r.v.place +
-          "</p></div><p class=\"amt\">sobran " + euro(CAP - r.t) + "</p></div></article>";
-      }).join("") || "<p>Ninguna con este aforo. Baja invitados o elige un pack.</p>";
+          "</p></div><p class=\"amt\">sobran " + euro(CAP - r.t) + "</p></article>";
+      }).join("") || "<p>Ninguna con este aforo.</p>";
     }
 
     function renderVenues() {
       document.getElementById("venue-list").innerHTML = venues.map(function (v) {
         const tag = v.fit === "in" ? "in" : v.fit === "out" ? "out" : "";
-        const tagTxt = v.fit === "in" ? "Cabe en 12k" : v.fit === "out" ? "Fuera de 12k" : v.fit === "mid" ? "Aprieta" : "Pedir precio";
-        const img = v.photo ? "<img src=\"" + v.photo + "\" alt=\"\" width=\"800\" height=\"368\" loading=\"lazy\" onerror=\"this.remove()\"><p class=\"cap\">" + v.cap + "</p>" : "";
+        const tagTxt = v.fit === "in" ? "Cabe a 85" : v.fit === "out" ? "No" : "Aprieta";
+        const img = v.photo ? "<div><img src=\"" + v.photo + "\" alt=\"\" width=\"800\" height=\"400\" loading=\"lazy\" onerror=\"this.remove()\"><p class=\"cap\" style=\"padding:0.4rem 1.2rem 0\">" + v.cap + "</p></div>" : "";
         const rate = v.rating ? v.rating + "/5" + (v.reviews ? " (" + v.reviews + ")" : "") + " · " : "";
-        const price = v.pax ? "<p class=\"price\">" + v.from + (v.to !== v.from ? "–" + v.to : "") + " €/pax</p>" : "";
         const tel = v.phone ? "<p class=\"meta\">" + v.phone + "</p>" : "";
-        const link = v.url ? "<p><a href=\"" + v.url + "\">Fuente / web</a></p>" : "";
-        return "<article class=\"card\" id=\"v-" + v.id + "\">" + img + "<div class=\"body\"><span class=\"tag " + tag + "\">" + tagTxt +
-          "</span><h3>" + v.name + "</h3><p class=\"meta\">" + v.place + " · ~" + v.mins + " min · " + rate +
-          v.min + "–" + v.max + " pax" +
-          (v.pax ? " · comida " + euro(v.min * v.pax) + "–" + euro(Math.min(v.max, 80) * v.pax) : "") +
-          "</p>" + price + "<p>" + v.note + "</p>" + tel + link + "</div></article>";
+        const link = v.url ? "<p><a href=\"" + v.url + "\">Fuente</a></p>" : "";
+        return "<article class=\"place\" id=\"v-" + v.id + "\">" + img + "<div class=\"body\"><p class=\"tag " + tag + "\">" + tagTxt +
+          "</p><h3>" + v.name + "</h3><p class=\"price\">" + (v.pax ? v.from + (v.to !== v.from ? "–" + v.to : "") + " €/pax" : "Pedir") +
+          "</p><p class=\"meta\">" + v.place + " · " + v.mins + " min · " + rate + v.min + "–" + v.max +
+          " pax<br>Fuera: " + v.out + "<br>Dentro: " + v.inn + "</p><p>" + v.note + "</p>" + tel + link + "</div></article>";
       }).join("");
     }
 
@@ -594,25 +555,23 @@
       }).addTo(map);
       venues.forEach(function (v) {
         if (v.skipMap) return;
-        const color = v.fit === "out" ? "#8b3d2a" : v.fit === "in" ? "#2d5a3d" : "#5c534a";
-        const m = L.circleMarker([v.lat, v.lon], { radius: 8, color: color, fillColor: color, fillOpacity: 0.85, weight: 1 });
-        m.bindPopup("<strong>" + v.name + "</strong><br>" + v.place + " · " + v.mins + " min" +
+        const color = v.fit === "out" ? "#8a3a2a" : v.fit === "in" ? "#2a5340" : "#8a6a3c";
+        const m = L.circleMarker([v.lat, v.lon], { radius: 8, color: color, fillColor: color, fillOpacity: 0.9, weight: 1 });
+        m.bindPopup("<strong>" + v.name + "</strong><br>" + v.place +
           (v.pax ? "<br>" + v.from + "–" + v.to + " €/pax" : "") +
           "<br><a href=\"#v-" + v.id + "\">Ver ficha</a>");
         m.addTo(map);
       });
     }
 
-    // ponytail: O(venues×photos×djs) scan is fine at ~16×6×4; upgrade if we add hundreds of vendors
     function selfCheck() {
-      const t1 = cost(pick(venues, "broquetas"), 70, 1200, 700, 150);
-      const t2 = cost(pick(venues, "qgat"), 50, 1200, 700, 150);
-      const t3 = cost(pick(venues, "paufiga"), 50, 1200, 700, 150);
-      const ok = t1 === 10760 && t2 === 8950 && t3 === 9550;
-      if (!ok) {
+      const t1 = cost(pick(venues, "cases"), 85, 1200, 700, 150);
+      const t2 = cost(pick(venues, "nadal"), 85, 1200, 700, 150);
+      const t3 = cost(pick(venues, "dimoni"), 85, 1200, 700, 150);
+      if (t1 !== 8700 || t2 !== 10825 || t3 !== 10230) {
         const el = document.getElementById("check-fail");
         el.hidden = false;
-        el.textContent = "Fallo interno de cifras. No uses la calculadora hasta corregir.";
+        el.textContent = "Fallo interno de cifras.";
       }
     }
 
