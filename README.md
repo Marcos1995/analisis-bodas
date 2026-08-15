@@ -7,9 +7,15 @@ Abrir: `index.html`
 ## Qué hay
 
 - Veredicto: qué cabe y qué no en 12k
-- Calculadora (invitados × escenario)
-- Masías / banquetes cerca de BCN
+- Mapa OSM de masías y hoteles
+- Calculadora (espacio × foto × DJ × flores)
+- Combinaciones que cierran el tope
+- Masías / banquetes ≤ 1 h de BCN, con fotos y reviews
 - Foto, DJ, flores, belleza, celebrante, resto
 - Preguntas para cada proveedor
 
 Precios de webs (ago 2026). Pedir presupuesto firmado.
+
+<!-- managed-by-telegram-cursor-bot:agent-kit -->
+## Agent kit
+- `AGENTS.md` · `PROJECT.md` · `.cursor/rules/` · `.cursor/skills/`
