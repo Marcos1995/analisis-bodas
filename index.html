@@ -9,124 +9,164 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <style>
     :root {
-      --bg: #f4efe8;
-      --ink: #1c1814;
-      --muted: #5c534a;
-      --line: #d9cfc3;
+      --bg: #f3eee6;
+      --ink: #1a1612;
+      --muted: #5a5249;
+      --line: #d8cfc2;
       --accent: #8b3d2a;
-      --ok: #2d5a3d;
+      --ok: #245536;
       --no: #8b3d2a;
-      --card: #fffcf8;
+      --card: #fffdf9;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font: 18px/1.5 "Libre Baskerville", Georgia, serif;
+      font: 18px/1.55 "Libre Baskerville", Georgia, serif;
       color: var(--ink);
       background: var(--bg);
     }
     a { color: var(--accent); }
     a:hover { text-decoration-thickness: 2px; }
+    .skip {
+      position: absolute;
+      left: 0.8rem;
+      top: -3rem;
+      background: var(--ink);
+      color: var(--card);
+      padding: 0.5rem 0.8rem;
+      z-index: 6;
+    }
+    .skip:focus { top: 0.8rem; }
     header {
-      padding: 3.5rem 1.5rem 2rem;
-      max-width: 48rem;
+      padding: 4.5rem 1.5rem 2.4rem;
+      max-width: 44rem;
       margin: 0 auto;
     }
     header p.kicker {
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--muted);
-      margin: 0 0 0.8rem;
+      margin: 0 0 1.1rem;
     }
-    h1 { font-size: 2.15rem; font-weight: 400; line-height: 1.2; margin: 0 0 1rem; }
-    h2 { font-size: 1.45rem; font-weight: 400; margin: 0 0 0.8rem; }
-    h3 { font-size: 1.05rem; font-weight: 400; margin: 0 0 0.4rem; }
-    .lead { color: var(--muted); margin: 0; }
+    h1 { font-size: clamp(2rem, 5vw, 2.7rem); font-weight: 400; line-height: 1.15; margin: 0 0 1.2rem; }
+    h2 { font-size: 1.35rem; font-weight: 400; margin: 0 0 1rem; letter-spacing: -0.01em; }
+    h3 { font-size: 1.08rem; font-weight: 400; margin: 0 0 0.35rem; }
+    .lead { color: var(--muted); margin: 0 0 1.2rem; max-width: 38rem; }
+    .cta {
+      display: inline-block;
+      margin-top: 1.6rem;
+      padding: 0.85rem 1.35rem;
+      background: var(--ink);
+      color: var(--card);
+      text-decoration: none;
+      min-height: 2.75rem;
+    }
+    .cta:hover { background: var(--accent); color: var(--card); }
+    .cta:focus { outline: 2px solid var(--accent); outline-offset: 3px; }
     nav {
       position: sticky;
       top: 0;
-      background: color-mix(in srgb, var(--bg) 92%, white);
+      background: color-mix(in srgb, var(--bg) 94%, white);
       border-bottom: 1px solid var(--line);
       z-index: 4;
     }
     nav ul {
       list-style: none;
       display: flex;
-      gap: 1.1rem;
+      gap: 1.4rem;
       margin: 0 auto;
-      padding: 0.7rem 1.5rem;
-      max-width: 48rem;
+      padding: 0.85rem 1.5rem;
+      max-width: 44rem;
       overflow-x: auto;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
     }
-    nav a { color: var(--ink); text-decoration: none; white-space: nowrap; }
-    nav a:hover { color: var(--accent); }
-    main { max-width: 48rem; margin: 0 auto; padding: 1.5rem 1.5rem 5rem; }
-    section { margin: 2.8rem 0; }
-    .verdict, .calc, .card {
+    nav a { color: var(--muted); text-decoration: none; white-space: nowrap; }
+    nav a:hover, nav a[aria-current] { color: var(--ink); }
+    nav a.act { color: var(--accent); }
+    main { max-width: 44rem; margin: 0 auto; padding: 2rem 1.5rem 6rem; }
+    section { margin: 3.6rem 0; }
+    .verdict, .calc, .card, #map {
       background: var(--card);
       border: 1px solid var(--line);
     }
-    .verdict, .calc { padding: 1.4rem 1.5rem; }
+    .verdict { padding: 0; }
+    .verdict > p { padding: 1.4rem 1.6rem; margin: 0; }
+    .verdict > p + p { border-top: 1px solid var(--line); }
+    .split { display: grid; gap: 0; }
+    @media (min-width: 640px) {
+      .split { grid-template-columns: 1fr 1fr; }
+      .split > p + p { border-top: 0; border-left: 1px solid var(--line); }
+    }
     .verdict strong.ok { color: var(--ok); }
     .verdict strong.no { color: var(--no); }
-    label { display: block; font-size: 0.85rem; color: var(--muted); margin: 0.9rem 0 0.25rem; }
+    .calc { padding: 1.6rem 1.6rem 1.8rem; }
+    .fields {
+      display: grid;
+      gap: 0 1.2rem;
+    }
+    @media (min-width: 640px) { .fields { grid-template-columns: 1fr 1fr; } }
+    label { display: block; font-size: 0.78rem; color: var(--muted); margin: 0.95rem 0 0.3rem; }
     input[type="number"], select {
       width: 100%;
       font: inherit;
-      padding: 0.55rem 0.7rem;
+      padding: 0.7rem 0.75rem;
+      min-height: 2.75rem;
       border: 1px solid var(--line);
       background: var(--bg);
       color: var(--ink);
     }
     input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .total { margin-top: 1.1rem; font-size: 1.35rem; }
+    .sum {
+      margin-top: 1.6rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--line);
+    }
+    .total { margin: 0; font-size: 1.7rem; line-height: 1.2; }
     .total.over { color: var(--no); }
     .total.under { color: var(--ok); }
-    .card { padding: 0; margin: 0.85rem 0; overflow: hidden; }
-    .card .body { padding: 1.15rem 1.25rem 1.25rem; }
-    .card .meta { font-size: 0.88rem; color: var(--muted); margin: 0.2rem 0 0.5rem; }
+    .card { padding: 0; margin: 1.15rem 0; overflow: hidden; }
+    .card .body { padding: 1.35rem 1.4rem 1.5rem; }
+    .card .meta { font-size: 0.86rem; color: var(--muted); margin: 0.15rem 0 0.7rem; }
     .card img {
       display: block;
       width: 100%;
-      height: 11.5rem;
+      height: 13rem;
       object-fit: cover;
       background: var(--line);
     }
     .card .cap {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--muted);
-      padding: 0.35rem 1.25rem 0;
+      padding: 0.45rem 1.4rem 0;
     }
+    .price { font-size: 1.25rem; margin: 0 0 0.7rem; }
     .tag {
       display: inline-block;
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       border: 1px solid var(--line);
-      padding: 0.12rem 0.4rem;
-      margin: 0 0.3rem 0.35rem 0;
+      padding: 0.2rem 0.45rem;
+      margin: 0 0.3rem 0.55rem 0;
     }
     .tag.out { border-color: var(--no); color: var(--no); }
     .tag.in { border-color: var(--ok); color: var(--ok); }
     ul.plain { padding-left: 1.15rem; }
+    ul.plain li { margin: 0.45rem 0; }
     footer {
-      max-width: 48rem;
+      max-width: 44rem;
       margin: 0 auto;
-      padding: 0 1.5rem 3rem;
-      font-size: 0.82rem;
+      padding: 0 1.5rem 3.5rem;
+      font-size: 0.8rem;
       color: var(--muted);
     }
-    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
-    th, td { text-align: left; padding: 0.45rem 0.3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-    th { font-weight: 400; color: var(--muted); }
-    #map {
-      height: 22rem;
-      border: 1px solid var(--line);
-      background: var(--card);
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 0.7rem 0.5rem 0.7rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-weight: 400; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    #map { height: 24rem; }
+    .legend { font-size: 0.8rem; color: var(--muted); margin: 0.7rem 0 0; }
     .leaflet-popup-content-wrapper, .leaflet-popup-tip {
       background: var(--card);
       color: var(--ink);
@@ -134,65 +174,84 @@
       box-shadow: none;
       border: 1px solid var(--line);
     }
-    .leaflet-popup-content { margin: 0.7rem 0.85rem; font: 15px/1.4 "Libre Baskerville", Georgia, serif; }
+    .leaflet-popup-content { margin: 0.75rem 0.9rem; font: 15px/1.4 "Libre Baskerville", Georgia, serif; }
     .leaflet-container a { color: var(--accent); }
-    .combo { font-size: 0.95rem; }
-    .combo strong { font-weight: 400; }
+    .combo .body {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.2rem;
+      align-items: baseline;
+    }
+    .combo h3 { font-size: 1rem; }
+    .combo .amt { margin: 0; white-space: nowrap; color: var(--ok); font-size: 1.05rem; }
     #check-fail { color: var(--no); }
   </style>
 </head>
 <body>
+  <a class="skip" href="#calculadora">Ir a calcular</a>
   <header>
     <p class="kicker">Lista de boda · agosto 2026</p>
     <h1>Todo el día, 12.000 €, a una hora de Barcelona.</h1>
-    <p class="lead">Masías, packs, foto, DJ y flores con precio publicado. El mapa y la calculadora cruzan combinaciones reales. Pedir cifra firmada: esto no cierra el día.</p>
+    <p class="lead">Precios publicados de masías, packs, foto, DJ y flores. Calcula si cierra. Luego pide cifra firmada.</p>
+    <a class="cta" href="#calculadora">Calcular presupuesto</a>
   </header>
   <nav aria-label="Secciones">
     <ul>
-      <li><a href="#veredicto">Veredicto</a></li>
+      <li><a class="act" href="#calculadora">Calcular</a></li>
       <li><a href="#mapa">Mapa</a></li>
-      <li><a href="#calculadora">Calcular</a></li>
-      <li><a href="#combos">Combos</a></li>
-      <li><a href="#bufet">Bufé</a></li>
       <li><a href="#espacios">Espacios</a></li>
+      <li><a href="#bufet">Bufé</a></li>
       <li><a href="#foto">Foto</a></li>
       <li><a href="#musica">Música</a></li>
-      <li><a href="#flores">Flores</a></li>
-      <li><a href="#resto">Resto</a></li>
       <li><a href="#preguntas">Preguntar</a></li>
     </ul>
   </nav>
   <main>
     <section id="veredicto">
       <h2>Qué cabe en 12.000 €</h2>
-      <div class="verdict">
-        <p>Media España 2026: <strong>22–32.000 €</strong> (80–120 pax). Media masía BCN: <strong>133 €/pax</strong> (85–191). Sant Cugat: 139 €. A 12k, o 40–70 personas, o pack cerrado, o viernes/domingo/temporada baja.</p>
-        <p><strong class="ok">Sí, si:</strong> pack Broquetas 108 €, Can Cabús 109 €, Can Sidro 105 € todo incluido, Reixac 65–105 € (DJ y flores en menú), Cal Dimoni 67,90–78 €, QGAT ~90 €, Can Tomàs si el menú de ficha es boda de verdad. O alquiler de finca + bufé/estaciones (Can Pau + catering 60–85 €): más libertad de platos, no siempre más barato.</p>
-        <p><strong class="no">No, si:</strong> 100 pax en Can Magí (150–185 € → 15k solo cubierto), Can Marial 154 €, Can Torrens 150 €, Can Sabaté 180 €. Vídeo (1.200–4.000) y deco floral completa (1.200–5.000) rompen el tope.</p>
+      <p class="lead">Media España 22–32.000 €. Media masía BCN 133 €/pax. A 12k: 40–70 personas, pack, o viernes/temporada baja.</p>
+      <div class="verdict split">
+        <p><strong class="ok">Cabe</strong><br>Broquetas 108 €, Cabús 109 €, Sidro 105 €, Reixac 65–105 €, Cal Dimoni 68–78 €, QGAT ~90 €, Can Tomàs si el menú es boda. O Can Pau + bufé 60–85 €.</p>
+        <p><strong class="no">No cabe</strong><br>Can Magí 150–185 € (mín. 100 → 15k). Marial 154 €, Torrens 150 €, Sabaté 180 €. Vídeo y deco floral completa rompen el tope.</p>
       </div>
     </section>
 
     <section id="mapa">
       <h2>Mapa de lugares</h2>
-      <p class="lead">Puntos ≤ ~1 h de Plaça Catalunya. Verde cabe en 12k con 50 pax y fijos medios. Rojo no. Clic abre ficha.</p>
+      <p class="lead">A ≤1 h de Plaça Catalunya. Clic en un punto abre la ficha.</p>
       <div id="map" role="region" aria-label="Mapa de masías y hoteles"></div>
+      <p class="legend">Verde: cabe en 12k · Rojo: no · Gris: aprieta o pedir precio</p>
     </section>
 
     <section id="calculadora">
       <h2>Calculadora</h2>
       <div class="calc">
-        <label for="guests">Invitados</label>
-        <input id="guests" type="number" min="20" max="200" value="50" aria-describedby="total">
-        <label for="venue">Espacio</label>
-        <select id="venue"></select>
-        <label for="photo">Fotografía</label>
-        <select id="photo"></select>
-        <label for="dj">DJ</label>
-        <select id="dj"></select>
-        <label for="flowers">Flores</label>
-        <select id="flowers"></select>
-        <p id="total" class="total" aria-live="polite"></p>
-        <p class="lead" id="breakdown"></p>
+        <div class="fields">
+          <div>
+            <label for="guests">Invitados</label>
+            <input id="guests" type="number" min="20" max="200" value="50" aria-describedby="total">
+          </div>
+          <div>
+            <label for="venue">Espacio</label>
+            <select id="venue"></select>
+          </div>
+          <div>
+            <label for="photo">Fotografía</label>
+            <select id="photo"></select>
+          </div>
+          <div>
+            <label for="dj">DJ</label>
+            <select id="dj"></select>
+          </div>
+          <div>
+            <label for="flowers">Flores</label>
+            <select id="flowers"></select>
+          </div>
+        </div>
+        <div class="sum">
+          <p id="total" class="total" aria-live="polite"></p>
+          <p class="lead" id="breakdown"></p>
+        </div>
       </div>
     </section>
 
@@ -504,9 +563,9 @@
         "Con " + g + " invitados, foto publicada y DJ (o el del pack), flores 150 € si no van en menú, y 2.000 € de ropa/belleza/alianzas: " +
         rows.length + " combinaciones ≤ 12.000 €. Las más baratas:";
       document.getElementById("combo-list").innerHTML = rows.slice(0, 8).map(function (r) {
-        return "<article class=\"card combo\"><div class=\"body\"><h3>" + r.v.name + " + " + r.ph.name +
-          (r.d.price ? " + " + r.d.name : "") + "</h3><p class=\"meta\">" + euro(r.t) +
-          " · sobran " + euro(CAP - r.t) + " · " + r.v.place + "</p></div></article>";
+        return "<article class=\"card combo\"><div class=\"body\"><div><h3>" + r.v.name + " + " + r.ph.name +
+          (r.d.price ? " + " + r.d.name : "") + "</h3><p class=\"meta\">" + euro(r.t) + " · " + r.v.place +
+          "</p></div><p class=\"amt\">sobran " + euro(CAP - r.t) + "</p></div></article>";
       }).join("") || "<p>Ninguna con este aforo. Baja invitados o elige un pack.</p>";
     }
 
@@ -516,13 +575,14 @@
         const tagTxt = v.fit === "in" ? "Cabe en 12k" : v.fit === "out" ? "Fuera de 12k" : v.fit === "mid" ? "Aprieta" : "Pedir precio";
         const img = v.photo ? "<img src=\"" + v.photo + "\" alt=\"\" width=\"800\" height=\"368\" loading=\"lazy\" onerror=\"this.remove()\"><p class=\"cap\">" + v.cap + "</p>" : "";
         const rate = v.rating ? v.rating + "/5" + (v.reviews ? " (" + v.reviews + ")" : "") + " · " : "";
-        const price = v.pax ? "<strong>" + v.from + (v.to !== v.from ? "–" + v.to : "") + " €/pax</strong> · " + v.min + "–" + v.max + " invitados. " : "";
-        const tel = v.phone ? v.phone + " · " : "";
+        const price = v.pax ? "<p class=\"price\">" + v.from + (v.to !== v.from ? "–" + v.to : "") + " €/pax</p>" : "";
+        const tel = v.phone ? "<p class=\"meta\">" + v.phone + "</p>" : "";
         const link = v.url ? "<p><a href=\"" + v.url + "\">Fuente / web</a></p>" : "";
         return "<article class=\"card\" id=\"v-" + v.id + "\">" + img + "<div class=\"body\"><span class=\"tag " + tag + "\">" + tagTxt +
-          "</span><h3>" + v.name + "</h3><p class=\"meta\">" + v.place + " · " + v.addr + " · ~" + v.mins + " min · " + rate +
-          (v.pax ? euro(v.min * v.pax) + "–" + euro(Math.min(v.max, 80) * v.pax) + " comida" : "") +
-          "</p><p>" + price + v.note + "</p><p>" + tel + "</p>" + link + "</div></article>";
+          "</span><h3>" + v.name + "</h3><p class=\"meta\">" + v.place + " · ~" + v.mins + " min · " + rate +
+          v.min + "–" + v.max + " pax" +
+          (v.pax ? " · comida " + euro(v.min * v.pax) + "–" + euro(Math.min(v.max, 80) * v.pax) : "") +
+          "</p>" + price + "<p>" + v.note + "</p>" + tel + link + "</div></article>";
       }).join("");
     }
 
