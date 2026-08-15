@@ -10,6 +10,7 @@ Abrir: `index.html`
 - Mapa OSM de masías y hoteles
 - Calculadora (espacio × foto × DJ × flores)
 - Combinaciones que cierran el tope
+- Bufé / estaciones vs menú cerrado (qué cabe y qué no en packs)
 - Masías / banquetes ≤ 1 h de BCN, con fotos y reviews
 - Foto, DJ, flores, belleza, celebrante, resto
 - Preguntas para cada proveedor
