@@ -222,22 +222,36 @@
       margin: 0 0 1.4rem; font-size: 0.92rem;
     }
     .toggle input { width: 1.15rem; height: 1.15rem; accent-color: var(--bronze); }
-    .rank { margin: 0 0 2.4rem; }
-    .rank ol { margin: 0; padding: 0; list-style: none; counter-reset: n; }
+    .rank { margin: 0 0 2.8rem; }
+    .rank h3 { margin: 0 0 0.35rem; }
+    .rank > .lead { margin: 0 0 1.1rem; }
+    .rank ol { margin: 0; padding: 0; list-style: none; counter-reset: n; display: grid; gap: 0.7rem; }
     .rank li {
       counter-increment: n;
       display: grid;
-      grid-template-columns: 2rem 1fr auto;
-      gap: 0.8rem;
-      padding: 0.95rem 0;
-      border-bottom: 1px solid var(--line);
-      align-items: baseline;
+      grid-template-columns: 2.4rem 1fr auto;
+      gap: 0.95rem;
+      align-items: start;
+      background: var(--card);
+      padding: 1.15rem 1.25rem 1.2rem;
+      border-bottom: 0;
     }
-    .rank li::before { content: counter(n); color: var(--bronze); font-size: 0.85rem; }
-    .rank .why { font-size: 0.86rem; color: var(--muted); margin: 0.15rem 0 0; }
-    .rank .amt { margin: 0; white-space: nowrap; }
+    .rank li::before {
+      content: counter(n);
+      width: 2.15rem; height: 2.15rem;
+      border: 1px solid var(--bronze);
+      color: var(--bronze);
+      font-size: 0.78rem;
+      display: grid; place-items: center;
+      margin-top: 0.15rem;
+    }
+    .rank .why { font-size: 0.84rem; color: var(--muted); margin: 0.25rem 0 0; line-height: 1.45; }
+    .rank .amt { margin: 0.15rem 0 0; white-space: nowrap; font-size: 1.02rem; }
     .rank .amt.over { color: var(--no); }
     .rank .amt.under { color: var(--ok); }
+    .combo h3 a, .place h3 a, .rank h3 a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
+    .combo h3 a:hover, .place h3 a:hover, .rank h3 a:hover { border-bottom-color: var(--bronze); }
+    .calc-wrap a { color: #e8dcc8; }
     table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
     th, td { text-align: left; padding: 0.85rem 0.6rem 0.85rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
     th { font-weight: 400; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
@@ -277,7 +291,7 @@
     <section id="rankings">
       <h2>Dos listas</h2>
       <hr class="rule">
-      <p class="lead">La primera ordena por entorno y nota. La segunda, por lo que cierra a 12.000 € con pack foto+vídeo+álbum. Abajo salen también las que se pasan.</p>
+      <p class="lead">La primera ordena por entorno y nota. La segunda, por lo que cierra a 12.000 €. El menú casi siempre incluye la finca: la señal va a cuenta, no suma. Civil, hora extra de DJ o barra sí son extras si los publican. Cada nombre enlaza a su web.</p>
       <label class="toggle"><input type="checkbox" id="onlyCap"> Ver solo las que cierran a 12.000 €</label>
       <div class="rank">
         <h3>Lo más bonito</h3>
@@ -286,7 +300,7 @@
       </div>
       <div class="rank">
         <h3>Lo mejor que cabe en 12.000 €</h3>
-        <p class="lead">Misma cuenta: 85 pax, Wedding Visual 1.400 €, DJ 700 € y flores 150 € si no van en el pack, fijos 2.400 €.</p>
+        <p class="lead">85 pax, <a href="https://weddingvisual.es/es/" target="_blank" rel="noopener noreferrer">Wedding Visual</a> 1.400 €, DJ 700 € y flores 150 € si no van en el pack, fijos 2.400 €. Sin alquiler de finca aparte (las fichas dicen que no hay pago fijo).</p>
         <ol id="rank-budget"></ol>
       </div>
       <div class="rank" id="rank-over-wrap">
@@ -360,9 +374,9 @@
     <section id="bufet">
       <h2>Vegano y bufé</h2>
       <hr class="rule">
-      <p class="lead">Casi todas las fichas marcan vegano. Si no, Estació Vegana o Jonny si el local deja catering externo.</p>
+      <p class="lead">Casi todas las fichas marcan vegano. Si el local deja catering externo: <a href="https://www.bodas.net/catering/estacio-vegana--e130493" target="_blank" rel="noopener noreferrer">Estació Vegana</a> o <a href="https://www.jonnycatering.com/" target="_blank" rel="noopener noreferrer">Jonny</a>.</p>
       <div class="panel">
-        <p>Estació Vegana 80–175 € (solo vegetal, 5.0) · Catering Ya 81,50–120 € (vegano sin extra) · Jonny 85–140 € · Figa 60–200 € · Mas Badó menú vegano publicado 147 € IVA incl. · Can Cortès Menú E bufé 2 h (pedir) · Font del Tort y Nadal adaptan veg/vegano en cocina propia.</p>
+        <p><a href="https://www.bodas.net/catering/estacio-vegana--e130493" target="_blank" rel="noopener noreferrer">Estació Vegana</a> 80–175 € (solo vegetal, 5.0) · Catering Ya 81,50–120 € (vegano sin extra) · <a href="https://www.jonnycatering.com/" target="_blank" rel="noopener noreferrer">Jonny</a> 85–140 € · Figa 60–200 € · <a href="https://www.bodas.net/masias/masia-mas-bado-bodasrv--e28905" target="_blank" rel="noopener noreferrer">Mas Badó</a> menú vegano 147 € IVA incl. · <a href="https://cancortes.com/es/menus/menus-celebraciones/" target="_blank" rel="noopener noreferrer">Can Cortès</a> Menú E bufé 2 h (pedir) · <a href="https://www.masiafontdeltort.com/bodas" target="_blank" rel="noopener noreferrer">Font del Tort</a> y <a href="https://elmasnadal.com/" target="_blank" rel="noopener noreferrer">Nadal</a> adaptan veg/vegano en cocina propia.</p>
         <p class="meta">Con 85, un bufé a 80 € son 6.800 € de comida. Suma pack foto+vídeo+álbum (~1.400 €) y fijos 2.400 €.</p>
       </div>
     </section>
@@ -374,19 +388,19 @@
       <table>
         <thead><tr><th>Oficio</th><th>Quién</th><th>Ficha</th></tr></thead>
         <tbody>
-          <tr><td>Foto+vídeo+álbum</td><td>Wedding Visual (Igualada) · pack 1.500 fotos, vídeo 10–15 min, álbum · 638 495 251</td><td>950–1.400 €</td></tr>
-          <tr><td>Foto+vídeo+álbum</td><td>Luciérnagas · pack 1.500–2.000 fotos, álbum digital, 2 vídeos</td><td>950–3.000 €</td></tr>
-          <tr><td>Foto+vídeo+álbum</td><td>Max-record (Sta. Coloma) · 4K, álbumes en ficha</td><td>1.100–2.500 €</td></tr>
-          <tr><td>Foto+vídeo+álbum</td><td>Alcolor Barcelona</td><td>1.800–4.000 €</td></tr>
-          <tr><td>Foto+vídeo+álbum</td><td>Moona Films completo (álbum 35×35 + 2 mini, dron)</td><td>1.999 € + IVA</td></tr>
-          <tr><td>Foto+vídeo+álbum</td><td>Vaya Plano Pack Pro (álbum 30×30) · Granollers</td><td>2.695 € + IVA</td></tr>
-          <tr><td>DJ</td><td>DJs Profesionales · Acovento · Coco</td><td>450–850 €</td></tr>
-          <tr><td>Celebrante</td><td>Sandra López (Badalona) · 5.0 / 10</td><td>295–1.000 €</td></tr>
-          <tr><td>Celebrante</td><td>Cristian, maestro de ceremonias (L’Hospitalet)</td><td>250–500 €</td></tr>
-          <tr><td>Tarta</td><td>Handcake (Viladecans)</td><td>desde 30 €; boda 200–450 €</td></tr>
-          <tr><td>Fotomatón</td><td>Fotomatón Lowcost (Cerdanyola) · 2 h</td><td>248–1.000 €</td></tr>
-          <tr><td>Fotomatón</td><td>The Booth vintage BCN · 2 h</td><td>325 € + IVA</td></tr>
-          <tr><td>Autobús</td><td>Media alquiler BCN (guías 2026)</td><td>320–968 € · media 571 €</td></tr>
+          <tr><td>Foto+vídeo+álbum</td><td><a href="https://weddingvisual.es/es/" target="_blank" rel="noopener noreferrer">Wedding Visual</a> (Igualada) · pack 1.500 fotos, vídeo 10–15 min, álbum · 638 495 251</td><td>950–1.400 €</td></tr>
+          <tr><td>Foto+vídeo+álbum</td><td><a href="https://www.bodas.net/fotografos/luciernagas--e79890" target="_blank" rel="noopener noreferrer">Luciérnagas</a> · pack 1.500–2.000 fotos, álbum digital, 2 vídeos</td><td>950–3.000 €</td></tr>
+          <tr><td>Foto+vídeo+álbum</td><td><a href="https://www.maxrecord.es/" target="_blank" rel="noopener noreferrer">Max-record</a> (Sta. Coloma) · 4K, álbumes en ficha</td><td>1.100–2.500 €</td></tr>
+          <tr><td>Foto+vídeo+álbum</td><td><a href="https://alcolor35.com/" target="_blank" rel="noopener noreferrer">Alcolor</a> Barcelona</td><td>1.800–4.000 €</td></tr>
+          <tr><td>Foto+vídeo+álbum</td><td><a href="https://www.moonafilms.com/promo2026" target="_blank" rel="noopener noreferrer">Moona Films</a> completo (álbum 35×35 + 2 mini, dron)</td><td>1.999 € + IVA</td></tr>
+          <tr><td>Foto+vídeo+álbum</td><td><a href="https://www.vayaplano.com/fotografia-video-bodas" target="_blank" rel="noopener noreferrer">Vaya Plano</a> Pack Pro (álbum 30×30) · Granollers</td><td>2.695 € + IVA</td></tr>
+          <tr><td>DJ</td><td><a href="https://www.bodas.net/bodas/proveedores/musica/barcelona" target="_blank" rel="noopener noreferrer">DJs Profesionales · Acovento · Coco</a></td><td>450–850 €</td></tr>
+          <tr><td>Celebrante</td><td><a href="https://www.bodas.net/organizacion-bodas/sandra-lopez-maestra-de-ceremonias--e295651" target="_blank" rel="noopener noreferrer">Sandra López</a> (Badalona) · 5.0 / 10</td><td>295–1.000 €</td></tr>
+          <tr><td>Celebrante</td><td><a href="https://www.bodas.net/bodas/proveedores/oficiantes/barcelona" target="_blank" rel="noopener noreferrer">Cristian, maestro de ceremonias</a> (L’Hospitalet)</td><td>250–500 €</td></tr>
+          <tr><td>Tarta</td><td><a href="https://www.handcakepastisseria.com/es/" target="_blank" rel="noopener noreferrer">Handcake</a> (Viladecans)</td><td>desde 30 €; boda 200–450 €</td></tr>
+          <tr><td>Fotomatón</td><td><a href="https://www.bodas.net/animacion/fotomaton-lowcost--e177752" target="_blank" rel="noopener noreferrer">Fotomatón Lowcost</a> (Cerdanyola) · 2 h</td><td>248–1.000 €</td></tr>
+          <tr><td>Fotomatón</td><td><a href="https://www.the-booth.es/" target="_blank" rel="noopener noreferrer">The Booth</a> vintage BCN · 2 h</td><td>325 € + IVA</td></tr>
+          <tr><td>Autobús</td><td>Media alquiler BCN (guías 2026; pedir empresa concreta)</td><td>320–968 € · media 571 €</td></tr>
           <tr><td>Flores</td><td>Flowering ramo civil · L’Er deco</td><td>50 € / 1.200 €</td></tr>
           <tr><td>Belleza</td><td>Janna 120–270 · OH Sant Cugat pack 400 €</td><td>120–400 €</td></tr>
         </tbody>
@@ -397,17 +411,17 @@
       <h2>Qué preguntar</h2>
       <hr class="rule">
       <ul class="plain">
+        <li>¿Hay alquiler de finca aparte, o el menú ya incluye el espacio? ¿Mínimo de pax o de presupuesto?</li>
+        <li>¿Señal a cuenta o pago que no se descuenta? ¿IVA 10 % encima del menú?</li>
+        <li>¿Civil, hora extra de DJ/barra, floral: van dentro o se facturan aparte?</li>
         <li>¿El jardín cabe 85 sentados? ¿El salón cubierto también, si llueve?</li>
-        <li>¿IVA 10 % encima del menú? ¿Sábado vs viernes? ¿Más de un evento el mismo día?</li>
-        <li>¿Plato vegano de verdad (no solo vegetariano)? ¿Bufé mixto o cocina exclusiva?</li>
-        <li>¿Qué extras van en el precio: DJ, barra, floral, tarta, civil?</li>
-        <li>Señal, pagos, cancelación, hora de fin, parking, bus.</li>
+        <li>¿Plato vegano de verdad? ¿Más de un evento el mismo día? Cancelación.</li>
       </ul>
     </section>
     <p id="check-fail" hidden></p>
   </main>
   <footer>
-    <p>Fuentes ago 2026: Bodas.net, canbiel.com, masiafontdeltort.com, restaurantcanoliver.com, cancortes.com, casafuster.net, cancabus.es, the-booth.es, moonafilms.com, vayaplano.com, weddingvisual.es, jonnycatering.com, Wikimedia. Precios de web; pedir cifra firmada. Teléfonos solo de la web del profesional.</p>
+    <p>Fuentes ago 2026 (cada ficha enlaza a la web del local): <a href="https://www.bodas.net/bodas/banquetes/masias/barcelona" target="_blank" rel="noopener noreferrer">Bodas.net</a>, <a href="https://masllombart.com/" target="_blank" rel="noopener noreferrer">masllombart.com</a>, <a href="https://www.canbiel.com/" target="_blank" rel="noopener noreferrer">canbiel.com</a>, <a href="https://www.masiafontdeltort.com/bodas" target="_blank" rel="noopener noreferrer">Font del Tort</a>, <a href="https://restaurantcanoliver.com/" target="_blank" rel="noopener noreferrer">Can Oliver</a>, <a href="https://elmasnadal.com/" target="_blank" rel="noopener noreferrer">Mas Nadal</a>, <a href="https://cancabus.es/bodas" target="_blank" rel="noopener noreferrer">Can Cabús</a>, <a href="https://www.laporxadadecansidro.com/" target="_blank" rel="noopener noreferrer">Can Sidro</a>, <a href="https://elcim.es/bodas/" target="_blank" rel="noopener noreferrer">El Cim</a>, <a href="https://canmarial.net/" target="_blank" rel="noopener noreferrer">Can Marial</a>, <a href="https://turodelsol.com/" target="_blank" rel="noopener noreferrer">Turó del Sol</a>, <a href="https://weddingvisual.es/es/" target="_blank" rel="noopener noreferrer">Wedding Visual</a>, Wikimedia. Precios de web; pedir cifra firmada. La señal suele ser a cuenta, no un extra.</p>
   </footer>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
@@ -420,127 +434,127 @@
       { id: "cases", name: "El Mirador de Can Cases", place: "Collserola, Sant Cugat", addr: "Camí de Can Cases, 15", mins: 25, lat: 41.448, lon: 2.078, min: 20, max: 250, pax: 50, from: 35, to: 60, rating: "4.8", reviews: 0, rec: "95 %", nature: 5, vegan: "sí", pack: "bienvenida · plato · postre · tarta · bebidas", incDj: false, incFlowers: false, incCivil: false, fit: "in",
         out: "Terraza y jardín entre bosque", inn: "Salones con chimenea",
         note: "s. XVI. Ficha julio 2026: 35–60 €. 95 % recomiendan. Confirmar sábado boda vs menú de mesa: el suelo es de restaurante.",
-        url: "https://www.bodas.net/restaurantes/el-mirador-de-can-cases--e119911", photo: wiki("Entrada al parc de Collserola (Sant Cugat).jpg"), cap: "Collserola · Wikimedia" },
+        url: "https://www.bodas.net/restaurantes/el-mirador-de-can-cases--e119911", pay: "Finca incluida en el cubierto de restaurante. Pedir si el suelo 35–60 € vale para sábado boda.", photo: wiki("Entrada al parc de Collserola (Sant Cugat).jpg"), cap: "Collserola · Wikimedia" },
       { id: "padellas", name: "Mas Padellàs", place: "Teià, Maresme", addr: "Passeig de Massarosa, 74", mins: 20, lat: 41.498, lon: 2.324, min: 20, max: 140, pax: 80, from: 80, to: 80, rating: "5.0", reviews: 14, rec: "100 %", nature: 4, vegan: "sí", pack: "entrantes · principal · postre · bebida · tarta (propia)", incDj: false, incFlowers: false, incCivil: false, fit: "in",
         out: "Jardín y carpa", inn: "Salones tematizados + carpa lluvia",
         note: "s. XVIII, vegetación. Menú desde 80 €. Vegano en ficha. Música exclusiva del local. Más de un evento al día.",
-        url: "https://www.bodas.net/fincas/mas-padellas--e252589", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme · Wikimedia" },
+        url: "https://www.bodas.net/fincas/mas-padellas--e252589", pay: "Ficha: sin pago fijo de finca. Señal 20 %. Si no llegáis al mínimo, +30 €/comensal. Se puede alquilar solo el espacio (pedir).", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme · Wikimedia" },
       { id: "cortes", name: "Masía Can Cortès", place: "Collserola, Sant Cugat", addr: "Av. Can Cortès 36", mins: 20, lat: 41.418, lon: 2.108, min: 20, max: 200, pax: 70, from: 44, to: 120, rating: "5.0", reviews: 0, rec: "100 %", nature: 4, vegan: "sí", pack: "menús veg/vegano/celíaco · bufé terraza 2 h (pedir)", incDj: false, incFlowers: false, incCivil: false, fit: "in",
         out: "600 m² de hierba y jardín", inn: "Salas climatizadas hasta 120",
         note: "Menú boda 44–120 €. Web celebraciones 49–64 €. Vegano en su web. 93 674 17 04.",
-        url: "https://cancortes.com/es/menus/menus-celebraciones/", phone: "93 674 17 04", photo: wiki("Serra de Collserola.jpg"), cap: "Collserola · Wikimedia" },
+        url: "https://cancortes.com/es/menus/menus-celebraciones/", pay: "Finca incluida en el menú. Sin alquiler aparte publicado.", phone: "93 674 17 04", photo: wiki("Serra de Collserola.jpg"), cap: "Collserola · Wikimedia" },
       { id: "dimoni", name: "El Molí de Cal Dimoni", place: "Badalona · Serralada Marina", addr: "Ctra. Badalona–Montcada km 3,3", mins: 20, lat: 41.46, lon: 2.22, min: 20, max: 300, pax: 78, from: 68, to: 150, rating: "4.9", reviews: 110, nature: 4, vegan: "vegetariano; vegano preguntar", pack: "promo 67,90 €: aperitivo · menú · floral · 2 h barra · músico (mín. 40)", incDj: true, incFlowers: true, incCivil: false, fit: "in",
         out: "Jardín y terraza", inn: "Salones y carpa",
         note: "Ficha 77,90–150 €. Promo 67,90 €. Vegetariano y celíaco en ficha; vegano no listado. 93 465 76 78.",
-        url: "https://www.bodas.net/masias/masia-el-moli-de-cal-dimoni--e7472", phone: "93 465 76 78", photo: wiki("Serralada de la Marina, Badalona (51843376084).jpg"), cap: "Serralada de Marina · Wikimedia" },
+        url: "https://masia-caldimoni.com/", pay: "Finca incluida. Promo 67,90 € exige mín. 40 adultos. Sin alquiler aparte publicado.", phone: "93 465 76 78", photo: wiki("Serralada de la Marina, Badalona (51843376084).jpg"), cap: "Serralada de Marina · Wikimedia" },
       { id: "reixac", name: "Masia Reixac", place: "Montcada i Reixac", addr: "Ctra. de la Roca 9", mins: 20, lat: 41.486, lon: 2.188, min: 20, max: 400, pax: 85, from: 65, to: 105, rating: "4.9", reviews: 166, rec: "98 %", nature: 3, vegan: "preguntar", pack: "DJ · floral · menú", incDj: true, incFlowers: true, incCivil: false, fit: "in",
         out: "Jardines y terrazas · Serra de Marina", inn: "8 salones (30–350)",
         note: "Menú con DJ y floral. Señal 500 €. 93 564 14 45.",
-        url: "https://www.bodas.net/masias/masia-reixac--e5554", phone: "93 564 14 45", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
+        url: "https://www.bodas.net/masias/masia-reixac--e5554", pay: "Finca incluida. Señal 500 € a cuenta. Sin alquiler aparte publicado.", phone: "93 564 14 45", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
       { id: "font", name: "Masia Font del Tort", place: "Montcada · Serra de Marina", addr: "Serralada de Marina", mins: 20, lat: 41.495, lon: 2.195, min: 40, max: 170, pax: 90, from: 90, to: 105, rating: "4.9", reviews: 222, nature: 5, vegan: "sí", pack: "todo incluido web · discoteca · veg/vegano · animación infantil", incDj: true, incFlowers: false, incCivil: true, fit: "in",
         out: "86 ha de parque natural", inn: "Salones + discoteca con terraza",
         note: "Web desde 90 € todo incluido. Bodas.net desde 105 €. Vegano en su cocina. Civil en finca.",
-        url: "https://www.masiafontdeltort.com/bodas", photo: wiki("Serralada de la Marina, Badalona (51843376084).jpg"), cap: "Serra de Marina · Wikimedia" },
+        url: "https://www.masiafontdeltort.com/bodas", pay: "Web: desde 90 € todo incluido (finca dentro). Bodas.net lista desde 105 €. Civil en finca, sin tarifa extra publicada.", photo: wiki("Serralada de la Marina, Badalona (51843376084).jpg"), cap: "Serra de Marina · Wikimedia" },
       { id: "oliver", name: "Can Oliver", place: "Montornès del Vallès", addr: "Av. Mare de Déu de Montserrat s/n", mins: 25, lat: 41.544, lon: 2.267, min: 40, max: 200, pax: 116, from: 86, to: 116, rating: "4.9", reviews: 368, rec: "98 %", nature: 4, vegan: "sí", pack: "todo incluido 105 € + IVA 10 %: DJ 2 h · barra 2 h · floral · tarta", incDj: true, incFlowers: true, incCivil: false, fit: "mid",
         out: "Jardines, fuentes, cúpula civil, carpa aperitivo", inn: "Salón rústico 100 · Mirador 220",
         note: "Web 2026: 105 € sin IVA 10 % = 115,50 €. Civil 850 € extra. Ficha: más de un evento al día (una pareja 2026 lo criticó).",
-        url: "https://restaurantcanoliver.com/", phone: "93 568 21 52", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
+        url: "https://restaurantcanoliver.com/", pay: "Finca incluida. 105 € + IVA 10 % = 115,50 €. Civil 850 € extra. Ampliar baile 190 € / 30 min. Más de un evento al día.", phone: "93 568 21 52", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
       { id: "biel", name: "Can Biel", place: "Llinars del Vallès", addr: "Llinars, vistas Montseny", mins: 35, lat: 41.64, lon: 2.405, min: 50, max: 220, pax: 95, from: 90, to: 150, rating: "4.9", reviews: 0, rec: "98 %", nature: 5, vegan: "sí", pack: "flores · fundas · 2 h baile · 2 h barra", incDj: true, incFlowers: true, incCivil: false, fit: "in",
         out: "Jardín nupcial 200 m² + bosques", inn: "Mirador 120 · Nou Estil 220",
         note: "Web desde 95 €. Bodas.net 90–150 €. 4.9 / 98 %. Wedding Award 2026.",
-        url: "https://www.canbiel.com/", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès Oriental · Wikimedia" },
+        url: "https://www.canbiel.com/", pay: "Finca incluida. Pack web desde 95 €. Sin alquiler aparte publicado.", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès Oriental · Wikimedia" },
       { id: "nadal", name: "Mas Nadal", place: "Sant Andreu de Llavaneres", addr: "Riera Avall, 8", mins: 35, lat: 41.573, lon: 2.443, min: 8, max: 170, pax: 75, from: 75, to: 135, rating: "4.8", reviews: 83, nature: 4, vegan: "sí", pack: "aperitivo · comida · tarta · barra (ficha)", incDj: false, incFlowers: false, incCivil: false, fit: "in",
         out: "Jardines llenos de vegetación", inn: "Salón acristalado + carpa",
         note: "75–135 €. Promo ficha 110 € IVA incl. Veg/vegano. Media hora de BCN.",
-        url: "https://www.bodas.net/masias/mas-nadal--e88256", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme · Wikimedia" },
+        url: "https://elmasnadal.com/", pay: "Finca incluida en el menú. Sin alquiler aparte publicado.", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme · Wikimedia" },
       { id: "solior", name: "Masía Solior", place: "Gavà · Eramprunyà", addr: "Gavà, pies del Castillo de Eramprunyà", mins: 35, lat: 41.303, lon: 1.98, min: 70, max: 150, pax: 90, from: 85, to: 90, rating: "", reviews: 0, nature: 5, vegan: "vegetal en bufé; vegano preguntar", pack: "cóctel 85 € o banquete 90 € IVA incl. · tarta · bodega hasta postre", incDj: false, incFlowers: false, incCivil: false, fit: "in",
         out: "Finca privada, vistas al mar y Garraf", inn: "Salones hasta 150 sentados",
         note: "Mín. 70. Cóctel 85 € (paella vegetal). Banquete 90 €. Preguntar plato vegano estricto.",
-        url: "https://myeventsbcn.com/masias-bodas-baix-llobregat/gava/solior/", photo: wiki("Serra de Collserola.jpg"), cap: "Garraf · Wikimedia" },
+        url: "https://myeventsbcn.com/masias-bodas-baix-llobregat/gava/solior/", pay: "Pack cerrado 85/90 € IVA incl. (finca dentro). Mín. 70 adultos. DJ y flores no van en el pack.", photo: wiki("Serra de Collserola.jpg"), cap: "Garraf · Wikimedia" },
       { id: "serrat", name: "El Serrat de l'Ametlla", place: "L'Ametlla del Vallès", addr: "Carrer Gralla 44-46", mins: 40, lat: 41.669, lon: 2.261, min: 50, max: 700, pax: 110, from: 95, to: 152, rating: "4.7", reviews: 199, rec: "94 %", nature: 5, vegan: "preguntar", pack: "finca 11.000 m² · lagos", incDj: false, incFlowers: false, incCivil: false, fit: "mid",
         out: "11.000 m², lagos, árboles", inn: "Salón cerrado hasta 800 + sala de baile",
         note: "95–152 €. Calculadora 110 €. El entorno es de los más grandes cerca de BCN. 93 843 03 01.",
-        url: "https://www.bodas.net/masias/el-serrat-de-lametlla--e164521", phone: "93 843 03 01", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
+        url: "https://elserratametlla.wordpress.com/", pay: "Finca incluida. 95–152 €/pax. Sin alquiler aparte publicado.", phone: "93 843 03 01", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
       { id: "illa", name: "Masía Ca N'Illa", place: "La Garriga", addr: "C. Mil·lenari de Catalunya", mins: 40, lat: 41.685, lon: 2.283, min: 50, max: 450, pax: 94, from: 94, to: 94, rating: "4.8", reviews: 238, nature: 4, vegan: "preguntar", pack: "menú desde 94 €", incDj: false, incFlowers: false, incCivil: false, fit: "mid",
         out: "Entorno s. XV y naturaleza", inn: "Salones de banquete",
         note: "Desde 94 €. 35 km BCN. 93 589 50 69.",
-        url: "https://www.bodas.net/bodas/banquetes/masias/barcelona", phone: "93 589 50 69", photo: wiki("Can Fournier - la Garriga - P1070153.jpg"), cap: "La Garriga · Wikimedia" },
+        url: "https://www.bodas.net/bodas/banquetes/masias/barcelona", pay: "Finca incluida. Desde 94 €. Sin alquiler aparte publicado.", phone: "93 589 50 69", photo: wiki("Can Fournier - la Garriga - P1070153.jpg"), cap: "La Garriga · Wikimedia" },
       { id: "sidro", name: "La Porxada de Can Sidro", place: "Palau-solità i Plegamans", addr: "Palau-solità", mins: 25, lat: 41.587, lon: 2.178, min: 50, max: 190, pax: 105, from: 95, to: 124, rating: "4.9", reviews: 624, rec: "98 %", nature: 3, vegan: "preguntar", pack: "promos 105 o 124 €: barra aperitivo · deco · IVA · seating", incDj: true, incFlowers: true, incCivil: false, fit: "mid",
         out: "Jardín y parque", inn: "Porxada y Jardinet acristalados (50–200)",
         note: "Menú 95–105 €. Packs todo incluido 105 / 124 €. 4.9 / 624. Wedding Award 2026.",
-        url: "https://www.bodas.net/masias/la-porxada-de-can-sidro--e5403", photo: wiki("Masia de Can Padró, a Palau-solità i Plegamans.jpeg"), cap: "Masia del pueblo (no es Sidro) · Wikimedia" },
+        url: "https://www.laporxadadecansidro.com/", pay: "Finca incluida. Una boda al día. Packs 105/124 €. Sin alquiler aparte publicado.", photo: wiki("Masia de Can Padró, a Palau-solità i Plegamans.jpeg"), cap: "Masia del pueblo (no es Sidro) · Wikimedia" },
       { id: "cabus", name: "Can Cabús", place: "Alella", addr: "Av. Sant Josep de Calassanç 10", mins: 25, lat: 41.4955, lon: 2.294, min: 40, max: 180, pax: 109, from: 100, to: 143, rating: "5.0", reviews: 0, rec: "100 %", nature: 3, vegan: "sí", pack: "promo 109 €: bufé aperitivo · banquete · tarta · 2 h barra · deco", incDj: false, incFlowers: true, incCivil: false, fit: "mid",
         out: "Jardín de finca", inn: "Salón y carpa",
         note: "100–143 €. Vegano en ficha. 5.0 / 100 %.",
-        url: "https://www.bodas.net/fincas/can-cabus--e49545", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Alella · Wikimedia" },
+        url: "https://cancabus.es/bodas", pay: "Ficha: sin pago fijo de finca. Promo 109 €. Recargo por mínimo según día.", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Alella · Wikimedia" },
       { id: "llombart", name: "Mas Llombart", place: "Sant Fost de Campsentelles", addr: "Urb. Mas Llombart", mins: 20, lat: 41.506, lon: 2.155, min: 40, max: 210, pax: 100, from: 100, to: 180, rating: "5.0", reviews: 744, nature: 4, vegan: "sí", pack: "cóctel · floral · 2 h DJ · 2 h barra · tarta · IVA", incDj: true, incFlowers: true, incCivil: false, fit: "mid",
         out: "5.500 m² de jardín", inn: "Dos salones, máx. 210",
         note: "5.0 / 744. Una boda al día. Promo Viva la Vida 100 € (vence 27/12/2026). Wedding Award.",
-        url: "https://www.bodas.net/masias/mas-llombart--e5239", photo: wiki("Serra de Collserola.jpg"), cap: "Prelitoral · Wikimedia" },
+        url: "https://masllombart.com/", pay: "Finca incluida. No hay mínimo de pax: hay mínimo de presupuesto (pedir cifra). Señal 1.000 € a cuenta. Civil 1.100 € y oficiante 275 € extra. Hora extra DJ 295 €. Extra barra 10,50 €/pax.", photo: wiki("Serra de Collserola.jpg"), cap: "Prelitoral · Wikimedia" },
       { id: "coll", name: "Masia Mas Coll", place: "Alella", addr: "Mas Coll, 3", mins: 25, lat: 41.493, lon: 2.294, min: 30, max: 250, pax: 130, from: 130, to: 140, rating: "4.9", reviews: 322, nature: 3, vegan: "sí", pack: "DJ · diapositivas · centros · detalle novios · cocina para catering", incDj: true, incFlowers: true, incCivil: false, fit: "mid",
         out: "Zona ajardinada, terraza, carpa", inn: "Salones de banquetes",
         note: "130–140 €. Vegano. Civil en jardín. 4.9 / 322.",
-        url: "https://www.bodas.net/masias/masia-mas-coll--e6255", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Alella · Wikimedia" },
+        url: "https://www.bodas.net/masias/masia-mas-coll--e6255", pay: "Ficha: sin pago fijo. No mínimo de pax, sí gasto mínimo (pedir cifra). Se puede alquilar sin restaurar.", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Alella · Wikimedia" },
       { id: "castell", name: "Masia Castellarnau", place: "Sabadell", addr: "C. Mares de la Plaça de Maig, 3", mins: 25, lat: 41.548, lon: 2.108, min: 30, max: 250, pax: 110, from: 110, to: 172, rating: "4.8", reviews: 90, nature: 4, vegan: "sí", pack: "event planner · DJ · ceremonia · deco · discoteca", incDj: true, incFlowers: false, incCivil: true, fit: "mid",
         out: "Era, jardín, capilla, ceremonia civil", inn: "Sala Arnau 250 + discoteca",
         note: "s. XIV, 15 min BCN. 110–172 €. Vegano. Torre de 1570.",
-        url: "https://www.bodas.net/masias/masia-castellarnau--e126657", photo: wiki("Sant Cugat. Reial Monestir. Claustre 2.jpg"), cap: "Vallès · Wikimedia" },
+        url: "https://www.bodas.net/masias/masia-castellarnau--e126657", pay: "Ficha: sin pago fijo de finca. Señal + prueba de menú + resto 1 semana antes.", photo: wiki("Sant Cugat. Reial Monestir. Claustre 2.jpg"), cap: "Vallès · Wikimedia" },
       { id: "cim", name: "El Cim", place: "Castellar del Vallès", addr: "Plaça del Munt, s/n", mins: 40, lat: 41.618, lon: 2.088, min: 70, max: 300, pax: 115, from: 115, to: 168, rating: "4.9", reviews: 159, nature: 5, vegan: "sí", pack: "aperitivo · entrante · principal · tarta · barra libre", incDj: false, incFlowers: false, incCivil: false, fit: "mid",
         out: "Terraza y jardín, vistas a la Mola", inn: "Salón 120 y salón 350; plan B cubierto alabado",
         note: "115–168 €. Vegano. Mín. 70. Entorno de montaña.",
-        url: "https://www.bodas.net/masias/el-cim--e48714", photo: wiki("Serra de Collserola.jpg"), cap: "Sant Llorenç del Munt · Wikimedia" },
+        url: "https://elcim.es/bodas/", pay: "Ficha: sin pago fijo. Si no llegáis a 70, recargo 50 % del cubierto. Señal por reserva y exclusividad (a cuenta).", photo: wiki("Serra de Collserola.jpg"), cap: "Sant Llorenç del Munt · Wikimedia" },
       { id: "fuster", name: "Casa Fuster / Masía Sant Cugat", place: "Collserola, Sant Cugat", addr: "Av. Corts Catalanes s/n", mins: 25, lat: 41.466, lon: 2.075, min: 60, max: 200, pax: 110, from: 80, to: 135, rating: "4.8", reviews: 105, nature: 4, vegan: "preguntar", pack: "exclusividad un evento al día", incDj: false, incFlowers: false, incCivil: false, fit: "mid",
         out: "Jardines con vistas a Collserola", inn: "Salón diáfano exclusivo",
         note: "80–135 €. 93 589 34 45.",
-        url: "https://masiasantcugat.com/servicios/", phone: "93 589 34 45", photo: wiki("Serra de Collserola.jpg"), cap: "Collserola · Wikimedia" },
+        url: "https://masiasantcugat.com/servicios/", pay: "Finca incluida. Una boda al día. Sin alquiler aparte publicado.", phone: "93 589 34 45", photo: wiki("Serra de Collserola.jpg"), cap: "Collserola · Wikimedia" },
       { id: "ametller", name: "Masia Can Ametller", place: "Sant Cugat", addr: "Camí Ca n’Ametller s/n", mins: 25, lat: 41.47786, lon: 2.04731, min: 50, max: 200, pax: 110, from: 110, to: 110, rating: "", reviews: 0, nature: 3, vegan: "preguntar", pack: "IVA 10 % incl. · DJ 750 € aparte", incDj: false, incFlowers: false, incCivil: false, fit: "mid",
         out: "Entorno de masía", inn: "Salones de banquete",
         note: "110 € IVA incl. DJ 750 €. 93 674 91 51.",
-        url: "https://canametller.com/es/bodas/", phone: "93 674 91 51", photo: wiki("Sant Cugat. Reial Monestir. Claustre 2.jpg"), cap: "Sant Cugat · Wikimedia" },
+        url: "https://canametller.com/es/bodas/", pay: "Finca incluida (110 € IVA 10 %). DJ 750 € aparte.", phone: "93 674 91 51", photo: wiki("Sant Cugat. Reial Monestir. Claustre 2.jpg"), cap: "Sant Cugat · Wikimedia" },
       { id: "turo", name: "Turó del Sol", place: "Sant Vicenç de Montalt", addr: "Sant Vicenç de Montalt", mins: 40, lat: 41.579, lon: 2.508, min: 40, max: 500, pax: 105, from: 105, to: 190, rating: "4.9", reviews: 597, nature: 4, vegan: "preguntar", pack: "jardín 3.000 m² · salón 300", incDj: false, incFlowers: false, incCivil: false, fit: "mid",
         out: "3.000 m² de jardín, palmeras, entre bosque y playa", inn: "Salón 300 con vistas",
         note: "105–190 €. 4.9 / 597. Wedding Award 2026.",
-        url: "https://www.bodas.net/masias/turo-del-sol--e5370", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme · Wikimedia" },
+        url: "https://turodelsol.com/", pay: "Finca incluida. 105–190 €. Sin alquiler aparte publicado.", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme · Wikimedia" },
       { id: "bado", name: "Masía Mas Badó", place: "Sant Quirze Safaja", addr: "Sant Quirze Safaja", mins: 50, lat: 41.733, lon: 2.173, min: 65, max: 130, pax: 112, from: 112, to: 147, rating: "5.0", reviews: 24, nature: 5, vegan: "sí · menú vegano 147 € IVA incl.", pack: "exclusividad · alojamiento · barra 18 €/pax 2 h", incDj: false, incFlowers: false, incCivil: false, fit: "mid",
         out: "Jardines privados, finca rural", inn: "Salones + capilla",
         note: "112–137 €. Menú vegano publicado 147 € (2026). Mín. facturación 65 adultos.",
-        url: "https://www.bodas.net/masias/masia-mas-bado-bodasrv--e28905", photo: wiki("Serra de Collserola.jpg"), cap: "Moianès · Wikimedia" },
+        url: "https://www.bodas.net/masias/masia-mas-bado-bodasrv--e28905", pay: "Ficha: sin pago fijo. Mínimo de facturación = 65 adultos. Señal 1.000 € a cuenta. Barra 18 €/pax 2 h extra.", photo: wiki("Serra de Collserola.jpg"), cap: "Moianès · Wikimedia" },
       { id: "alzina", name: "Ca n’Alzina", place: "Rubió, valle cerca de Igualada", addr: "Avinguda de Cal Rubió", mins: 45, lat: 41.493, lon: 1.698, min: 35, max: 350, pax: 125, from: 125, to: 150, rating: "4.9", reviews: 386, nature: 5, vegan: "sí", pack: "terrazas · pérgolas · civil · iglesia gótica de Rubió", incDj: false, incFlowers: false, incCivil: true, fit: "mid",
         out: "Jardín y valle de Rubió", inn: "Salas 30–350",
         note: "125–150 € (listado BCN también 138 €). 45 min por A-2. 4.9 / 386.",
-        url: "https://www.bodas.net/masias/ca-n-alzina-uauu-weddings-&-events--e5077", photo: wiki("Serra de Collserola.jpg"), cap: "Anoia · Wikimedia" },
+        url: "https://www.bodas.net/masias/ca-n-alzina-uauu-weddings-&-events--e5077", pay: "Ficha: sin pago fijo. Mínimos según fecha. Pagos a lo largo de la preparación.", photo: wiki("Serra de Collserola.jpg"), cap: "Anoia · Wikimedia" },
       { id: "marial", name: "Can Marial", place: "Sant Vicenç de Montalt", addr: "Sant Vicenç de Montalt", mins: 40, lat: 41.58, lon: 2.51, min: 60, max: 250, pax: 135, from: 135, to: 170, rating: "4.9", reviews: 328, nature: 5, vegan: "sí", pack: "14 ha jardín · ermita · salón 250 · wedding planner", incDj: false, incFlowers: false, incCivil: false, fit: "mid",
         out: "14 ha, terrazas, río, vistas al mar", inn: "Salón cubierto 250",
         note: "Listado 154 € suelo; FAQ 135–170 €. Finca de interés paisajístico. Vegano.",
-        url: "https://www.bodas.net/masias/can-marial--e2368", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme · Wikimedia" },
+        url: "https://canmarial.net/", pay: "Finca en exclusiva. Menú 135–170 €. Sin alquiler aparte publicado.", photo: wiki("Celler Alella Vinícola-Marfil, any 1906 Alella - Maresme.jpg"), cap: "Maresme · Wikimedia" },
       { id: "llei", name: "Mas de Sant Lleí", place: "Vilanova del Vallès", addr: "Vilanova del Vallès", mins: 25, lat: 41.554, lon: 2.286, min: 70, max: 700, pax: 145, from: 145, to: 215, rating: "4.8", reviews: 276, nature: 4, vegan: "sí", pack: "aperitivo · 3 platos · tarta · 2 h barra · coordinadora · mojitos", incDj: false, incFlowers: false, incCivil: false, fit: "out",
         out: "Jardines de masía s. XII", inn: "Salones de banquete",
         note: "145–215 €. Vegano. 15 km BCN. Pack muy completo; el cubierto ya rompe 12k.",
-        url: "https://www.bodas.net/fincas/mas-de-sant-llei--e96", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
+        url: "https://www.bodas.net/fincas/mas-de-sant-llei--e96", pay: "Ficha: sin pago fijo. Señal 2.000 € a cuenta. Se puede alquilar sin restaurar. Mínimo según fecha.", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
       { id: "torrens", name: "El Celler de Can Torrens", place: "Sant Fost de Campsentelles", addr: "Sant Fost", mins: 20, lat: 41.506, lon: 2.162, min: 10, max: 320, pax: 150, from: 150, to: 245, rating: "5.0", reviews: 668, nature: 3, vegan: "sí", pack: "cocina propia de la finca · precio final de banquete", incDj: false, incFlowers: false, incCivil: false, fit: "out",
         out: "Entorno de masía", inn: "Hasta 320 comensales",
         note: "150–245 €. 5.0 / 668. Vegano. Wedding Award 2026. Excelente nota, cubierto alto.",
-        url: "https://www.bodas.net/masias/el-celler-de-can-torrens--e5165", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
+        url: "https://www.bodas.net/masias/el-celler-de-can-torrens--e5165", pay: "Ficha: precio final de banquete (finca dentro). Sin alquiler aparte publicado.", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
       { id: "marlet", name: "Can Marlet — Montseny", place: "Montseny", addr: "Parc Natural del Montseny", mins: 65, lat: 41.764, lon: 2.395, min: 50, max: 230, pax: 125, from: 125, to: 150, rating: "5.0", reviews: 442, nature: 5, vegan: "preguntar", pack: "floral en ficha", incDj: false, incFlowers: true, incCivil: false, fit: "out",
         out: "Bosque y jardines del parque", inn: "Salones de masía",
         note: "125–150 €. 5.0 / 442. Límite 1 h (65 min). Wedding Award 2026.",
-        url: "https://www.bodas.net/masias/can-marlet-montseny--e1297", photo: wiki("Serra de Collserola.jpg"), cap: "Bosque · Wikimedia" },
+        url: "https://www.bodas.net/masias/can-marlet-montseny--e1297", pay: "Finca incluida. 125–150 €. Sin alquiler aparte publicado.", photo: wiki("Serra de Collserola.jpg"), cap: "Bosque · Wikimedia" },
       { id: "sever", name: "Torre Sever", place: "Caldes de Montbui", addr: "Caldes de Montbui", mins: 35, lat: 41.613, lon: 2.148, min: 40, max: 200, pax: 160, from: 160, to: 185, rating: "", reviews: 0, nature: 5, vegan: "sí", pack: "menú a medida · civil · coordinación", incDj: false, incFlowers: false, incCivil: false, fit: "out",
         out: "Bosques y campos mediterráneos", inn: "Comedor con ventanales + discoteca",
         note: "160–185 €. Vegano. 30 min BCN. Entorno privado.",
-        url: "https://www.bodas.net/fincas/torre-sever--e63959", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
+        url: "https://www.bodas.net/fincas/torre-sever--e63959", pay: "Ficha: sin pago fijo publicado. 160–185 €/pax.", photo: wiki("Serra de Collserola.jpg"), cap: "Vallès · Wikimedia" },
       { id: "magi", name: "Can Magí", place: "Sant Cugat", addr: "Av. Can Magí 5", mins: 25, lat: 41.4728, lon: 2.0675, min: 100, max: 500, pax: 165, from: 150, to: 185, rating: "5.0", reviews: 164, nature: 5, vegan: "preguntar", pack: "jardín 4.000 m² · Salón de Cristal 677 m²", incDj: false, incFlowers: false, incCivil: false, fit: "out",
         out: "4.000 m² de jardín en bosque", inn: "Salón de Cristal 677 m²",
         note: "El sitio encaja, pero mín. 100 invitados y 150 €. 85 no los cogen.",
-        url: "https://www.bodas.net/masias/can-magi--e9106", photo: wiki("Sant Cugat. Reial Monestir. Claustre 2.jpg"), cap: "Sant Cugat · Wikimedia" }
+        url: "https://sensacions.com/", pay: "Finca de Sensacions. Mín. 100 pax y ~150 €. 85 no los cogen. Pedir si hay alquiler de salón aparte.", photo: wiki("Sant Cugat. Reial Monestir. Claustre 2.jpg"), cap: "Sant Cugat · Wikimedia" }
     ];
     const photos = [
-      { id: "visual", name: "Wedding Visual · foto+vídeo+álbum", price: 1400 },
-      { id: "luci", name: "Luciérnagas pack completo", price: 2000 },
-      { id: "max", name: "Max-record foto+vídeo+álbum", price: 1800 },
-      { id: "alcolor", name: "Alcolor foto+vídeo+álbum", price: 1800 },
-      { id: "moona", name: "Moona Films completo + IVA", price: 2419 },
-      { id: "vaya", name: "Vaya Plano Pack Pro + IVA", price: 3261 }
+      { id: "visual", name: "Wedding Visual · foto+vídeo+álbum", price: 1400, url: "https://weddingvisual.es/es/" },
+      { id: "luci", name: "Luciérnagas pack completo", price: 2000, url: "https://www.bodas.net/fotografos/luciernagas--e79890" },
+      { id: "max", name: "Max-record foto+vídeo+álbum", price: 1800, url: "https://www.maxrecord.es/" },
+      { id: "alcolor", name: "Alcolor foto+vídeo+álbum", price: 1800, url: "https://alcolor35.com/" },
+      { id: "moona", name: "Moona Films completo + IVA", price: 2419, url: "https://www.moonafilms.com/promo2026" },
+      { id: "vaya", name: "Vaya Plano Pack Pro + IVA", price: 3261, url: "https://www.vayaplano.com/fotografia-video-bodas" }
     ];
     const djs = [
       { id: "inc", name: "El del pack / menú", price: 0 },
@@ -556,14 +570,18 @@
     ];
     const extras = [
       { id: "none", name: "Sin extra", price: 0 },
-      { id: "low", name: "Fotomatón Lowcost 2 h", price: 248 },
-      { id: "booth", name: "The Booth 2 h + IVA", price: 393 },
-      { id: "cake", name: "Tarta Handcake típica", price: 250 },
+      { id: "low", name: "Fotomatón Lowcost 2 h", price: 248, url: "https://www.bodas.net/animacion/fotomaton-lowcost--e177752" },
+      { id: "booth", name: "The Booth 2 h + IVA", price: 393, url: "https://www.the-booth.es/" },
+      { id: "cake", name: "Tarta Handcake típica", price: 250, url: "https://www.handcakepastisseria.com/es/" },
       { id: "bus", name: "Autobús media BCN", price: 571 },
       { id: "lowbus", name: "Fotomatón + bus", price: 819 }
     ];
 
     function euro(n) { return Math.round(n).toLocaleString("es-ES") + " €"; }
+    function href(url, text) {
+      if (!url) return text;
+      return "<a href=\"" + url + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + text + "</a>";
+    }
     function cost(v, g, photo, dj, fl, extra) {
       if (!v.pax) return null;
       const food = (v.rent || 0) + g * v.pax;
@@ -612,7 +630,7 @@
       if (t == null) {
         totalEl.textContent = "Sin menú publicado.";
         totalEl.className = "total";
-        br.textContent = v.note;
+        br.innerHTML = href(v.url, v.name) + ". " + (v.pay || v.note);
         renderCombos(g);
         renderRanks();
         return;
@@ -625,13 +643,13 @@
         totalEl.className = "total " + (ok ? "under" : "over");
         totalEl.textContent = (ok ? "Dentro · " : "Se pasa · ") + euro(t) + " / 12.000 €";
       }
-      br.textContent = (v.rent ? "Alquiler " + euro(v.rent) + " + comida " + euro(g * v.pax) : "Banquete " + euro((v.rent || 0) + g * v.pax)) +
-        " + foto " + euro(ph.price) + " + fijos 2.000 €" +
+      br.innerHTML = (v.rent ? "Alquiler " + euro(v.rent) + " + comida " + euro(g * v.pax) : "Banquete " + euro((v.rent || 0) + g * v.pax)) +
+        " + " + href(ph.url, "foto+vídeo+álbum") + " " + euro(ph.price) + " + fijos 2.000 €" +
         (v.incCivil ? "" : " + celebrante 400 €") +
         (v.incDj ? "" : " + DJ " + euro(d.price)) +
         (v.incFlowers ? "" : " + flores " + euro(f.price)) +
         (x.price ? " + extra " + euro(x.price) : "") +
-        ". " + (v.vegan ? "Vegano: " + v.vegan + ". " : "") + v.note;
+        ". " + href(v.url, v.name) + ". " + (v.vegan ? "Vegano: " + v.vegan + ". " : "") + (v.pay || "") + " " + v.note;
       renderCombos(g);
       renderRanks();
     }
@@ -644,7 +662,7 @@
       const ok = t != null && t <= CAP && 85 >= v.min && 85 <= v.max;
       const cls = ok ? "under" : "over";
       const amt = t == null ? "—" : (ok ? "sobran " + euro(CAP - t) : euro(t));
-      return "<li><div><h3>" + v.name + "</h3><p class=\"why\">" + why + "</p></div><p class=\"amt " + cls + "\">" + amt + "</p></li>";
+      return "<li><div><h3>" + href(v.url, v.name) + "</h3><p class=\"why\">" + why + "</p></div><p class=\"amt " + cls + "\">" + amt + "</p></li>";
     }
     function renderRanks() {
       const g = 85;
@@ -656,10 +674,10 @@
       const over = scored.filter(function (x) { return !(x.t != null && x.t <= CAP && g >= x.v.min && g <= x.v.max); }).sort(function (a, b) { return (a.t || 9e9) - (b.t || 9e9); });
       const hide = onlyCapOn();
       document.getElementById("rank-best").innerHTML = (hide ? best.filter(function (x) { return x.t != null && x.t <= CAP && g >= x.v.min && g <= x.v.max; }) : best).map(function (x) {
-        return rankItem(x.v, x.t, x.v.place + " · " + (x.v.vegan ? "vegano: " + x.v.vegan : "") + " · " + (x.v.pack || ""));
+        return rankItem(x.v, x.t, x.v.place + " · " + (x.v.vegan ? "vegano: " + x.v.vegan : "") + " · " + (x.v.pay || x.v.pack || ""));
       }).join("");
       document.getElementById("rank-budget").innerHTML = budget.map(function (x) {
-        return rankItem(x.v, x.t, euro(x.t) + " · " + x.v.from + "–" + x.v.to + " €/pax · " + (x.v.pack || ""));
+        return rankItem(x.v, x.t, euro(x.t) + " · " + x.v.from + "–" + x.v.to + " €/pax · " + (x.v.pay || x.v.pack || ""));
       }).join("") || "<li><div><p class=\"why\">Ninguna con este pack de referencia.</p></div></li>";
       document.getElementById("rank-over-wrap").hidden = hide;
       document.getElementById("rank-over").innerHTML = over.map(function (x) {
@@ -677,14 +695,14 @@
       }).filter(Boolean);
       rows.sort(function (a, b) { return a.t - b.t; });
       const shown = onlyCapOn() ? rows.filter(function (r) { return r.capOk && r.t <= CAP; }) : rows;
-      document.getElementById("combo-lead").textContent =
-        g + " invitados · Wedding Visual 1.400 € · DJ 700 € y flores 150 € si no van en el menú · fijos 2.400 €. " +
+      document.getElementById("combo-lead").innerHTML =
+        g + " invitados · " + href("https://weddingvisual.es/es/", "Wedding Visual") + " 1.400 € · DJ 700 € y flores 150 € si no van en el menú · fijos 2.400 €. Finca incluida en el cubierto salvo que la ficha diga alquiler. " +
         shown.length + " fincas" + (onlyCapOn() ? " ≤ 12.000 €." : " (todas).");
       document.getElementById("combo-list").innerHTML = shown.map(function (r) {
         const ok = r.capOk && r.t <= CAP;
         const amt = !r.capOk ? "aforo " + r.v.min + "–" + r.v.max : (ok ? "sobran " + euro(CAP - r.t) : "se pasa " + euro(r.t - CAP));
-        return "<article class=\"combo\"><div><h3>" + r.v.name + "</h3><p class=\"meta\">" + euro(r.t) + " · " + r.v.place +
-          " · vegano: " + (r.v.vegan || "preguntar") + "</p></div><p class=\"amt" + (ok ? "" : " over") + "\">" + amt + "</p></article>";
+        return "<article class=\"combo\"><div><h3>" + href(r.v.url, r.v.name) + "</h3><p class=\"meta\">" + euro(r.t) + " · " + r.v.place +
+          " · vegano: " + (r.v.vegan || "preguntar") + (r.v.pay ? "<br>" + r.v.pay : "") + "</p></div><p class=\"amt" + (ok ? "" : " over") + "\">" + amt + "</p></article>";
       }).join("") || "<p>Ninguna con este aforo.</p>";
     }
 
@@ -700,7 +718,7 @@
         const img = v.photo ? "<div><img src=\"" + v.photo + "\" alt=\"\" width=\"800\" height=\"400\" loading=\"lazy\" onerror=\"this.remove()\"><p class=\"cap\" style=\"padding:0.4rem 1.2rem 0\">" + v.cap + "</p></div>" : "";
         const rate = v.rating ? v.rating + "/5" + (v.reviews ? " (" + v.reviews + ")" : "") + (v.rec ? " · " + v.rec : "") + " · " : "";
         const tel = v.phone ? "<p class=\"meta\">" + v.phone + "</p>" : "";
-        const link = v.url ? "<p><a href=\"" + v.url + "\">Fuente</a></p>" : "";
+        const link = v.url ? "<p><a href=\"" + v.url + "\" target=\"_blank\" rel=\"noopener noreferrer\">Web del local</a></p>" : "";
         const chips = "<p class=\"chips\">" +
           (v.vegan && v.vegan.indexOf("sí") === 0 ? "<span class=\"yes\">Vegano</span>" : "<span>Vegano: " + (v.vegan || "preguntar") + "</span>") +
           (v.incDj ? "<span class=\"yes\">DJ en pack</span>" : "<span>DJ aparte</span>") +
@@ -709,9 +727,10 @@
           (v.pack ? v.pack.split(" · ").map(function (c) { return "<span>" + c + "</span>"; }).join("") : "") +
           "</p>";
         return "<article class=\"place\" id=\"v-" + v.id + "\">" + img + "<div class=\"body\"><p class=\"tag " + tag + "\">" + tagTxt +
-          "</p><h3>" + v.name + "</h3><p class=\"price\">" + (v.pax ? v.from + (v.to !== v.from ? "–" + v.to : "") + " €/pax" : "Pedir") +
+          "</p><h3>" + href(v.url, v.name) + "</h3><p class=\"price\">" + (v.pax ? v.from + (v.to !== v.from ? "–" + v.to : "") + " €/pax" : "Pedir") +
           "</p><p class=\"meta\">" + v.place + " · " + v.mins + " min · " + rate + v.min + "–" + v.max +
-          " pax · ref. " + euro(t) + "<br>Fuera: " + v.out + "<br>Dentro: " + v.inn + "</p>" + chips + "<p>" + v.note + "</p>" + tel + link + "</div></article>";
+          " pax · ref. " + euro(t) + "<br>Fuera: " + v.out + "<br>Dentro: " + v.inn + "</p>" + chips +
+          "<p>" + (v.pay || "") + "</p><p>" + v.note + "</p>" + tel + link + "</div></article>";
       }).join("");
     }
 
@@ -726,8 +745,9 @@
         const t = refTotal(v, 85);
         const color = 85 < v.min ? "#8a3a2a" : t <= CAP ? "#2a5340" : "#8a6a3c";
         const m = L.circleMarker([v.lat, v.lon], { radius: 8, color: color, fillColor: color, fillOpacity: 0.9, weight: 1 });
-        m.bindPopup("<strong>" + v.name + "</strong><br>" + v.place +
+        m.bindPopup(href(v.url, v.name) + "<br>" + v.place +
           (v.pax ? "<br>" + v.from + "–" + v.to + " €/pax · ref. " + euro(t) : "") +
+          (v.pay ? "<br>" + v.pay : "") +
           "<br><a href=\"#v-" + v.id + "\">Ver ficha</a>");
         m.addTo(map);
       });
