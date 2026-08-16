@@ -2,7 +2,7 @@
 # Análisis bodas
 
 ## Producto
-HTML consultable para montar una boda completa (día entero) con tope **12.000 €**, en un radio de **1 hora de Barcelona**.
+HTML consultable para montar una boda completa (día entero). El **presupuesto total** es un campo del formulario y de la URL (por defecto 12.000 €). Radio de **1 hora de Barcelona**.
 
 Público: la pareja. No es Gemini: lista profesionales reales (persona/empresa) con precio, reviews y contacto.
 
