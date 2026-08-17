@@ -190,7 +190,7 @@
     .no { color: var(--no); }
     .cols {
       display: grid;
-      grid-template-columns: 2rem minmax(7.5rem, 1.4fr) 5.5rem 6.1rem 6.1rem minmax(4.5rem, 0.9fr);
+      grid-template-columns: 2rem minmax(7.5rem, 1.4fr) 5.5rem 7.2rem 6.1rem minmax(4.5rem, 0.9fr);
       gap: 0.45rem;
       padding: 0.45rem 0 0.55rem;
       font-size: 0.62rem;
@@ -203,7 +203,7 @@
     .list details { border-bottom: 1px solid var(--line); }
     .list summary {
       display: grid;
-      grid-template-columns: 2rem minmax(7.5rem, 1.4fr) 5.5rem 6.1rem 6.1rem minmax(4.5rem, 0.9fr);
+      grid-template-columns: 2rem minmax(7.5rem, 1.4fr) 5.5rem 7.2rem 6.1rem minmax(4.5rem, 0.9fr);
       gap: 0.45rem;
       align-items: center;
       padding: 0.85rem 0;
@@ -441,7 +441,7 @@
         <span>#</span>
         <span>Masía</span>
         <span class="num">Finca</span>
-        <span class="num">Fiesta</span>
+        <span class="num">Con fiesta</span>
         <span class="num">Con todo</span>
         <span>Enlaces</span>
       </div>
@@ -611,7 +611,7 @@
           "<p class=\"n\">" + (i + 1) + "</p>" +
           "<span class=\"who\"><strong>" + v.name + "</strong><small>" + v.place + " · " + v.mins + " min · " + v.from + (v.to !== v.from ? "–" + v.to : "") + " €/pax</small></span>" +
           "<p class=\"amt finca num\" data-label=\"Finca\">" + euro(r.f) + "</p>" +
-          "<p class=\"amt fiesta num\" data-label=\"Fiesta\">" + euro(r.t) + "</p>" +
+          "<p class=\"amt fiesta num\" data-label=\"Con fiesta\">" + euro(r.t) + "</p>" +
           "<p class=\"amt todo num " + cls + "\" data-label=\"Con todo\">" + euro(r.all) + "</p>" +
           "<span class=\"links\">" + links(v) + "</span></summary>" +
           "<div class=\"more\">" + chips +
@@ -641,7 +641,7 @@
         const all = total(p.v, g, photo, deco);
         const color = pinColor(p.v, g, all, budget);
         p.m.setStyle({ color: color, fillColor: color });
-        p.m.setPopupContent(p.v.name + "<br>" + p.v.place + "<br>Finca " + euro(finca(p.v, g)) + " · fiesta " + euro(fiesta(p.v, g, photo, deco)) + " · con todo " + euro(all) +
+        p.m.setPopupContent(p.v.name + "<br>" + p.v.place + "<br>Finca " + euro(finca(p.v, g)) + " · con fiesta " + euro(fiesta(p.v, g, photo, deco)) + " · con todo " + euro(all) +
           "<br>" + links(p.v) + "<br><a href=\"#v-" + p.v.id + "\">Ver fila</a>");
       });
     }
