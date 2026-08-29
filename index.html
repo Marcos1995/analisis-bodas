@@ -101,6 +101,34 @@
       touch-action: manipulation;
     }
     nav a:hover { color: var(--card); }
+    .types {
+      display: flex;
+      gap: 0.4rem;
+      margin: 0 auto;
+      padding: 0 max(1.15rem, env(safe-area-inset-right)) 0.65rem max(1.15rem, env(safe-area-inset-left));
+      max-width: 52rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .types button {
+      flex: 0 0 auto;
+      font: inherit;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #c4b6a4;
+      background: transparent;
+      border: 1px solid #3a322a;
+      min-height: 2.5rem;
+      padding: 0 0.7rem;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+    .types button[aria-pressed="true"] {
+      color: var(--card);
+      border-color: var(--bronze);
+    }
+    .ico { font-style: normal; font-size: 0.95em; }
     main { max-width: 52rem; margin: 0 auto; padding: 0 max(1.15rem, env(safe-area-inset-right)) 4.5rem max(1.15rem, env(safe-area-inset-left)); }
     section { margin: 2rem 0; }
     @media (min-width: 720px) { section { margin: 2.4rem 0; } }
@@ -219,7 +247,7 @@
     .list summary::-webkit-details-marker, .list summary::marker { display: none; content: ""; }
     .list summary:focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
     .list .who { min-width: 0; }
-    .list .who strong { font-weight: 400; display: block; }
+    .list .who strong { font-weight: 400; display: flex; align-items: baseline; gap: 0.35rem; }
     .list .who small { color: var(--muted); font-size: 0.78rem; }
     .list .amt { margin: 0; font-size: 0.98rem; }
     .list .amt.over { color: var(--no); }
@@ -352,6 +380,13 @@
       <li><a href="#mapa">Mapa</a></li>
       <li><a href="#extras">Extras</a></li>
     </ul>
+    <div class="types" id="type-bar" role="toolbar" aria-label="Filtrar por tipo">
+      <button type="button" data-kind="" aria-pressed="true">Todos</button>
+      <button type="button" data-kind="masía" aria-pressed="false">🏠 Masías</button>
+      <button type="button" data-kind="playa" aria-pressed="false">🏖️ Playa</button>
+      <button type="button" data-kind="restaurante" aria-pressed="false">🍽️ Mesa</button>
+      <button type="button" data-kind="hotel" aria-pressed="false">🏨 Hotel</button>
+    </div>
   </nav>
   <div class="form-wrap" id="formulario">
     <div>
@@ -374,8 +409,8 @@
         <label for="boothh">Fotomatón (h)
           <input id="boothh" type="number" inputmode="decimal" min="0" max="8" step="0.5" value="1">
         </label>
-        <label for="buses">Autocares
-          <input id="buses" type="number" inputmode="numeric" min="0" max="8" step="1" value="2">
+        <label for="buses">Autobuses ida y vuelta
+          <input id="buses" type="number" inputmode="numeric" min="0" max="8" step="1" value="1">
         </label>
         <p class="group">Fiesta</p>
         <label for="photo">Foto + vídeo + álbum (€)
@@ -432,7 +467,7 @@
         </div>
         <div class="panel">
           <h3>La URL</h3>
-          <p>Ejemplo: <code>?cap=12000&amp;guests=85&amp;djh=4&amp;barh=4&amp;boothh=1&amp;buses=2&amp;photo=2000&amp;deco=200&amp;beauty=85&amp;clothes=2000&amp;rings=150&amp;celebrant=200&amp;sort=todo</code>.</p>
+          <p>Ejemplo: <code>?cap=12000&amp;guests=85&amp;djh=4&amp;barh=4&amp;boothh=1&amp;buses=1&amp;photo=2000&amp;deco=200&amp;beauty=85&amp;clothes=2000&amp;rings=150&amp;celebrant=200&amp;sort=todo</code>.</p>
           <p>Verde: <strong>con todo</strong> cabe en el presupuesto. Solo el día de la boda. La decoración es vuestra cifra (0 si el pack ya trae flores).</p>
         </div>
         </div>
@@ -475,7 +510,7 @@
           <li>DJ: 2 h 700 € si no va en el pack; hora extra 295 € (Llombart 2026). Las 2 h del pack no se cobran otra vez.</li>
           <li>Barra 10,50 €/pax/hora (Llombart 2026). Pack con 2 h: solo se suman las horas de más.</li>
           <li><a href="https://www.the-booth.es/fotomaton-vintage" target="_blank" rel="noopener noreferrer">The Booth</a> vintage: mínimo 2 h 325 € + IVA ≈ 393 €; hora extra 75 € + IVA ≈ 91 €. Aunque pongáis 1 h, se cobra el mínimo de 2 h.</li>
-          <li>Autocar boda Barcelona ida y vuelta 50–55 pl. · media 1.200 € (guía 2026). El número de buses es del formulario.</li>
+          <li>Autocar boda Barcelona: 1 = un bus que va y vuelve (50–55 pl. · 1.200 €). Pon 2 si necesitáis dos coches.</li>
           <li>Decoración: vuestra cifra (200 €). Si el pack ya trae flores, no se suma.</li>
           <li>Celebrante: cifra del formulario (0 si la finca ya trae civil en pack).</li>
           <li>Mínimo de pax: si la ficha pide 100 y vais 85, se cobra el menú (y la barra) de 100. Extra de ficha: Oliver civil 850 € + IVA 10 % = 935 €; Llombart civil 1.100 €.</li>
@@ -503,6 +538,18 @@
     function href(url, text) {
       if (!url) return "";
       return "<a href=\"" + url + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + text + "</a>";
+    }
+    function kindIcon(k) {
+      if (k === "playa") return "🏖️";
+      if (k === "restaurante") return "🍽️";
+      if (k === "hotel") return "🏨";
+      return "🏠";
+    }
+    function paintTypeBar() {
+      const cur = document.getElementById("kind").value;
+      document.querySelectorAll("#type-bar button").forEach(function (btn) {
+        btn.setAttribute("aria-pressed", btn.getAttribute("data-kind") === cur ? "true" : "false");
+      });
     }
     function guests() { return Math.max(1, num("guests")); }
     function cap() { return num("cap"); }
@@ -585,7 +632,7 @@
       document.getElementById("form-sum").innerHTML =
         "Día de la boda. Fiesta = finca + foto " + euro(photo) +
         " + DJ " + djHours() + " h + barra " + barHours() + " h + fotomatón " + euro(boothCost()) +
-        " (mín. 2 h) + " + busCount() + " bus ida y vuelta + deco " + euro(deco) +
+        " (mín. 2 h) + " + busCount() + " autobús ida y vuelta + deco " + euro(deco) +
         " (0 si el pack ya trae flores).<br><strong>Con todo = fiesta + " + euro(you) + " personal + celebrante</strong>. Verde si con todo ≤ " + euro(budget) + ".";
       let rows = venues.map(function (v) {
         return { v: v, f: finca(v, g), t: fiesta(v, g, photo, deco), all: total(v, g, photo, deco) };
@@ -614,7 +661,7 @@
           (billed(v, g) > g ? "<span class=\"warn\">Se factura mín. " + v.min + " pax</span>" : "") +
           (g > v.max ? "<span class=\"warn\">Máx. " + v.max + ": no cabe</span>" : "") +
           (v.extra ? "<span class=\"warn\">Extra " + euro(v.extra) + "</span>" : "") +
-          (v.kind ? "<span class=\"yes\">" + v.kind + "</span>" : "") +
+          (v.kind ? "<span class=\"yes\">" + kindIcon(v.kind) + " " + v.kind + "</span>" : "") +
           (v.vegan && v.vegan.indexOf("sí") === 0 ? "<span class=\"yes\">Vegano</span>" : "<span>Vegano: " + (v.vegan || "preguntar") + "</span>") +
           (v.incDj ? "<span class=\"yes\">DJ " + PACK_H + " h en pack</span>" : "<span>DJ " + djHours() + " h</span>") +
           (v.incBar ? "<span class=\"yes\">Barra " + PACK_H + " h en pack</span>" : "<span>Barra " + barHours() + " h</span>") +
@@ -624,7 +671,7 @@
           "</p>";
         return "<details id=\"v-" + v.id + "\"><summary>" +
           "<p class=\"n\">" + (i + 1) + "</p>" +
-          "<span class=\"who\"><strong>" + v.name + "</strong><small>" + v.place + " · " + v.mins + " min · " + v.from + (v.to !== v.from ? "–" + v.to : "") + " €/pax</small></span>" +
+          "<span class=\"who\"><strong><span class=\"ico\" aria-hidden=\"true\">" + kindIcon(v.kind) + "</span> " + v.name + "</strong><small>" + v.place + " · " + v.mins + " min · " + v.from + (v.to !== v.from ? "–" + v.to : "") + " €/pax</small></span>" +
           "<p class=\"amt finca num\" data-label=\"Finca\">" + euro(r.f) + "</p>" +
           "<p class=\"amt fiesta num\" data-label=\"Con fiesta\">" + euro(r.t) + "</p>" +
           "<p class=\"amt todo num " + cls + "\" data-label=\"Con todo\">" + euro(r.all) + "</p>" +
@@ -635,9 +682,10 @@
           ". Con todo = " + euro(r.all) + " (+ personal " + euro(you) + " + celebrante " + euro(celebrantCost(v)) + ").</p>" +
           "<p>" + (v.pay || "") + " " + (v.note || "") + (v.phone ? " " + v.phone : "") + "</p>" +
           "<p>" + links(v) + "</p></div></details>";
-      }).join("") || "<p class=\"lead\">Ninguna con ese nombre.</p>";
+      }).join("") || "<p class=\"lead\">Ningún espacio con ese filtro.</p>";
       document.getElementById("extra-lead").textContent =
         g + " invitados · presupuesto " + euro(budget) + " · DJ " + djHours() + " h · barra " + barHours() + " h. Si hay mínimo de pax, finca y barra se calculan con ese mínimo.";
+      paintTypeBar();
       paintPins();
     }
 
@@ -656,7 +704,7 @@
         const all = total(p.v, g, photo, deco);
         const color = pinColor(p.v, g, all, budget);
         p.m.setStyle({ color: color, fillColor: color });
-        p.m.setPopupContent(p.v.name + "<br>" + p.v.place + "<br>Finca " + euro(finca(p.v, g)) + " · con fiesta " + euro(fiesta(p.v, g, photo, deco)) + " · con todo " + euro(all) +
+        p.m.setPopupContent(kindIcon(p.v.kind) + " " + p.v.name + "<br>" + p.v.place + "<br>Finca " + euro(finca(p.v, g)) + " · con fiesta " + euro(fiesta(p.v, g, photo, deco)) + " · con todo " + euro(all) +
           "<br>" + links(p.v) + "<br><a href=\"#v-" + p.v.id + "\">Ver fila</a>");
       });
     }
@@ -684,7 +732,7 @@
       const o = venues.find(function (v) { return v.id === "oliver"; });
       const m = venues.find(function (v) { return v.id === "magi"; });
       const b = venues.find(function (v) { return v.id === "ribas"; });
-      const defH = djHours() === 4 && barHours() === 4 && boothHours() === 1 && busCount() === 2;
+      const defH = djHours() === 4 && barHours() === 4 && boothHours() === 1 && busCount() === 1;
       if (finca(c, 85) !== 6800 ||
           finca(n, 85) !== 6375 ||
           finca(d, 85) !== 6630 ||
@@ -694,9 +742,9 @@
           !m || finca(m, 85) !== 16500 ||
           !b || finca(b, 70) !== 10000 ||
           celebrantCost(o) !== num("celebrant") || celebrantCost(r) !== 0 ||
-          (defH && (Math.round(fiesta(c, 85, 1400, 0)) !== 15853 ||
-                    Math.round(fiesta(n, 85, 1400, 0)) !== 13643 ||
-                    Math.round(fiesta(d, 85, 1400, 0)) !== 13198))) {
+          (defH && (Math.round(fiesta(c, 85, 1400, 0)) !== 14653 ||
+                    Math.round(fiesta(n, 85, 1400, 0)) !== 12443 ||
+                    Math.round(fiesta(d, 85, 1400, 0)) !== 11998))) {
         const el = document.getElementById("check-fail");
         el.hidden = false;
         el.textContent = "Fallo interno de cifras.";
@@ -706,6 +754,13 @@
     PARAMS.forEach(function (id) {
       document.getElementById(id).addEventListener("input", function () { render(); writeUrl(); });
       document.getElementById(id).addEventListener("change", function () { render(); writeUrl(); });
+    });
+    document.getElementById("type-bar").addEventListener("click", function (ev) {
+      const btn = ev.target.closest("button");
+      if (!btn) return;
+      document.getElementById("kind").value = btn.getAttribute("data-kind") || "";
+      render();
+      writeUrl();
     });
     readUrl();
     drawMap();
