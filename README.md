@@ -16,7 +16,7 @@ Abrir: `index.html`
 - Foto, DJ, flores, belleza, celebrante, resto
 - Preguntas para cada proveedor
 
-Precios de webs (ago 2026). Pedir presupuesto firmado.
+Precios de webs (verificados 29 ago 2026). Pedir presupuesto firmado.
 
 <!-- managed-by-telegram-cursor-bot:agent-kit -->
 ## Agent kit

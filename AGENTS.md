@@ -1,21 +1,20 @@
 <!-- managed-by-telegram-cursor-bot:agent-kit -->
 # Agent rules
 
-This project uses **Ponytail** (lazy senior: minimum code that works, never cut safety).
+Lean kit. No extra playbooks. Keep context small.
 
-## Always on
+## Workflow
 
-- `.cursor/rules/ponytail.mdc`
-- `.cursor/rules/project-defaults.mdc`
-- `.cursor/rules/visual.mdc`
-- Skills: `.cursor/skills/ponytail`, `ponytail-review`, `ship`, `fix-bug`
-- Agents: `.cursor/agents/implementer.md`, `reviewer.md`
-
-Source: https://github.com/DietrichGebert/ponytail · kit synced by telegram-cursor-bot
-
-## How to work
+Think → Plan → Build → Review → Test.
 
 1. Read `PROJECT.md`.
-2. Climb the Ponytail ladder before writing.
-3. Ship with a short commit + push when the task is done.
-4. Final reply: max 5 clear lines. `HECHO`/`FALLO` + what changed + commit.
+2. Search first; edit only what you need; verify with one check.
+3. Telegram/headless: no questions; pick a reasonable option and continue.
+4. Done = `git add -A` + short commit + push (unless told not to).
+5. Final reply: max 5 lines. `HECHO`/`FALLO`.
+
+`/review` loads `.cursor/skills/review`. Keep context small.
+
+Vista: HTML en el repo que se abre en el navegador. Enlace oficial solo `https://github.com/<owner>/<repo>` (nada de previews externos).
+
+Kit synced by telegram-cursor-bot
