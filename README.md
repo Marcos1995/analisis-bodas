@@ -7,12 +7,12 @@ Abrir: `index.html`
 ## Qué hay
 
 - Veredicto: qué cabe y qué no en 12k
-- Mapa OSM de masías y hoteles
+- Mapa OSM de masías, playa, restaurantes y hoteles
 - Filtro: jardín + salón cubierto para 85
 - Calculadora (espacio × foto × DJ × flores)
 - Combinaciones que cierran el tope
 - Bufé / estaciones vs menú cerrado (qué cabe y qué no en packs)
-- Masías / banquetes ≤ 1 h de BCN, con fotos y reviews
+- Masías, playa, restaurantes y hoteles ≤ 1 h de BCN, con ceremonia y fiesta
 - Foto, DJ, flores, belleza, celebrante, resto
 - Preguntas para cada proveedor
 
